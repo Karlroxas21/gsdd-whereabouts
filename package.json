@@ -1,6 +1,9 @@
 {
   "name": "gsdd-whereabouts",
   "version": "0.0.0",
+  "description": "Manual time-in & out with status update web application",
+  "keywords": ["Status update", "Where about", "MEAN"],
+  "author": "Karl Marx Roxas",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
