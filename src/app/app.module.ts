@@ -6,19 +6,26 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RegisterComponent } from './register/register.component';
+import { HomeDashboardComponent } from './dashboard/home-dashboard/home-dashboard.component';
+import { TimesheetComponent } from './dashboard/timesheet/timesheet.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SidebarComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeDashboardComponent,
+    TimesheetComponent,
+    DashboardComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, ChartModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
