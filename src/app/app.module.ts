@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,8 +12,8 @@ import { TimesheetComponent } from './dashboard/timesheet/timesheet.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { ChartModule } from 'primeng/chart';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,14 @@ import { ChartModule } from 'primeng/chart';
     TimesheetComponent,
     DashboardComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, ChartModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ChartModule,
+    CalendarModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
