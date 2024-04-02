@@ -14,6 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ChartModule } from 'primeng/chart';
 import { CalendarModule } from 'primeng/calendar';
+import { ChangepinComponent } from './dashboard/changepin/changepin.component';
+import { AccountComponent } from './account/account.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { CalendarModule } from 'primeng/calendar';
     HomeDashboardComponent,
     TimesheetComponent,
     DashboardComponent,
+    ChangepinComponent,
+    AccountComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
