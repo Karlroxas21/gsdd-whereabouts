@@ -8,9 +8,8 @@ describe('ChangepinComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChangepinComponent ]
-    })
-    .compileComponents();
+      declarations: [ChangepinComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ChangepinComponent);
     component = fixture.componentInstance;
