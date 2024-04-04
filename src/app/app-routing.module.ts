@@ -7,6 +7,7 @@ import { SetstatusComponent } from './setstatus/setstatus.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TimeinoutComponent } from './timeinout/timeinout.component';
 import { TimesheetComponent } from './dashboard/timesheet/timesheet.component';
+import { TeamComponent } from './team/team.component';
 
 const routes: Routes = [
   {
@@ -16,8 +17,9 @@ const routes: Routes = [
       { component: HomeDashboardComponent, path: '' },
       { component: AccountComponent, path: 'account' },
       { component: SetstatusComponent, path: 'setstatus' },
-      { component: TimesheetComponent, path: 'timesheet'},
+      { component: TimesheetComponent, path: 'timesheet' },
       { component: TimeinoutComponent, path: 'timeinout' },
+      { component: TeamComponent, path: 'team' },
     ],
   },
   { path: '**', component: NotfoundComponent },

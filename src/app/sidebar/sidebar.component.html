@@ -150,9 +150,12 @@
                 <span class="ms-3">Time in & out</span>
               </a>
             </li>
-            <li>
+            <li
+              routerLink="team"
+              [routerLinkActive]="'bg-gray-100'"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
               <a
-                href="#"
                 class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 <svg

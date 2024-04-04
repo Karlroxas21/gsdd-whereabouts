@@ -20,6 +20,7 @@ import { AccountComponent } from './account/account.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { SetstatusComponent } from './setstatus/setstatus.component';
 import { TimeinoutComponent } from './timeinout/timeinout.component';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { TimeinoutComponent } from './timeinout/timeinout.component';
     NotfoundComponent,
     SetstatusComponent,
     TimeinoutComponent,
+    TeamComponent,
   ],
   imports: [
     BrowserModule,
