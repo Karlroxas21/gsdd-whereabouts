@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { TimeinoutComponent } from './timeinout/timeinout.component';
 import { TimesheetComponent } from './dashboard/timesheet/timesheet.component';
 import { TeamComponent } from './team/team.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       { component: TimesheetComponent, path: 'timesheet' },
       { component: TimeinoutComponent, path: 'timeinout' },
       { component: TeamComponent, path: 'team' },
+      { component: NotificationsComponent, path:'notification'}
     ],
   },
   { path: '**', component: NotfoundComponent },

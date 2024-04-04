@@ -21,6 +21,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { SetstatusComponent } from './setstatus/setstatus.component';
 import { TimeinoutComponent } from './timeinout/timeinout.component';
 import { TeamComponent } from './team/team.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TeamComponent } from './team/team.component';
     SetstatusComponent,
     TimeinoutComponent,
     TeamComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,
