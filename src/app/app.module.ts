@@ -19,6 +19,7 @@ import { ChangepinComponent } from './dashboard/changepin/changepin.component';
 import { AccountComponent } from './account/account.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { SetstatusComponent } from './setstatus/setstatus.component';
+import { TimeinoutComponent } from './timeinout/timeinout.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SetstatusComponent } from './setstatus/setstatus.component';
     AccountComponent,
     NotfoundComponent,
     SetstatusComponent,
+    TimeinoutComponent,
   ],
   imports: [
     BrowserModule,

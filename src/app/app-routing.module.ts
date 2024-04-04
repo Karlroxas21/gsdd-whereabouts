@@ -5,6 +5,8 @@ import { AccountComponent } from './account/account.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { SetstatusComponent } from './setstatus/setstatus.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { TimeinoutComponent } from './timeinout/timeinout.component';
+import { TimesheetComponent } from './dashboard/timesheet/timesheet.component';
 
 const routes: Routes = [
   {
@@ -14,6 +16,8 @@ const routes: Routes = [
       { component: HomeDashboardComponent, path: '' },
       { component: AccountComponent, path: 'account' },
       { component: SetstatusComponent, path: 'setstatus' },
+      { component: TimesheetComponent, path: 'timesheet'},
+      { component: TimeinoutComponent, path: 'timeinout' },
     ],
   },
   { path: '**', component: NotfoundComponent },
