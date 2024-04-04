@@ -11,12 +11,14 @@ import { HomeDashboardComponent } from './dashboard/home-dashboard/home-dashboar
 import { TimesheetComponent } from './dashboard/timesheet/timesheet.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TabViewModule } from 'primeng/tabview';
 
 import { ChartModule } from 'primeng/chart';
 import { CalendarModule } from 'primeng/calendar';
 import { ChangepinComponent } from './dashboard/changepin/changepin.component';
 import { AccountComponent } from './account/account.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { SetstatusComponent } from './setstatus/setstatus.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     ChangepinComponent,
     AccountComponent,
     NotfoundComponent,
+    SetstatusComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     ChartModule,
     CalendarModule,
     FormsModule,
+    TabViewModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
