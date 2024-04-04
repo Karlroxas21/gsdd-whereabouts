@@ -1,61 +1,108 @@
 <div class="container">
-  <div class="mb-10">
-    <p>Select date:</p>
+  <div class="mb-10 text-xs md:text-sm">
+    <p class="font-medium">Select date:</p>
     <p-calendar [(ngModel)]="date"></p-calendar>
   </div>
 
-  <div class="flex flex-col gap-3">
+  <div class="flex flex-col gap-3 lg:w-3/5">
     <div
-      class="border-black-600 flex w-full rounded-lg border pl-10 transition hover:border-zinc-700"
+      class="border-black-600 flex w-full rounded-lg border transition hover:border-zinc-700"
     >
-      <div class="flex w-full text-2xl">
-        <div class="borderpb-2 flex w-10/12 pb-2 pl-2 pt-2 text-2xl">
-          <div class="flex items-center border-r border-r-black pl-10 pr-10">
-            <p>Time in: --</p>
+      <div class="flex w-full text-sm md:text-lg">
+        <div class="flex w-10/12 pb-2 pt-2">
+          <div
+            class="flex flex-wrap items-center gap-3 border-r border-r-black pl-5 pr-5"
+          >
+            <p>Time in:</p>
+            <p>--</p>
           </div>
 
-          <div class="flex items-center pl-10 pr-10">
-            <p>Time out: --</p>
+          <div class="flex flex-wrap items-center gap-3 pl-5 pr-5">
+            <p>Time out:</p>
+            <p>--</p>
           </div>
         </div>
 
-        <div class="item-center flex h-full w-28 justify-center pt-2 text-sm">
+        <div
+          class="item-center flex h-full w-28 justify-center pt-2 text-xs md:text-sm"
+        >
           <p class="font-medium">April 2, 2024</p>
         </div>
       </div>
 
       <div
-        class="item-center flex w-16 justify-center rounded-r-lg bg-red-500 pt-3 text-white hover:bg-red-600 hover:text-white"
+        class="flex w-16 items-center justify-center rounded-r-lg bg-red-500 text-xs text-white hover:bg-red-600 hover:text-white md:text-sm"
       >
         <a href="#">Edit</a>
       </div>
     </div>
 
-    <!-- DUMMY -->
     <div
-      class="border-black-600 flex w-full rounded-lg border pl-10 transition hover:border-zinc-700"
+      class="border-black-600 flex w-full rounded-lg border transition hover:border-zinc-700"
     >
-      <div class="flex w-full text-2xl">
-        <div class="borderpb-2 flex w-10/12 pb-2 pl-2 pt-2 text-2xl">
-          <div class="flex items-center border-r border-r-black pl-10 pr-10">
-            <p>Time in: --</p>
+      <div class="flex w-full text-sm md:text-lg">
+        <div class="flex w-10/12 pb-2 pt-2">
+          <div
+            class="flex flex-wrap items-center gap-3 border-r border-r-black pl-5 pr-5"
+          >
+            <p>Time in:</p>
+            <p>--</p>
           </div>
 
-          <div class="flex items-center pl-10 pr-10">
-            <p>Time out: --</p>
+          <div class="flex flex-wrap items-center gap-3 pl-5 pr-5">
+            <p>Time out:</p>
+            <p>--</p>
           </div>
         </div>
 
-        <div class="item-center flex h-full w-28 justify-center pt-2 text-sm">
+        <div
+          class="item-center flex h-full w-28 justify-center pt-2 text-xs md:text-sm"
+        >
           <p class="font-medium">April 2, 2024</p>
         </div>
       </div>
 
       <div
-        class="item-center flex w-16 justify-center rounded-r-lg bg-red-500 pt-3 text-white hover:bg-red-600 hover:text-white"
+        class="flex w-16 items-center justify-center rounded-r-lg bg-red-500 text-xs text-white hover:bg-red-600 hover:text-white md:text-sm"
+      >
+        <a href="#">Edit</a>
+      </div>
+    </div>
+    
+    <div
+      class="border-black-600 flex w-full rounded-lg border transition hover:border-zinc-700"
+    >
+      <div class="flex w-full text-sm md:text-lg">
+        <div class="flex w-10/12 pb-2 pt-2">
+          <div
+            class="flex flex-wrap items-center gap-3 border-r border-r-black pl-5 pr-5"
+          >
+            <p>Time in:</p>
+            <p>--</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pl-5 pr-5">
+            <p>Time out:</p>
+            <p>--</p>
+          </div>
+        </div>
+
+        <div
+          class="item-center flex h-full w-28 justify-center pt-2 text-xs md:text-sm"
+        >
+          <p class="font-medium">April 2, 2024</p>
+        </div>
+      </div>
+
+      <div
+        class="flex w-16 items-center justify-center rounded-r-lg bg-red-500 text-xs text-white hover:bg-red-600 hover:text-white md:text-sm"
       >
         <a href="#">Edit</a>
       </div>
     </div>
   </div>
+
+  
+
+  
 </div>
