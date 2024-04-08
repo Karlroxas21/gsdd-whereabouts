@@ -1,0 +1,21 @@
+<div class="flex flex-col gap-5">
+    <div class="flex flex-col border border-black rounded-lg bg-white shadow-lg w-2/5 p-5">
+        
+        <div class="border border-dashed border-blue-500 pb-2">
+            <p>Select date:</p>
+        </div>
+        <div class="card flex justify-content-center">
+            <p-calendar [(ngModel)]="rangeDates" [showIcon]="true" selectionMode="range" [readonlyInput]="true"></p-calendar>
+        </div>
+        <div class="flex justify-end text-white border border-dashed border-red-500">
+            <button (click)="date()" class="bg-gray-700 transition hover:bg-gray-950 p-2 rounded-lg">Download</button>
+        </div>
+
+    </div>
+
+    <div class="flex flex-col border border-black rounded-lg bg-white shadow-lg w-2/5 p-5">
+       
+       
+    </div>
+
+</div>

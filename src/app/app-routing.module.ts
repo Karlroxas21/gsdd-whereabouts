@@ -9,6 +9,9 @@ import { TimeinoutComponent } from './timeinout/timeinout.component';
 import { TimesheetComponent } from './dashboard/timesheet/timesheet.component';
 import { TeamComponent } from './team/team.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { AdminComponent } from './admin/admin/admin.component';
+import { ReportsHomeComponent } from './admin/reports-home/reports-home.component';
+import { MonthlyAttendanceComponent } from './admin/monthly-attendance/monthly-attendance.component';
 
 const routes: Routes = [
   {
@@ -21,7 +24,10 @@ const routes: Routes = [
       { component: TimesheetComponent, path: 'timesheet' },
       { component: TimeinoutComponent, path: 'timeinout' },
       { component: TeamComponent, path: 'team' },
-      { component: NotificationsComponent, path:'notification'}
+      { component: NotificationsComponent, path:'notification'},
+      { component: AdminComponent, path: 'admin_dashboard'},
+      { component: ReportsHomeComponent, path: 'admin_reports-home'},
+      { component: MonthlyAttendanceComponent, path: 'admin_monthly_attendance'}
     ],
   },
   { path: '**', component: NotfoundComponent },
