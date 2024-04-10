@@ -9,7 +9,8 @@ import { ChartModule } from 'primeng/chart';
 import { CalendarModule } from 'primeng/calendar';
 import { DatePipe } from '@angular/common';
 import { TableModule } from 'primeng/table';
-
+import { EmployeeAttendanceService } from 'src/service/employee-attendance.service';
+import { MultiSelectModule } from 'primeng/multiselect';
 // Components
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -57,9 +58,10 @@ import { TeamMemberStatusComponent } from './admin/team-member-status/team-membe
     FormsModule,
     CalendarModule,
     TabViewModule,
-    TableModule
+    TableModule,
+    MultiSelectModule
   ],
-  providers: [ DatePipe ],
+  providers: [ DatePipe, EmployeeAttendanceService ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
