@@ -12,6 +12,7 @@ import { TableModule } from 'primeng/table';
 import { EmployeeAttendanceService } from 'src/service/employee-attendance.service';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ButtonModule } from 'primeng/button';
+import { EmployeeStatusService } from 'src/service/employee-status.service';
 // Components
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -63,7 +64,7 @@ import { TeamMemberStatusComponent } from './admin/team-member-status/team-membe
     MultiSelectModule,
     ButtonModule
   ],
-  providers: [DatePipe, EmployeeAttendanceService],
+  providers: [DatePipe, EmployeeAttendanceService, EmployeeStatusService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

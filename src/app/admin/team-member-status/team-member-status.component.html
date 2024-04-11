@@ -1,1 +1,91 @@
 <p>team-member-status works!</p>
+<div class="flex flex-col gap-5">
+  <div
+    class="flex w-2/5 flex-col rounded-lg border border-black bg-white p-5 shadow-lg"
+  >
+    <div class="pb-2 text-xs sm:text-sm md:text-lg">
+      <p>Select date:</p>
+    </div>
+    <div class="card justify-content-center flex">
+      <p-calendar
+        [(ngModel)]="rangeDates"
+        view="month"
+        dateFormat="mm/yy"
+        [showIcon]="true"
+        selectionMode="range"
+        [readonlyInput]="true"
+        class="sm:w-full md:w-3/4 lg:w-1/2"
+      ></p-calendar>
+    </div>
+    <div class="flex justify-end text-white">
+      <button
+        (click)="date()"
+        class="rounded-lg bg-gray-700 p-2 text-xs text-white transition hover:bg-gray-950 sm:text-sm md:text-lg"
+      >
+        Download
+      </button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div
+    class="flex w-4/6 flex-col rounded-lg border border-black bg-white p-5 shadow-lg"
+  >
+    <div class="card">
+      <p-table
+        [value]="employeeStatus"
+        sortField="employeeNames"
+        sortMode="single"
+        dataKey="employeeNames"
+        rowGroupMode="subheader"
+        groupRowsBy="employeeNames"
+        [tableStyle]="{ 'min-width': '70rem' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 20%">Name</th>
+            <th style="width: 20%">Status</th>
+            <th style="width: 20%">From to</th>
+          </tr>
+        </ng-template>
+        <ng-template
+          pTemplate="groupheader"
+          let-employeename
+          let-rowIndex="rowIndex"
+          let-expanded="expanded"
+        >
+          <tr>
+            <td colspan="5">
+              <button
+                type="button"
+                pButton
+                pRipple
+                [pRowToggler]="employeename"
+                class="p-button-text p-button-rounded p-button-plain mr-2"
+                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+              ></button>
+              <span class="ml-2 font-bold">{{
+                employeename.name
+              }}</span>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-employeestatus>
+          <tr>
+            <td>
+              {{ employeestatus.name }}
+            </td>
+            <td>
+              <span class="vertical-align-middle ml-1">{{
+                employeestatus.status
+              }}</span>
+            </td>
+            <td>
+              {{ employeestatus.company }}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
