@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { EmployeeAttendanceService } from 'src/service/employee-attendance.service';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ButtonModule } from 'primeng/button';
 // Components
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -59,9 +60,10 @@ import { TeamMemberStatusComponent } from './admin/team-member-status/team-membe
     CalendarModule,
     TabViewModule,
     TableModule,
-    MultiSelectModule
+    MultiSelectModule,
+    ButtonModule
   ],
-  providers: [ DatePipe, EmployeeAttendanceService ],
+  providers: [DatePipe, EmployeeAttendanceService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

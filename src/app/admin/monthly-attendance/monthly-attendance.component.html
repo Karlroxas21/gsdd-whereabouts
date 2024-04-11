@@ -33,10 +33,12 @@
     <div class="card">
       <p-table
         #dt
+        [columns]="cols"
         [value]="employeeAttendance"
         styleClass="p-datatable-gridlines"
         selectionMode="multiple"
         [(selection)]="selectedEmployee"
+        [exportHeader]="'customExportHeader'"
         [rows]="5"
         [showCurrentPageReport]="true"
         [rowsPerPageOptions]="[5, 10, 15, 30, 50]"
@@ -50,14 +52,17 @@
       >
         <!-- responsiveLayout="stack" [breakpoint]="'960px'" -->
         <ng-template pTemplate="caption">
-          <div class="flex">
+          <div class="flex gap-5">
             <button
               pButton
               label="Clear"
-              class="p-button-outlined w-10"
+              class="p-button-outlined "
               icon="pi pi-filter-slash"
               (click)="clear(dt)"
             ></button>
+            <button type="button" pButton pRipple class="w-12" icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
+            <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({ selectionOnly: true })" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom"></button>
+
             <span class="flex w-full justify-end">
               <input
                 class="w-full font-semibold sm:w-64"
@@ -132,8 +137,8 @@
         <ng-template pTemplate="body" let-attendance>
           <tr [pSelectableRow]="attendance">
             <td>{{ attendance.name }}</td>
-            <td>{{ attendance.time_in | date: "MM/dd/yy, h:mm:ss a" }}</td>
-            <td>{{ attendance.time_out | date: "MM/dd/yyyy, h:mm:ss a" }}</td>
+            <td>{{ attendance.time_in | date:'short':'GMT+8' }}</td>
+            <td>{{ attendance.time_out | date:'short':'GMT+8' }}</td>
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
