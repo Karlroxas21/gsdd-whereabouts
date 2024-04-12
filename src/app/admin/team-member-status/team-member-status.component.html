@@ -1,5 +1,5 @@
 <p>team-member-status works!</p>
-<div class="flex flex-col gap-5">
+<div class="flex h-screen flex-col gap-5 border border-dashed border-red-500">
   <div
     class="flex w-2/5 flex-col rounded-lg border border-black bg-white p-5 shadow-lg"
   >
@@ -29,28 +29,142 @@
 
   <!-- Table -->
   <div
-    class="flex w-4/6 flex-col rounded-lg border border-black bg-white p-5 shadow-lg"
+    class="flex w-full md:w-3/5 lg:w-4/5 flex-col rounded-lg border border-black bg-white p-5 shadow-lg"
   >
     <div class="card">
       <p-table
-        [value]="employeeStatus"
-        sortField="employeeNames"
+        #dtstatus
+        [value]="flattenedEmployeeStatus"
         sortMode="single"
-        dataKey="employeeNames"
+        dataKey="name"
+        [scrollable]="true"
         rowGroupMode="subheader"
-        groupRowsBy="employeeNames"
-        [tableStyle]="{ 'min-width': '70rem' }"
+        groupRowsBy="name"
+        [tableStyle]="{ 'min-width': '60rem' }"
+        selectionMode="multiple"
+        [paginator]="true"
+        [rows]="10"
+        [scrollable]="true"
+        [rowsPerPageOptions]="[10, 15, 30, 50, 100]"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['name', 'status', 'from', 'to']"
       >
+        <ng-template pTemplate="caption">
+          <div class="flex gap-5">
+            <button
+              pButton
+              label="Clear"
+              class="p-button-outlined"
+              icon="pi pi-filter-slash"
+              (click)="clear(dt)"
+            ></button>
+            <span class="flex w-full justify-end">
+              <input
+                class="w-full font-semibold sm:w-64"
+                pInputText
+                type="text"
+                (input)="applyFilterGlobal($event, 'contains')"
+                placeholder="Search keyword"
+              />
+            </span>
+          </div>
+        </ng-template>
+
         <ng-template pTemplate="header">
-          <tr>
-            <th style="width: 20%">Name</th>
-            <th style="width: 20%">Status</th>
-            <th style="width: 20%">From to</th>
+          <tr class="text-sm md:text-base">
+            <th>
+              Name
+              <p-columnFilter
+                field="name"
+                matchMode="in"
+                display="menu"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              >
+                <ng-template pTemplate="header">
+                  <div class="px-3 pb-0 pt-3">
+                    <span class="font-bold">Select name</span>
+                  </div>
+                </ng-template>
+                <ng-template
+                  pTemplate="filter"
+                  let-value
+                  let-filter="filterCallback"
+                >
+                  <p-multiSelect
+                    [ngModel]="value"
+                    [options]="employeeStatusNames"
+                    placeholder="Any"
+                    (onChange)="filter($event.value)"
+                  >
+                    <ng-template let-option pTemplate="item">
+                      <div class="vertical-align-middle inline-block">
+                        <span class="ml-1 mt-1">{{ option }}</span>
+                      </div>
+                    </ng-template>
+                  </p-multiSelect>
+                </ng-template>
+              </p-columnFilter>
+            </th>
+            <th>
+              <div class="flex items-center gap-2">
+                Status
+                <p-columnFilter
+                  field="status"
+                  matchMode="in"
+                  display="menu"
+                  [showMatchModes]="false"
+                  [showOperator]="false"
+                  [showAddButton]="false"
+                >
+                  <ng-template pTemplate="header">
+                    <div class="px-3 pb-0 pt-3">
+                      <span class="font-bold">Select status</span>
+                    </div>
+                  </ng-template>
+                  <ng-template
+                    pTemplate="filter"
+                    let-value
+                    let-filter="filterCallback"
+                  >
+                    <p-multiSelect
+                      [ngModel]="value"
+                      [options]="employeeStatusList"
+                      placeholder="Any"
+                      (onChange)="filter($event.value)"
+                    >
+                      <ng-template let-option pTemplate="item">
+                        <div class="vertical-align-middle inline-block">
+                          <span class="ml-1 mt-1">{{ option }}</span>
+                        </div>
+                      </ng-template>
+                    </p-multiSelect>
+                  </ng-template>
+                </p-columnFilter>
+              </div>
+            </th>
+
+            <th>
+              <div class="flex items-center gap-2">
+                From
+                <p-columnFilter type="date" field="from" display="menu">
+                </p-columnFilter>
+              </div>
+            </th>
+            <th>
+              <div class="flex items-center gap-2">
+                To
+                <p-columnFilter type="date" field="from" display="menu">
+                </p-columnFilter>
+              </div>
+            </th>
           </tr>
         </ng-template>
         <ng-template
           pTemplate="groupheader"
-          let-employeename
+          let-rowData
           let-rowIndex="rowIndex"
           let-expanded="expanded"
         >
@@ -60,29 +174,33 @@
                 type="button"
                 pButton
                 pRipple
-                [pRowToggler]="employeename"
+                [pRowToggler]="rowData"
                 class="p-button-text p-button-rounded p-button-plain mr-2"
                 [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
               ></button>
-              <span class="ml-2 font-bold">{{
-                employeename.name
-              }}</span>
+              <span class="ml-2 font-bold">{{ rowData.name }}</span>
             </td>
           </tr>
         </ng-template>
-        <ng-template pTemplate="rowexpansion" let-employeestatus>
+        <ng-template pTemplate="rowexpansion" let-rowData>
           <tr>
-            <td>
-              {{ employeestatus.name }}
-            </td>
+            <td></td>
             <td>
               <span class="vertical-align-middle ml-1">{{
-                employeestatus.status
+                rowData.status
               }}</span>
             </td>
             <td>
-              {{ employeestatus.company }}
+              {{ rowData.from | date: "short" }}
             </td>
+            <td>
+              {{ rowData.to | date: "short" }}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="3">No data found.</td>
           </tr>
         </ng-template>
       </p-table>

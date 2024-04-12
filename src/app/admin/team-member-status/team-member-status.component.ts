@@ -12,17 +12,19 @@ import * as FileSaver from 'file-saver';
   styleUrls: ['./team-member-status.component.css'],
 })
 export class TeamMemberStatusComponent implements OnInit {
-  @ViewChild('dt') dt!: Table;
+  @ViewChild('dtstatus') dt!: Table;
 
   employeeStatus!: EmployeeStatus[];
 
   selectedEmployee!: EmployeeStatus;
 
-  employeeNames!: any[];
+  employeeStatusNames!: any[];
+
+  employeeStatusList!: any[];
+
+  flattenedEmployeeStatus!: any[];
 
   rangeDates!: Date[];
-
-  cols!: any[];
 
   loading: boolean = true;
 
@@ -69,13 +71,21 @@ export class TeamMemberStatusComponent implements OnInit {
         })),
       }));
 
-      this.employeeNames = this.employeeStatus.map((item) => item.name);
+      this.employeeStatusNames = Array.from(new Set(this.employeeStatus.map((item) => item.name)));
 
-      this.cols = [
-        { field: 'name', header: 'Name' },
-        { field: 'status', header: 'Status' },
-        { field: 'from_to', header: 'From-to' },
-      ];
+      this.employeeStatusList = [...new Set(this.employeeStatus.flatMap((item) => item.status_from_to ? item.status_from_to.map((status) => status.status) : []))];
+
+      this.flattenedEmployeeStatus = this.employeeStatus.flatMap((item) =>
+        item.status_from_to
+          ? item.status_from_to.map((status) => ({
+              ...item,
+              status: status.status,
+              from: status.from,
+              to: status.to,
+            }))
+          : []
+      );
+      
     });
   }
 
@@ -85,7 +95,14 @@ export class TeamMemberStatusComponent implements OnInit {
       endDate: this.datePipe.transform(this.rangeDates[1], 'MM/dd/yyyy'),
     };
 
-    console.log(jsonDateRange);
+  }
+
+  applyFilterGlobal($event: any, stringVal: any) {
+    this.dt.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
+  }
+
+  clear(table: Table) {
+    table.clear();
   }
 
 }

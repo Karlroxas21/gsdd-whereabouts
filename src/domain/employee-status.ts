@@ -5,5 +5,6 @@ export interface EmployeeStatus {
         status?: string,
         from?: Date,
         to?: Date
-    }[]
+    }[],
+    statusList?: string 
 }
