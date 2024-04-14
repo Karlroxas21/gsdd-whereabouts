@@ -13,6 +13,13 @@ import { EmployeeAttendanceService } from 'src/service/employee-attendance.servi
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ButtonModule } from 'primeng/button';
 import { EmployeeStatusService } from 'src/service/employee-status.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { AccountService } from 'src/service/emploee-account.service';
+import { DropdownModule } from 'primeng/dropdown';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ConfirmationService } from 'primeng/api';
+
 // Components
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -31,6 +38,7 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { ReportsHomeComponent } from './admin/reports-home/reports-home.component';
 import { MonthlyAttendanceComponent } from './admin/monthly-attendance/monthly-attendance.component';
 import { TeamMemberStatusComponent } from './admin/team-member-status/team-member-status.component';
+import { AccountsComponent } from './admin/accounts/accounts.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +59,7 @@ import { TeamMemberStatusComponent } from './admin/team-member-status/team-membe
     ReportsHomeComponent,
     MonthlyAttendanceComponent,
     TeamMemberStatusComponent,
+    AccountsComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,9 +71,12 @@ import { TeamMemberStatusComponent } from './admin/team-member-status/team-membe
     TabViewModule,
     TableModule,
     MultiSelectModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule, 
+    DropdownModule,
+    ToolbarModule
   ],
-  providers: [DatePipe, EmployeeAttendanceService, EmployeeStatusService],
+  providers: [DatePipe, EmployeeAttendanceService, EmployeeStatusService, MessageService, AccountService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
