@@ -1,121 +1,191 @@
 <div class="flex">
-    <div class="mt-20 w-full md:sm:ml-64">
-        <div class="mb-5 ml-5 text-xs font-semibold sm:text-sm lg:text-xl">
-            <p>Notification</p>
-        </div>
-
-        <div class=" ml-5 flex w-full md:w-3/5 lg:w-4/5 flex-col rounded-lg border border-black bg-white p-5 shadow-lg">
-            <p-toast></p-toast>
-            <p-toolbar styleClass="mb-4 gap-2">
-                <ng-template pTemplate="left">
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedAccounts()" [disabled]="!selectedAccounts || !selectedAccounts.length"></button>
-                </ng-template>
-            
-            </p-toolbar> <!-- TODO: FIX DELETION OF ACCOUNT -->
-            <p-table #dtaccounts dataKey="id" [value]="account" dataKey="id" editMode="row" [globalFilterFields]="['name']"
-                [globalFilterFields]="['name', 'status', 'from', 'to']" 
-                [scrollable]="true"
-                [paginator]="true"
-                [rows]="10"
-                [rowsPerPageOptions]="[10, 15, 30, 50, 100]"
-                [showCurrentPageReport]="true"
-                [(selection)]="selectedAccounts"
-                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                [tableStyle]="{ 'min-width': '50rem' }">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th style="width: 4rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
-                        <th style="width: 20%">Name</th>
-                        <th style="width: 20%">Verified</th>
-                        <th style="width: 20%">Current Status</th>
-                        <th style="width: 20%">Position</th>
-                        <th style="width: 20%">Role</th>
-                        <th style="width: 20%">Email</th>
-                        <th style="width: 20%"></th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="caption">
-                    <div class="flex gap-5">
-                        <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
-                            (click)="clear(dt)"></button>
-                        <span class="flex w-full justify-end">
-                            <input class="w-full font-semibold sm:w-64" pInputText type="text"
-                                (input)="applyFilterGlobal($event, 'contains')" placeholder="Search name" />
-                        </span>
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="body" let-account let-editing="editing" let-ri="rowIndex">
-                    <tr [pEditableRow]="account">
-                        <td>
-                            <p-tableCheckbox [value]="account"></p-tableCheckbox>
-                        </td>
-                        <td>
-                            <p-cellEditor>
-                                <ng-template pTemplate="input">
-                                    <input class="rounded-md" pInputText type="text" [(ngModel)]="account.name"
-                                        required />
-                                </ng-template>
-                                <ng-template pTemplate="output">
-                                    {{ account.name }}
-                                </ng-template>
-                            </p-cellEditor>
-                        </td>
-                        <td>
-                            <p-cellEditor>
-                                <ng-template pTemplate="input">
-                                    <p-dropdown [options]="verifyOption" appendTo="body" [(ngModel)]="account.verified"
-                                        [style]="{ width: '100%' }"></p-dropdown>
-                                </ng-template>
-                                <ng-template pTemplate="output">
-                                    {{ account.verified }}
-                                </ng-template>
-                            </p-cellEditor>
-                        </td>
-                        <td>
-                            {{ account.current_status }}
-                        </td>
-                        <td>
-                            <p-cellEditor>
-                                <ng-template pTemplate="input">
-                                    <input class="rounded-md" pInputText type="text" [(ngModel)]="account.position" />
-                                </ng-template>
-                                <ng-template pTemplate="output">
-                                    {{ account.position }}
-                                </ng-template>
-                            </p-cellEditor>
-                        </td>
-                        <td>
-                            <p-cellEditor>
-                                <ng-template pTemplate="input">
-                                    <p-dropdown [options]="roleOption" appendTo="body" [(ngModel)]="account.role"
-                                        [style]="{ width: '100%' }"></p-dropdown>
-                                </ng-template>
-                                <ng-template pTemplate="output">
-                                    {{ account.role }}
-                                </ng-template>
-                            </p-cellEditor>
-                        </td>
-                        <td>
-                            {{ account.email }}
-                        </td>
-                        <td>
-                            <div class="align-items-center justify-content-center flex gap-2">
-                                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow
-                                    icon="pi pi-pencil" (click)="onRowEditInit(account)"
-                                    class="p-button-rounded p-button-text"></button>
-                                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow
-                                    icon="pi pi-check" (click)="onRowEditSave(account)"
-                                    class="p-button-rounded p-button-text p-button-success mr-2"></button>
-                                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow
-                                    icon="pi pi-times" (click)="onRowEditCancel(account, ri)"
-                                    class="p-button-rounded p-button-text p-button-danger"></button>
-                            </div>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
+  <div class="mt-20 w-full md:sm:ml-64">
+    <div class="mb-5 ml-5 text-xs font-semibold sm:text-sm lg:text-xl">
+      <p>Notification</p>
     </div>
+
+    <div
+      class="ml-5 flex w-full flex-col rounded-lg border border-black bg-white p-5 shadow-lg md:w-3/5 lg:w-4/5"
+    >
+      <p-toast></p-toast>
+      <p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-danger"
+            (click)="deleteSelectedAccounts()"
+            [disabled]="!selectedAccounts || !selectedAccounts.length"
+          ></button>
+        </ng-template>
+      </p-toolbar>
+      <p-table
+        #dtaccounts
+        dataKey="id"
+        [value]="account"
+        dataKey="id"
+        editMode="row"
+        [globalFilterFields]="['name']"
+        [globalFilterFields]="['name', 'status', 'from', 'to']"
+        [scrollable]="true"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 15, 30, 50, 100]"
+        [showCurrentPageReport]="true"
+        [(selection)]="selectedAccounts"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [tableStyle]="{ 'min-width': '50rem' }"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 4rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th style="width: 20%">Name</th>
+            <th style="width: 20%">Verified</th>
+            <th style="width: 20%">Current Status</th>
+            <th style="width: 20%">Position</th>
+            <th style="width: 20%">Role</th>
+            <th style="width: 20%">Email</th>
+            <th style="width: 20%"></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="caption">
+          <div class="flex gap-5">
+            <button
+              pButton
+              label="Clear"
+              class="p-button-outlined"
+              icon="pi pi-filter-slash"
+              (click)="clear(dt)"
+            ></button>
+            <span class="flex w-full justify-end">
+              <input
+                class="w-full font-semibold sm:w-64"
+                pInputText
+                type="text"
+                (input)="applyFilterGlobal($event, 'contains')"
+                placeholder="Search name"
+              />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template
+          pTemplate="body"
+          let-account
+          let-editing="editing"
+          let-ri="rowIndex"
+        >
+          <tr [pEditableRow]="account">
+            <td>
+              <p-tableCheckbox [value]="account"></p-tableCheckbox>
+            </td>
+            <td>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input
+                    class="rounded-md"
+                    pInputText
+                    type="text"
+                    [(ngModel)]="account.name"
+                    required
+                  />
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{ account.name }}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <p-dropdown
+                    [options]="verifyOption"
+                    appendTo="body"
+                    [(ngModel)]="account.verified"
+                    [style]="{ width: '100%' }"
+                  ></p-dropdown>
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{ account.verified }}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td>
+              {{ account.current_status }}
+            </td>
+            <td>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input
+                    class="rounded-md"
+                    pInputText
+                    type="text"
+                    [(ngModel)]="account.position"
+                  />
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{ account.position }}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <p-dropdown
+                    [options]="roleOption"
+                    appendTo="body"
+                    [(ngModel)]="account.role"
+                    [style]="{ width: '100%' }"
+                  ></p-dropdown>
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{ account.role }}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td>
+              {{ account.email }}
+            </td>
+            <td>
+              <div class="align-items-center justify-content-center flex gap-2">
+                <button
+                  *ngIf="!editing"
+                  pButton
+                  pRipple
+                  type="button"
+                  pInitEditableRow
+                  icon="pi pi-pencil"
+                  (click)="onRowEditInit(account)"
+                  class="p-button-rounded p-button-text"
+                ></button>
+                <button
+                  *ngIf="editing"
+                  pButton
+                  pRipple
+                  type="button"
+                  pSaveEditableRow
+                  icon="pi pi-check"
+                  (click)="onRowEditSave(account)"
+                  class="p-button-rounded p-button-text p-button-success mr-2"
+                ></button>
+                <button
+                  *ngIf="editing"
+                  pButton
+                  pRipple
+                  type="button"
+                  pCancelEditableRow
+                  icon="pi pi-times"
+                  (click)="onRowEditCancel(account, ri)"
+                  class="p-button-rounded p-button-text p-button-danger"
+                ></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+    </div>
+  </div>
 </div>

@@ -19,6 +19,7 @@ import { AccountService } from 'src/service/emploee-account.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 // Components
 import { LoginComponent } from './login/login.component';
@@ -72,11 +73,19 @@ import { AccountsComponent } from './admin/accounts/accounts.component';
     TableModule,
     MultiSelectModule,
     ButtonModule,
-    ToastModule, 
+    ToastModule,
     DropdownModule,
-    ToolbarModule
+    ToolbarModule,
+    ConfirmDialogModule,
   ],
-  providers: [DatePipe, EmployeeAttendanceService, EmployeeStatusService, MessageService, AccountService, ConfirmationService],
+  providers: [
+    DatePipe,
+    EmployeeAttendanceService,
+    EmployeeStatusService,
+    MessageService,
+    AccountService,
+    ConfirmationService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
