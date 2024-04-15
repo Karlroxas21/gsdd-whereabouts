@@ -40,6 +40,9 @@ import { ReportsHomeComponent } from './admin/reports-home/reports-home.componen
 import { MonthlyAttendanceComponent } from './admin/monthly-attendance/monthly-attendance.component';
 import { TeamMemberStatusComponent } from './admin/team-member-status/team-member-status.component';
 import { AccountsComponent } from './admin/accounts/accounts.component';
+import { NotificationComponent } from './admin/notification/notification.component';
+import { RulesComponent } from './admin/rules/rules.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +64,8 @@ import { AccountsComponent } from './admin/accounts/accounts.component';
     MonthlyAttendanceComponent,
     TeamMemberStatusComponent,
     AccountsComponent,
+    NotificationComponent,
+    RulesComponent,
   ],
   imports: [
     BrowserModule,

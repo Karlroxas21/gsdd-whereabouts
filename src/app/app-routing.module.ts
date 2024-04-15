@@ -13,6 +13,8 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { ReportsHomeComponent } from './admin/reports-home/reports-home.component';
 import { MonthlyAttendanceComponent } from './admin/monthly-attendance/monthly-attendance.component';
 import { AccountsComponent } from './admin/accounts/accounts.component';
+import { NotificationComponent } from './admin/notification/notification.component';
+import { RulesComponent } from './admin/rules/rules.component';
 
 const routes: Routes = [
   {
@@ -29,7 +31,9 @@ const routes: Routes = [
       { component: AdminComponent, path: 'admin_dashboard'},
       { component: ReportsHomeComponent, path: 'admin_reports-home'},
       { component: MonthlyAttendanceComponent, path: 'admin_monthly_attendance'},
-      { component: AccountsComponent, path: 'admin_accounts'}
+      { component: AccountsComponent, path: 'admin_accounts'},
+      { component: NotificationComponent, path:'admin_notification'},
+      { component: RulesComponent, path: 'admin_rules'}
     ],
   },
   { path: '**', component: NotfoundComponent },
