@@ -20,6 +20,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
 
 // Components
 import { LoginComponent } from './login/login.component';
@@ -42,6 +43,7 @@ import { TeamMemberStatusComponent } from './admin/team-member-status/team-membe
 import { AccountsComponent } from './admin/accounts/accounts.component';
 import { NotificationComponent } from './admin/notification/notification.component';
 import { RulesComponent } from './admin/rules/rules.component';
+import { OrgChartComponent } from './tablet-display/org-chart/org-chart.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { RulesComponent } from './admin/rules/rules.component';
     AccountsComponent,
     NotificationComponent,
     RulesComponent,
+    OrgChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +85,7 @@ import { RulesComponent } from './admin/rules/rules.component';
     DropdownModule,
     ToolbarModule,
     ConfirmDialogModule,
+    DialogModule
   ],
   providers: [
     DatePipe,

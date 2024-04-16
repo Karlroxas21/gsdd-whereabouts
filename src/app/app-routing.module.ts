@@ -15,6 +15,7 @@ import { MonthlyAttendanceComponent } from './admin/monthly-attendance/monthly-a
 import { AccountsComponent } from './admin/accounts/accounts.component';
 import { NotificationComponent } from './admin/notification/notification.component';
 import { RulesComponent } from './admin/rules/rules.component';
+import { OrgChartComponent } from './tablet-display/org-chart/org-chart.component';
 
 const routes: Routes = [
   {
@@ -33,7 +34,9 @@ const routes: Routes = [
       { component: MonthlyAttendanceComponent, path: 'admin_monthly_attendance'},
       { component: AccountsComponent, path: 'admin_accounts'},
       { component: NotificationComponent, path:'admin_notification'},
-      { component: RulesComponent, path: 'admin_rules'}
+      { component: RulesComponent, path: 'admin_rules'},
+      { component: OrgChartComponent, path: 'tablet_display'},
+
     ],
   },
   { path: '**', component: NotfoundComponent },
