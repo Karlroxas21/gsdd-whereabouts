@@ -31,9 +31,7 @@ export class AccountsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.accountService.getAccounts().then((data) => {
-      this.account = data;
-    });
+    this.getAccounts();
 
     this.verifyOption = [
       { label: 'Not verified', value: false },
@@ -46,18 +44,27 @@ export class AccountsComponent implements OnInit {
     ];
   }
 
+  getAccounts(){
+    this.accountService.getAccountsData().subscribe(data =>{
+        this.account = data;
+    });
+  }
+
   onRowEditInit(account: Account) {
-    this.clonedAccounts[account.id] = { ...account };
+    this.clonedAccounts[account.Id] = { ...account };
   }
 
   onRowEditSave(account: Account) {
     if (
-      account.name === '' ||
+      account.first_name === '' ||
+      account.last_name === '' ||
       account.position === '' ||
+      account.email === '' ||
+      account.password === '' ||
       account.role === '' ||
-      account.email === ''
+      account.verified === false
     ) {
-      delete this.clonedAccounts[account.id];
+      delete this.clonedAccounts[account.Id];
       this.messageService.add({
         severity: 'error',
         summary: 'error',
@@ -72,8 +79,8 @@ export class AccountsComponent implements OnInit {
   }
 
   onRowEditCancel(account: Account, index: number) {
-    this.account[index] = this.clonedAccounts[account.id];
-    delete this.clonedAccounts[account.id];
+    this.account[index] = this.clonedAccounts[account.Id];
+    delete this.clonedAccounts[account.Id];
   }
 
   applyFilterGlobal($event: any, stringVal: any) {

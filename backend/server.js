@@ -3,39 +3,67 @@ require("dotenv").config();
 const express = require("express");
 const Sequelize = require("sequelize");
 const db_config = require("./config").database;
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const history = require('connect-history-api-fallback');
 
 const app = express();
 const port = process.env.PORT || 80;
 
+const allowedOrigin = ['localhost', 'http://localhost:4200'];
+
+const corsOptions = {
+  origin: allowedOrigin,
+  methods: "GET,POST,PUT",
+  allowedHeaders: "Content-Type",
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-const sequelize = new Sequelize(db_config.database, db_config.user, db_config.password, {
-    host: db_config.server,
-    dialect: 'mssql'
-});
+// app.use(history());
 
-sequelize.authenticate().then(() =>{
-    console.log('Connection has been established successfully');
-}).catch(err =>{
-    console.error('Unable to connect to the db: ' + err);
-})
+// Remove timezone at the end of the creationAt and updateAt
+Sequelize.DATE.prototype._stringify = function (date, options) {
+  date = this._applyTimezone(date, options);
+  // Z here means current timezone, _not_ UTC
+  // return date.format('YYYY-MM-DD HH:mm:ss.SSS Z');
+  return date.format("YYYY-MM-DD HH:mm:ss.SSS");
+};
+
+const sequelize = new Sequelize(
+  db_config.database,
+  db_config.user,
+  db_config.password,
+  {
+    host: db_config.server,
+    dialect: "mssql",
+  },
+);
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully");
+  })
+  .catch((err) => {
+    console.error("Unable to connect to the db: " + err);
+  });
 
 module.exports = sequelize;
 
-const User = require('./model/account.model');
+const User = require("./model/account.model");
 
-app.get('/test', (req, res) =>{
-    User.findAll().then(users =>{
-        res.json(users)
-    })
-})
+app.get("/test", (req, res) => {
+  User.findAll().then((users) => {
+    res.json(users);
+  });
+});
 
 //Routes
-const account_routes = require('./routes/account.routes');
-app.use('/', account_routes);
+const account_routes = require("./routes/account.routes");
+app.use("/", account_routes);
 
 app.listen(port, () => {
   console.log(`Listening on ${port}`);
 });
-

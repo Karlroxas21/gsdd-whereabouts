@@ -21,6 +21,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 // Components
 import { LoginComponent } from './login/login.component';
@@ -85,7 +86,8 @@ import { OrgChartComponent } from './tablet-display/org-chart/org-chart.componen
     DropdownModule,
     ToolbarModule,
     ConfirmDialogModule,
-    DialogModule
+    DialogModule,
+    HttpClientModule
   ],
   providers: [
     DatePipe,

@@ -26,8 +26,7 @@
         [value]="account"
         dataKey="id"
         editMode="row"
-        [globalFilterFields]="['name']"
-        [globalFilterFields]="['name', 'status', 'from', 'to']"
+        [globalFilterFields]="['first_name', 'last_name', 'position', 'email', 'role', 'verified']"
         [scrollable]="true"
         [paginator]="true"
         [rows]="10"
@@ -42,12 +41,13 @@
             <th style="width: 4rem">
               <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th>
-            <th style="width: 20%">Name</th>
-            <th style="width: 20%">Verified</th>
+            <th style="width: 20%">First Name</th>
+            <th style="width: 20%">Last Name</th>
             <th style="width: 20%">Current Status</th>
             <th style="width: 20%">Position</th>
-            <th style="width: 20%">Role</th>
             <th style="width: 20%">Email</th>
+            <th style="width: 20%">Role</th>
+            <th style="width: 20%">Verified</th>
             <th style="width: 20%"></th>
           </tr>
         </ng-template>
@@ -88,29 +88,30 @@
                     class="rounded-md"
                     pInputText
                     type="text"
-                    [(ngModel)]="account.name"
+                    [(ngModel)]="account.first_name"
                     required
                   />
                 </ng-template>
                 <ng-template pTemplate="output">
-                  {{ account.name }}
+                  {{ account.first_name }}
                 </ng-template>
               </p-cellEditor>
             </td>
             <td>
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <p-dropdown
-                    [options]="verifyOption"
-                    appendTo="body"
-                    [(ngModel)]="account.verified"
-                    [style]="{ width: '100%' }"
-                  ></p-dropdown>
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ account.verified }}
-                </ng-template>
-              </p-cellEditor>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input
+                        class="rounded-md"
+                        pInputText
+                        type="text"
+                        [(ngModel)]="account.last_name"
+                        required
+                      />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{ account.last_name }}
+                    </ng-template>
+                  </p-cellEditor>
             </td>
             <td>
               {{ account.current_status }}
@@ -131,6 +132,9 @@
               </p-cellEditor>
             </td>
             <td>
+                {{ account.email }}
+            </td>
+            <td>
               <p-cellEditor>
                 <ng-template pTemplate="input">
                   <p-dropdown
@@ -146,7 +150,19 @@
               </p-cellEditor>
             </td>
             <td>
-              {{ account.email }}
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <p-dropdown
+                        [options]="verifyOption"
+                        appendTo="body"
+                        [(ngModel)]="account.verified"
+                        [style]="{ width: '100%' }"
+                      ></p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{ account.verified }}
+                    </ng-template>
+                  </p-cellEditor>
             </td>
             <td>
               <div class="align-items-center justify-content-center flex gap-2">

@@ -18,24 +18,29 @@ const User = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
-    email: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
     position: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    verified: {
-      type: Sequelize.BOOLEAN,
+    email: {
+      type: Sequelize.STRING,
       allowNull: false,
     },
     password: {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    role: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    verified: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: 0
+    },
   },
-  { createdAt: "creationDate", updatedAt: "updatedOn" },
+  { createdAt: "createdAt", updatedAt: "updatedAt" },
 );
 
 module.exports = User;
