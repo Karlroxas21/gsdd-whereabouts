@@ -16,6 +16,7 @@ import { AccountsComponent } from './admin/accounts/accounts.component';
 import { NotificationComponent } from './admin/notification/notification.component';
 import { RulesComponent } from './admin/rules/rules.component';
 import { OrgChartComponent } from './tablet-display/org-chart/org-chart.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
     component: SidebarComponent,
     children: [
       { component: HomeDashboardComponent, path: '' },
+      { component: LoginComponent, path: 'login'},
       { component: AccountComponent, path: 'account' },
       { component: SetstatusComponent, path: 'setstatus' },
       { component: TimesheetComponent, path: 'timesheet' },

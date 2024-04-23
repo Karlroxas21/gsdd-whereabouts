@@ -1,9 +1,9 @@
 export interface Account{
-    id: string,
-    name: string,
-    verified: boolean,
-    current_status: string,
+    Id: string,
+    first_name: string,
+    last_name: boolean,
+    email: string,
     position: string,
-    role: string,
-    email: string
+    verified: boolean,
+    password: string
 }
