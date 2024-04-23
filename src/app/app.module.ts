@@ -22,7 +22,7 @@ import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ToastItem } from 'primeng/toast';
 // Components
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -87,7 +87,8 @@ import { OrgChartComponent } from './tablet-display/org-chart/org-chart.componen
     ToolbarModule,
     ConfirmDialogModule,
     DialogModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     DatePipe,
@@ -96,6 +97,7 @@ import { OrgChartComponent } from './tablet-display/org-chart/org-chart.componen
     MessageService,
     AccountService,
     ConfirmationService,
+    ToastItem
   ],
   bootstrap: [AppComponent],
 })

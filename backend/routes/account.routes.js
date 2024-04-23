@@ -44,7 +44,14 @@ app.post("/login", async (req, res) => {
         .json({ message: "Login failed. Incorrect password." });
     }
 
-    res.json({ message: "Login successful", findUser });
+    res.json({
+      first_name: findUser.first_name,
+      last_name: findUser.last_name,
+      position: findUser.position,
+      email: findUser.email,
+      role: findUser.role,
+      verified: findUser.verified,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "An error occurred" });

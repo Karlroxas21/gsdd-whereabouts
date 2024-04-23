@@ -16,4 +16,8 @@ export class AccountService {
         return this.http.get<any>(`${this.baseUrlAPI}users`);
     }
 
+    login(email: string, password: string):Observable<any>{
+        return this.http.post(`${this.baseUrlAPI}login`, {email, password});
+    }
+
 }
