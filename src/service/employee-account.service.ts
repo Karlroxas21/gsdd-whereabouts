@@ -20,8 +20,8 @@ export class AccountService {
         return this.http.post(`${this.baseUrlAPI}login`, {email, password});
     }
 
-    
-
-
+    submitAccount(first_name: string, last_name: string, email: string, position: string, password: string, role: string){
+        console.log(first_name, last_name, email, position, password, role)
+    }
 
 }
