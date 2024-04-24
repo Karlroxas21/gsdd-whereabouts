@@ -15,13 +15,13 @@ import { ButtonModule } from 'primeng/button';
 import { EmployeeStatusService } from 'src/service/employee-status.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { AccountService } from 'src/service/emploee-account.service';
+import { AccountService } from 'src/service/employee-account.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastItem } from 'primeng/toast';
 // Components
 import { LoginComponent } from './login/login.component';

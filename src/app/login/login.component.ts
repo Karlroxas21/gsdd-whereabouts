@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { AccountService } from 'src/service/emploee-account.service';
+import { AccountService } from 'src/service/employee-account.service';
 import { MessageService } from 'primeng/api';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -65,6 +65,7 @@ export class LoginComponent {
                 return;
             }
 
+            localStorage.setItem('token', account.token);
             localStorage.setItem('role', account.role);
             localStorage.setItem('email', account.email);
 
@@ -74,6 +75,8 @@ export class LoginComponent {
 
             // Insert toaster, and navigate to admin
             this.toast('success', 'Success', 'Login success');
+
+            this.router.navigateByUrl('')
         }, (err) => {
             this.loginAttempt++;
 

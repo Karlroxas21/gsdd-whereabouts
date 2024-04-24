@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessageService, SelectItem, ConfirmationService } from 'primeng/api';
 import { Account } from 'src/domain/employee-account';
-import { AccountService } from 'src/service/emploee-account.service';
+import { AccountService } from 'src/service/employee-account.service';
 import { Table } from 'primeng/table';
 
 @Component({
