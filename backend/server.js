@@ -6,19 +6,22 @@ const db_config = require("./config").database;
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const history = require('connect-history-api-fallback');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const port = process.env.PORT || 80;
 
-const allowedOrigin = ['localhost', 'http://localhost:4200'];
+const allowedOrigin = ['http://localhost:80', 'http://localhost:4200'];
 
 const corsOptions = {
   origin: allowedOrigin,
   methods: "GET,POST,PUT",
-  allowedHeaders: "Content-Type",
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 };
 
 app.use(cors(corsOptions));
+app.use(cookieParser());
 app.use(bodyParser.json());
 
 // app.use(history());
