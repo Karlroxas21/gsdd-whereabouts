@@ -10,4 +10,13 @@ module.exports = {
       trustServerCertificate: true,
     },
   },
+
+  nodemail: {
+    user: process.env.GMAIL_USER_AUTH,
+    password: process.env.GMAIL_PW_AUTH
+  },
+
+  base_url: {
+    url: process.env.BASE_URL
+  }
 };

@@ -16,12 +16,17 @@ export class AccountService {
         return this.http.get<any>(`${this.baseUrlAPI}users`);
     }
 
-    login(email: string, password: string):Observable<any>{
-        return this.http.post(`${this.baseUrlAPI}login`, {email, password});
+    login(email: string, pin: string):Observable<any>{
+        return this.http.post(`${this.baseUrlAPI}login`, {email, pin});
     }
 
-    submitAccount(first_name: string, last_name: string, email: string, position: string, password: string, role: string){
-        console.log(first_name, last_name, email, position, password, role)
+    submitAccount(first_name: string, last_name: string, email: string, position: string, pin: string, role: string){
+        return this.http.post(`${this.baseUrlAPI}register`, {first_name, last_name, email, position, pin, role});
+        // console.log({first_name, last_name, email, position, password, role})
+    }
+
+    validateAccount(emailToken: string){
+        return this.http.get<any>(`${this.baseUrlAPI}confirm/?emailToken=${emailToken}`);
     }
 
 }

@@ -13,7 +13,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class LoginComponent {
     emailControl = new FormControl('');
-    passwordControl = new FormControl('');
+    pinControl = new FormControl('');
     loginAttempt: number = 0;
 
     constructor(private http: HttpClient, private messageService: MessageService, private accountService: AccountService, private router: Router, private titleService: Title,) { }
@@ -32,9 +32,9 @@ export class LoginComponent {
 
     login() {
         const email = this.emailControl.value;
-        const password = this.passwordControl.value;
-        if (!email || !password) {
-            this.toast('error', 'Error', 'Username and password are required',)
+        const pin = this.pinControl.value;
+        if (!email || !pin) {
+            this.toast('error', 'Error', 'Username and pin are required',)
             return;
         };
 
@@ -52,7 +52,7 @@ export class LoginComponent {
             }
         }
 
-        this.accountService.login(email, password).subscribe(account => {
+        this.accountService.login(email, pin).subscribe(account => {
             if (!account.verified) {
                 this.toast('warn', 'Login failed', 'Account not verified.',);
                 console.log("verification status: ",account.verified);

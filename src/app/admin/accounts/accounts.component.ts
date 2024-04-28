@@ -28,12 +28,12 @@ export class AccountsComponent implements OnInit {
     addAccountVisibility!: boolean;
 
     addAccountForm = new FormGroup({
-        first_name: new FormControl(''),
-        last_name: new FormControl(''),
-        position: new FormControl(''),
-        email: new FormControl(''),
-        password: new FormControl(''),
-        role: new FormControl(''),
+        first_name: new FormControl(),
+        last_name: new FormControl(),
+        position: new FormControl(),
+        email: new FormControl(),
+        pin: new FormControl(),
+        role: new FormControl(),
     });
 
     positions!: SelectItem[];
@@ -58,7 +58,7 @@ export class AccountsComponent implements OnInit {
         ];
 
         this.positions = [
-            {label: 'Information Technology Officer II', value: 'IT Officer 1'},
+            {label: 'Information Technology Officer I', value: 'IT Officer 1'},
             {label: 'Information Technology Officer II', value: 'IT Officer 2'},
             {label: 'Information System Analyst I', value: 'IS Analyst 1'},
             {label: 'Information System Analyst II', value: 'IS Analyst 2'},
@@ -144,12 +144,16 @@ export class AccountsComponent implements OnInit {
 
     submitAccount(){
        this.accountService.submitAccount(
-        this.addAccountForm.value.first_name ?? '',
-        this.addAccountForm.value.last_name ?? '',
-        this.addAccountForm.value.email ?? '',
-        this.addAccountForm.value.position ?? '',
-        this.addAccountForm.value.password ?? '',
-        this.addAccountForm.value.role ?? '',
-       )
+        this.addAccountForm.value.first_name,
+        this.addAccountForm.value.last_name,
+        this.addAccountForm.value.email,
+        this.addAccountForm.value.position.value,
+        this.addAccountForm.value.pin,
+        this.addAccountForm.value.role.value,
+       ).subscribe();
+        //TODO: CLEAN UP THE CODE. ADD ACCOUNT UI DONE. CONTINUE IN VALIDATING THE ACCOUNT IN UI!
+       
+
+       console.log("SUBMIT")
     }
 }

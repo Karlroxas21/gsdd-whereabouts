@@ -2,6 +2,9 @@ const express = require("express");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
+const credential_email = require("../config").nodemail;
+const base_URL = require("../config").base_url;
 const saltRounds = 12;
 const User = require("../model/account.model");
 
@@ -18,22 +21,24 @@ const secretKey = generateSecretKey();
 
 app.post("/register", async (req, res) => {
   try {
-    const { first_name, last_name, email, position, password, role } = req.body;
+    const { first_name, last_name, email, position, pin, role } = req.body;
 
     if (
       !first_name ||
       !last_name ||
       !email ||
       !position ||
-      !password ||
+      !pin ||
       !role
     ) {
       return res
         .status(400)
-        .json({ message: "Please provide all required fields" });
+        .json(
+            {firstname: first_name, lastname: last_name, email: email, position: position, pin: pin, role: role}
+        );
     }
 
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const hashedPassword = await bcrypt.hash(pin, saltRounds);
 
     // Account verification
     const confirmationToken = crypto.randomBytes(20).toString("hex");
@@ -43,9 +48,12 @@ app.post("/register", async (req, res) => {
       last_name: last_name,
       email: email,
       position: position,
-      password: hashedPassword,
+      pin: hashedPassword,
       role: role,
+      email_token: confirmationToken,
     });
+
+    sendConfirmationEmail(newUser);
 
     res.json({ message: "User registered successfully", user: newUser });
   } catch (err) {
@@ -56,7 +64,7 @@ app.post("/register", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, pin } = req.body;
 
     const findUser = await User.findOne({ where: { email } });
 
@@ -64,8 +72,8 @@ app.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Login failed. User not found." });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, findUser.password);
-    if (!isPasswordValid) {
+    const isPinValid = await bcrypt.compare(pin, findUser.pin);
+    if (!isPinValid) {
       return res
         .status(401)
         .json({ message: "Login failed. Incorrect password." });
@@ -88,6 +96,7 @@ app.post("/login", async (req, res) => {
       role: findUser.role,
       verified: findUser.verified,
       token: token,
+      emailToken: findUser.emailToken
     });
   } catch (err) {
     console.error(err);
@@ -127,5 +136,59 @@ app.post("/logout", (req, res) => {
     message: "Logout Success",
   });
 });
+
+app.get("/confirm", async (req, res) => {
+  const emailToken = req.query.emailToken;
+
+  try {
+    await User.update(
+      { verified: 1 },
+      {
+        where: {
+          email_token: emailToken,
+        },
+      },
+    );
+    res.status(200).json({ message: "Account verified!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+function sendConfirmationEmail(account) {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: credential_email.user,
+      pass: credential_email.password,
+    },
+  });
+
+  const baseURL = base_URL.url || "localhost:4200";
+
+  const mailOptions = {
+    from: credential_email.user,
+    to: account.email,
+    subject: `GSDD Personnel Tracking System Account Verification`,
+    html: `<h1>Hi ${account.first_name}!</h1>
+        <p>Please click the button to verify your account: </p>
+        <a href="http://${baseURL}/account_confirmation/?emailToken=${account.email_token}" 
+        style="background-color: #4CAF50; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block">
+        Verify Your Account</a>
+        <p>If you did not request this, please ignore this email.</p>`,
+  };
+
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log("Email sent: ", info.response);
+    }
+  });
+}
 
 module.exports = app;

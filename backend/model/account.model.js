@@ -26,7 +26,7 @@ const User = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
-    password: {
+    pin: {
       type: Sequelize.STRING,
       allowNull: false,
     },
@@ -39,6 +39,10 @@ const User = sequelize.define(
       allowNull: false,
       defaultValue: 0
     },
+    email_token: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
   },
   { createdAt: "createdAt", updatedAt: "updatedAt" },
 );

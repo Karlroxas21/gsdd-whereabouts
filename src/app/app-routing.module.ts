@@ -17,6 +17,7 @@ import { NotificationComponent } from './admin/notification/notification.compone
 import { RulesComponent } from './admin/rules/rules.component';
 import { OrgChartComponent } from './tablet-display/org-chart/org-chart.component';
 import { LoginComponent } from './login/login.component';
+import { AccountConfirmationComponent } from './admin/account-confirmation/account-confirmation.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
       { component: AccountsComponent, path: 'admin_accounts'},
       { component: NotificationComponent, path:'admin_notification'},
       { component: RulesComponent, path: 'admin_rules'},
+      { component: AccountConfirmationComponent, path: 'account_confirmation'},
       { component: OrgChartComponent, path: 'tablet_display'},
 
     ],

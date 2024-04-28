@@ -45,6 +45,7 @@ import { AccountsComponent } from './admin/accounts/accounts.component';
 import { NotificationComponent } from './admin/notification/notification.component';
 import { RulesComponent } from './admin/rules/rules.component';
 import { OrgChartComponent } from './tablet-display/org-chart/org-chart.component';
+import { AccountConfirmationComponent } from './admin/account-confirmation/account-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { OrgChartComponent } from './tablet-display/org-chart/org-chart.componen
     NotificationComponent,
     RulesComponent,
     OrgChartComponent,
+    AccountConfirmationComponent,
   ],
   imports: [
     BrowserModule,
