@@ -4,7 +4,7 @@ import { Account } from 'src/domain/employee-account';
 import { AccountService } from 'src/service/employee-account.service';
 import { Table } from 'primeng/table';
 import { FormControl, FormGroup } from '@angular/forms';
-
+import { environment } from 'src/environments/environment';
 @Component({
     selector: 'app-accounts',
     templateUrl: './accounts.component.html',
@@ -87,7 +87,7 @@ export class AccountsComponent implements OnInit {
             account.last_name === '' ||
             account.position === '' ||
             account.email === '' ||
-            account.password === '' ||
+            account.pin === '' ||
             account.role === '' ||
             account.verified === false
         ) {
@@ -151,9 +151,6 @@ export class AccountsComponent implements OnInit {
         this.addAccountForm.value.pin,
         this.addAccountForm.value.role.value,
        ).subscribe();
-        //TODO: CLEAN UP THE CODE. ADD ACCOUNT UI DONE. CONTINUE IN VALIDATING THE ACCOUNT IN UI!
-       
 
-       console.log("SUBMIT")
     }
 }

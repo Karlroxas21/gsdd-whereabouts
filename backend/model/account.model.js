@@ -42,9 +42,13 @@ const User = sequelize.define(
     email_token: {
         type: Sequelize.STRING,
         allowNull: false
+    }, 
+    token: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
   },
-  { createdAt: "createdAt", updatedAt: "updatedAt" },
+  {  timestamps: true, },
 );
 
 module.exports = User;

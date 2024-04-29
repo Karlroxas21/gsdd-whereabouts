@@ -9,9 +9,6 @@
 # Backend
 backend/.env
 
-# Environment in Angular
-src/environments
-
 # Node
 /node_modules
 npm-debug.log
