@@ -38,7 +38,7 @@ const routes: Routes = [
     { component: NotificationComponent, path: 'admin_notification', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.Admin]}},
     { component: RulesComponent, path: 'admin_rules', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.Admin]}},
     { component: AccountConfirmationComponent, path: 'account_confirmation', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.Admin]}},
-    { component: OrgChartComponent, path: 'tablet_display', canActivate:[AuthGuard]},
+    { component: OrgChartComponent, path: 'tablet_display', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.Tablet, UserRole.Admin]}},
 
     { path: '**', component: NotfoundComponent },
 ];

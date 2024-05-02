@@ -359,7 +359,7 @@
             <li
             [routerLinkActive]="'bg-gray-100 rounded-lg'"
             [routerLinkActiveOptions]="{ exact: true }"
-            *ngIf="role === 'tablet'"
+            *ngIf="role === 'tablet' || role === 'admin'"
           >
             <a
               routerLink="/tablet_display"
