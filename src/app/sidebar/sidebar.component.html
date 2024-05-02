@@ -43,9 +43,10 @@
             <li
               [routerLinkActive]="'bg-gray-100 rounded-lg'"
               [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="role === 'admin' || role ==='user'"
             >
               <a
-                routerLink=""
+                routerLink="/dashboard"
                 class="active group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 <svg
@@ -74,9 +75,10 @@
             <li
               [routerLinkActive]="'bg-gray-100 rounded-lg'"
               [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="role === 'admin' || role ==='user'"
             >
               <a
-                routerLink="account"
+                routerLink="/account"
                 class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 <svg
@@ -101,9 +103,10 @@
             <li
               [routerLinkActive]="'bg-gray-100 rounded-lg'"
               [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="role === 'admin' || role ==='user'"
             >
               <a
-                routerLink="setstatus"
+                routerLink="/setstatus"
                 class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 <svg
@@ -127,9 +130,10 @@
             <li
               [routerLinkActive]="'bg-gray-100 rounded-lg'"
               [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="role === 'admin' || role ==='user'"
             >
               <a
-                routerLink="timeinout"
+                routerLink="/timeinout"
                 class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 <svg
@@ -153,9 +157,10 @@
             <li
               [routerLinkActive]="'bg-gray-100 rounded-lg'"
               [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="role === 'admin' || role ==='user'"
             >
               <a
-                routerLink="team"
+                routerLink="/team"
                 class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 <svg
@@ -180,9 +185,10 @@
             <li
               [routerLinkActive]="'bg-gray-100 rounded-lg'"
               [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="role === 'admin' || role ==='user'"
             >
               <a
-                routerLink="notification"
+                routerLink="/notification"
                 class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 <svg
@@ -208,9 +214,10 @@
             <li
               [routerLinkActive]="'bg-gray-100 rounded-lg'"
               [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="role === 'admin'"
             >
               <a
-                routerLink="admin_dashboard"
+                routerLink="/admin_dashboard"
                 class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 <svg
@@ -239,9 +246,10 @@
             <li
               [routerLinkActive]="'bg-gray-100 rounded-lg'"
               [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="role === 'admin'"
             >
               <a
-                routerLink="admin_reports-home"
+                routerLink="/admin_reports-home"
                 class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 <svg
@@ -266,9 +274,10 @@
             <li
               [routerLinkActive]="'bg-gray-100 rounded-lg'"
               [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="role === 'admin'"
             >
               <a
-                routerLink="admin_accounts"
+                routerLink="/admin_accounts"
                 class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 <svg
@@ -294,9 +303,10 @@
             <li
               [routerLinkActive]="'bg-gray-100 rounded-lg'"
               [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="role === 'admin'"
             >
               <a
-                routerLink="admin_notification"
+                routerLink="/admin_notification"
                 class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 <svg
@@ -321,9 +331,10 @@
             <li
               [routerLinkActive]="'bg-gray-100 rounded-lg'"
               [routerLinkActiveOptions]="{ exact: true }"
+              *ngIf="role === 'admin'"
             >
               <a
-                routerLink="admin_rules"
+                routerLink="/admin_rules"
                 class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 <svg
@@ -348,9 +359,10 @@
             <li
             [routerLinkActive]="'bg-gray-100 rounded-lg'"
             [routerLinkActiveOptions]="{ exact: true }"
+            *ngIf="role === 'tablet'"
           >
             <a
-              routerLink="tablet_display"
+              routerLink="/tablet_display"
               class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
             >
               <svg
@@ -375,6 +387,7 @@
 
           <li class="mb-5 mt-auto border-red-500">
             <a
+            (click)="signOut()"
               href="#"
               class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-red-500 hover:text-white dark:text-white dark:hover:bg-gray-700"
             >

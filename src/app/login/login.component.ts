@@ -66,6 +66,8 @@ export class LoginComponent {
             }
 
             localStorage.setItem('token', account.token);
+            localStorage.setItem('claims', account.claims.userId);
+            localStorage.setItem('id', account.Id);
             localStorage.setItem('role', account.role);
             localStorage.setItem('email', account.email);
 
@@ -76,7 +78,7 @@ export class LoginComponent {
             // Insert toaster, and navigate to admin
             this.toast('success', 'Success', 'Login success');
 
-            this.router.navigateByUrl('')
+            this.router.navigate(['/dashboard'])
         }, (err) => {
             this.loginAttempt++;
 
