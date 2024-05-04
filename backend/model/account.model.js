@@ -43,9 +43,10 @@ const User = sequelize.define(
         type: Sequelize.STRING,
         allowNull: false
     }, 
-    token: {
-        type: Sequelize.STRING,
-        allowNull: true
+    _default: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: 0
     }
   },
   {  timestamps: true, },
