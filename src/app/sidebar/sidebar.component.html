@@ -211,6 +211,7 @@
             </li>
 
             <!-- Admin  -->
+            <p *ngIf="role === 'admin'" class="mt-2 border-b border-gray-200 ">Admin</p>
             <li
               [routerLinkActive]="'bg-gray-100 rounded-lg'"
               [routerLinkActiveOptions]="{ exact: true }"
