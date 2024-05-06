@@ -82,10 +82,16 @@ app.post("/login", async (req, res) => {
     // JWT Token
     const token = jwt.sign({ userId: findUser.Id }, secretKey);
 
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 100,
-    });
+    // res.cookie("jwt", token, {
+    //   httpOnly: true,
+    //   maxAge: 24 * 60 * 60 * 100,
+    // });
+
+    const claims = jwt.verify(token, secretKey);
+    if (!claims) {
+        res.status(401).json({ message: "Unauthenticated" });
+        return;
+    }
 
     res.json({
       Id: findUser.Id,
@@ -96,7 +102,8 @@ app.post("/login", async (req, res) => {
       role: findUser.role,
       verified: findUser.verified,
       token: token,
-      emailToken: findUser.emailToken
+      emailToken: findUser.emailToken,
+      claims: claims
     });
   } catch (err) {
     console.error(err);
@@ -122,7 +129,7 @@ app.get("/user", async (req, res) => {
 
     const user = await User.findOne({ where: { Id: claims.userId } });
 
-    const { password, createdAt, updatedAt, ...data } = await user.toJSON();
+    const { pin, email_token, createdAt, updatedAt, ...data } = await user.toJSON();
     res.json(data);
   } catch (err) {
     res.status(401).json({ message: "Unauthenticated" });

@@ -18,36 +18,33 @@ import { RulesComponent } from './admin/rules/rules.component';
 import { OrgChartComponent } from './tablet-display/org-chart/org-chart.component';
 import { LoginComponent } from './login/login.component';
 import { AccountConfirmationComponent } from './admin/account-confirmation/account-confirmation.component';
+import { AuthGuard } from './auth.guard';
+import { UserRole } from './auth.guard';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: SidebarComponent,
-    children: [
-      { component: HomeDashboardComponent, path: '' },
-      { component: LoginComponent, path: 'login'},
-      { component: AccountComponent, path: 'account' },
-      { component: SetstatusComponent, path: 'setstatus' },
-      { component: TimesheetComponent, path: 'timesheet' },
-      { component: TimeinoutComponent, path: 'timeinout' },
-      { component: TeamComponent, path: 'team' },
-      { component: NotificationsComponent, path:'notification'},
-      { component: AdminComponent, path: 'admin_dashboard'},
-      { component: ReportsHomeComponent, path: 'admin_reports-home'},
-      { component: MonthlyAttendanceComponent, path: 'admin_monthly_attendance'},
-      { component: AccountsComponent, path: 'admin_accounts'},
-      { component: NotificationComponent, path:'admin_notification'},
-      { component: RulesComponent, path: 'admin_rules'},
-      { component: AccountConfirmationComponent, path: 'account_confirmation'},
-      { component: OrgChartComponent, path: 'tablet_display'},
+    { component: LoginComponent, path: '' },
+    { component: HomeDashboardComponent, path: 'dashboard', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.User, UserRole.Admin]}},
+    { component: LoginComponent, path: 'login' },
+    { component: AccountComponent, path: 'account', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.User, UserRole.Admin]}},
+    { component: SetstatusComponent, path: 'setstatus', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.User, UserRole.Admin]}},
+    { component: TimesheetComponent, path: 'timesheet', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.User, UserRole.Admin]}},
+    { component: TimeinoutComponent, path: 'timeinout', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.User, UserRole.Admin]}},
+    { component: TeamComponent, path: 'team', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.User, UserRole.Admin]}},
+    { component: NotificationsComponent, path: 'notification', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.User, UserRole.Admin]}},
+    { component: AdminComponent, path: 'admin_dashboard', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.Admin]}},
+    { component: ReportsHomeComponent, path: 'admin_reports-home', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.Admin]}},
+    { component: MonthlyAttendanceComponent, path: 'admin_monthly_attendance', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.Admin]}},
+    { component: AccountsComponent, path: 'admin_accounts', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.Admin]}},
+    { component: NotificationComponent, path: 'admin_notification', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.Admin]}},
+    { component: RulesComponent, path: 'admin_rules', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.Admin]}},
+    { component: AccountConfirmationComponent, path: 'account_confirmation', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.Admin]}},
+    { component: OrgChartComponent, path: 'tablet_display', canActivate:[AuthGuard], data: { allowedRoles: [UserRole.Tablet, UserRole.Admin]}},
 
-    ],
-  },
-  { path: '**', component: NotfoundComponent },
+    { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
