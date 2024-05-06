@@ -29,4 +29,8 @@ export class AccountService {
         return this.http.get<any>(`${this.baseUrlAPI}confirm/?emailToken=${emailToken}`);
     }
 
+    getCurrentUser(): Observable<any>{
+        const userId = localStorage.getItem('id');
+        return this.http.get<any>(`${this.baseUrlAPI}user/${userId}`);
+    }
 }
