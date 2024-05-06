@@ -23,6 +23,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastItem } from 'primeng/toast';
+import { KeyFilterModule } from 'primeng/keyfilter';
 // Components
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -90,7 +91,8 @@ import { AccountConfirmationComponent } from './admin/account-confirmation/accou
     ConfirmDialogModule,
     DialogModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    KeyFilterModule
   ],
   providers: [
     DatePipe,

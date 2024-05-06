@@ -3,8 +3,7 @@ import { MessageService, SelectItem, ConfirmationService } from 'primeng/api';
 import { Account } from 'src/domain/employee-account';
 import { AccountService } from 'src/service/employee-account.service';
 import { Table } from 'primeng/table';
-import { FormControl, FormGroup } from '@angular/forms';
-import { environment } from 'src/environments/environment';
+import { FormControl, FormGroup, Validators, AbstractControl  } from '@angular/forms';
 @Component({
     selector: 'app-accounts',
     templateUrl: './accounts.component.html',
@@ -28,12 +27,27 @@ export class AccountsComponent implements OnInit {
     addAccountVisibility!: boolean;
 
     addAccountForm = new FormGroup({
-        first_name: new FormControl(),
-        last_name: new FormControl(),
-        position: new FormControl(),
-        email: new FormControl(),
-        pin: new FormControl(),
-        role: new FormControl(),
+        first_name: new FormControl('', [
+            Validators.required,
+            Validators.pattern('^[a-zA-Z ]*$')
+        ]),
+        last_name: new FormControl('', [
+            Validators.required,
+            Validators.pattern('^[a-zA-Z ]*$')
+        ]),
+        position: new FormControl({label: '', value: ''}, Validators.required),
+        email: new FormControl('', [
+            Validators.required,
+            Validators.pattern('^[a-zA-Z0-9]+@gmail\.com$')
+            // Validators.pattern('^[a-zA-Z0-9]+@namria\.gov\.ph$'),
+            ]),
+        pin: new FormControl('', 
+        [Validators.required, 
+            Validators.minLength(6), 
+            Validators.maxLength(6), 
+            Validators.pattern('^[0-9]*$')
+        ]),
+        role: new FormControl({label: '', value: ''}, Validators.required),
     });
 
     positions!: SelectItem[];
@@ -41,7 +55,7 @@ export class AccountsComponent implements OnInit {
     constructor(
         private accountService: AccountService,
         private messageService: MessageService,
-        private confirmationService: ConfirmationService,
+        private confirmationService: ConfirmationService
     ) { }
 
     ngOnInit() {
@@ -143,14 +157,41 @@ export class AccountsComponent implements OnInit {
     }
 
     submitAccount(){
-       this.accountService.submitAccount(
-        this.addAccountForm.value.first_name,
-        this.addAccountForm.value.last_name,
-        this.addAccountForm.value.email,
-        this.addAccountForm.value.position.value,
-        this.addAccountForm.value.pin,
-        this.addAccountForm.value.role.value,
-       ).subscribe();
+    //    if(this.addAccountForm.invalid ){
+    //     this.toast('error', 'Error', 'Complete all the required fields');
+    //     return;
+    //    }
+
+    //    this.accountService.submitAccount(
+    //     this.addAccountForm.value.first_name ?? '',
+    //     this.addAccountForm.value.last_name ?? '',
+    //     this.addAccountForm.value.email ?? '',
+    //     this.addAccountForm.value.position?.value ?? '',
+    //     this.addAccountForm.value.pin ?? '',
+    //     this.addAccountForm.value.role?.value ?? '',
+    //    ).subscribe(() =>{
+    //     this.toast('success', 'Success', "New user successfully added!");
+    //    });
+
+    if(this.addAccountForm.value.position?.value !== '' && this.addAccountForm.value.role?.value !== ''){
+        console.log('both empty')
+    }else{
+        console.log('both have value: ', `Position ${this.addAccountForm.value.position?.value }`, `Role ${this.addAccountForm.value.role?.value }`)
+    }
+
+
 
     }
+
+
+    toast(severity: string, summary: string, detail: string, time?: string, life?: number) {
+        this.messageService.add({
+            severity: severity,
+            summary: summary,
+            detail: detail,
+            life: 3000
+        })
+    };
+
+
 }
