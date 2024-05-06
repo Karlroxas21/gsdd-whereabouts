@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,13 +15,15 @@ import { ButtonModule } from 'primeng/button';
 import { EmployeeStatusService } from 'src/service/employee-status.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { AccountService } from 'src/service/emploee-account.service';
+import { AccountService } from 'src/service/employee-account.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ToastItem } from 'primeng/toast';
+import { KeyFilterModule } from 'primeng/keyfilter';
 // Components
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -44,6 +46,7 @@ import { AccountsComponent } from './admin/accounts/accounts.component';
 import { NotificationComponent } from './admin/notification/notification.component';
 import { RulesComponent } from './admin/rules/rules.component';
 import { OrgChartComponent } from './tablet-display/org-chart/org-chart.component';
+import { AccountConfirmationComponent } from './admin/account-confirmation/account-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,7 @@ import { OrgChartComponent } from './tablet-display/org-chart/org-chart.componen
     NotificationComponent,
     RulesComponent,
     OrgChartComponent,
+    AccountConfirmationComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +89,10 @@ import { OrgChartComponent } from './tablet-display/org-chart/org-chart.componen
     DropdownModule,
     ToolbarModule,
     ConfirmDialogModule,
-    DialogModule
+    DialogModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    KeyFilterModule
   ],
   providers: [
     DatePipe,
@@ -94,6 +101,7 @@ import { OrgChartComponent } from './tablet-display/org-chart/org-chart.componen
     MessageService,
     AccountService,
     ConfirmationService,
+    ToastItem
   ],
   bootstrap: [AppComponent],
 })

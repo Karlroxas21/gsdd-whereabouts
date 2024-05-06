@@ -1,18 +1,33 @@
-# GsddWhereabouts
+# Personnel Tracking System
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
+Tracking system for National Mapping and Resource Information Authority(NAMRIA) Geospatial Information Systems Branch(GISMB)/ Geospatial Systems Development Division(GSDD) employees.
+
+> Keywords: Time in & time out and employee status updates
+
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This web app was built by ExpressJS, Angular 15, MSQL, and NodeJS. So we have a 2 server need to run in development. While 1 (Express) in deployment.
 
-## Code scaffolding
+Run `ng serve` in root directory for a angular dev server. Navigate to `http://localhost:4200/`. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Enter `cd backend` to change location to backend files, and  run `npm start` in express dev server. 
 
-## Build
+The application will automatically reload if you change any of the source files.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Deployment
+
+Run `ng build` to build the project. The ExpressJS is the one we will deploy. The build artifacts will be stored in `backend/dist`
+
+## Environments
+
+Backend environment:
+1. DB_USER
+2. DB_PASSWORD
+3. DB_SERVER
+4. DB
+5. GMAIL_USER_AUTH
+6. GMAIL_PW_AUTH
 
 ## Running unit tests
 
