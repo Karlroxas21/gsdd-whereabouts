@@ -173,6 +173,7 @@ function sendConfirmationEmail(account) {
       user: credential_email.user,
       pass: credential_email.password,
     },
+    proxy: 'http://192.168.8.8:3128' // Enable when in NAMRIA Network
   });
 
   const baseURL = base_URL.url || "localhost:4200";
