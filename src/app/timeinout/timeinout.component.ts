@@ -12,5 +12,10 @@ export class TimeinoutComponent {
     setInterval(() => {
       this.now = new Date();
     }, 1000);
+
+   
   }
+  timeIn(){
+    console.log("TIME IN!");
+}
 }

@@ -55,17 +55,21 @@ sequelize
 
 module.exports = sequelize;
 
-const User = require("./model/account.model");
+// const User = require("./model/account.model");
+// const TimeInAndOut = require("./model/time_in_out.model");
 
-app.get("/test", (req, res) => {
-  User.findAll().then((users) => {
-    res.json(users);
-  });
-});
+// app.get("/test", (req, res) => {
+//   User.findAll().then((users) => {
+//     res.json(users);
+//   });
+// });
 
 //Routes
 const account_routes = require("./routes/account.routes");
 app.use("/", account_routes);
+
+const time_in_out_routes = require("./routes/time_in_time_out");
+app.use("/", time_in_out_routes)
 
 app.listen(port, () => {
   console.log(`Listening on ${port}`);
