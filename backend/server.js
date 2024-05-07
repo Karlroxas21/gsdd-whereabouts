@@ -41,6 +41,10 @@ const sequelize = new Sequelize(
   {
     host: db_config.server,
     dialect: "mssql",
+    timezone: db_config.timezone,
+    dialectOptions:{
+        useUTC: db_config.dialectOptions.useUTC
+    } 
   },
 );
 

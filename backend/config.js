@@ -9,6 +9,10 @@ module.exports = {
     options: {
       trustServerCertificate: true,
     },
+    dialectOptions: {
+        useUTC: false, 
+      },
+    timezone: '+08:00'
   },
 
   nodemail: {

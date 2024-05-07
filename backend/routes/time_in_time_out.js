@@ -4,7 +4,7 @@ const TimeInAndOut = require("../model/time_in_out.model");
 const app = express();
 
 app.post("/time_in", async (req, res) =>{
-    const { user_Id } = req.body;
+    const { user_Id, time_in } = req.body;
 
     if(!user_Id){
         return res.status(400).json({ error: 'No User ID' });
@@ -13,8 +13,11 @@ app.post("/time_in", async (req, res) =>{
     try{
         const timeIn = await TimeInAndOut.create({
             user_Id,
-            time_in: new Date()
+            time_in: time_in
         });
+
+        console.log(time_in)
+        
 
         return res.status(201).json(timeIn);
     }catch(err){
@@ -23,8 +26,29 @@ app.post("/time_in", async (req, res) =>{
     }
 });
 
-app.post("/time_out", async(req, res) =>{
-    
+app.put('/time_out/:id', async(req, res) =>{
+    try{
+        const user_Id = req.params.id;
+        // const time_out = new Date();
+        const time_out = req.body;
+
+        const updated_data = await TimeInAndOut.update({time_out: time_out}, {
+            where: {                                                                                        
+                Id: user_Id
+            }
+        });
+
+        console.log(updated_data)
+
+        if(updated_data[0] === 0){
+            res.status(404).json({ message: 'Update failed. Record not found.'});
+        }else{
+            res.status(200).json({ message: 'Record updated successfully.'});
+        }
+
+    }catch(err){
+        res.status(500).json({message: 'An error occured' + err});
+    }
 })
 
 module.exports = app;
