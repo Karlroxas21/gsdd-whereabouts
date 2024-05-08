@@ -11,11 +11,11 @@
                 class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200">
                 <div
                   class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-grey-500 bg-gray-100 dark:bg-gray-600">
-                  <span class="text-xs font-medium text-gray-600 dark:text-gray-300">RF</span>
+                  <span class="text-xs font-medium text-gray-600 dark:text-gray-300">KMR</span>
                 </div>
-                <p>Romel Francisco</p>
-                <p>IT Officer II</p>
-                <p>OIC, Division Chief</p>
+                <p>Karl Marx Roxas</p>
+                <p>IT Officer IiI</p>
+                <p>Bossing</p>
               </button>
 
               <p-dialog [(visible)]="visible">
@@ -39,6 +39,40 @@
         </div>
         <div id="second-layer"
           class="flex h-1/6 w-full items-center justify-center gap-5 border-b-2 border-dotted border-b-gray-300">
+          <div id="rommel-francisco">
+            <div id="avatar" class="flex flex-col items-center gap-2">
+                <div class="card text-xs justify-content-center flex flex-col">
+                  <p>In a meeting</p>
+                  <button (click)="showDialog()"
+                    class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200">
+                    <div
+                      class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-grey-500 bg-gray-100 dark:bg-gray-600">
+                      <span class="text-xs font-medium text-gray-600 dark:text-gray-300">RF</span>
+                    </div>
+                    <p>Romel Francisco</p>
+                    <p>IT Officer II</p>
+                    <p>OIC, Division Chief</p>
+                  </button>
+    
+                  <p-dialog [(visible)]="visible">
+                    <ng-template pTemplate="headless">
+                      <div class="flex-column flex gap-4 px-8 py-5">
+                        <div class="gap-5">
+                          <label for="password" class="text-primary-50 font-semibold">Pin</label>
+                          <input pInputText id="password" class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
+                            type="password" placeholder="Enter 6-digit pin" />
+                        </div>
+                        <div class="align-items-center flex gap-2">
+                          <p-button label="Clock in" (click)="closeDialog()"
+                            styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
+                            class="w-full"></p-button>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </p-dialog>
+                </div>
+              </div>
+          </div>
           <div id="fatima-santos">
             <div id="avatar" class="flex flex-col items-center gap-2">
               <div class="card text-xs justify-content-center flex flex-col">
@@ -342,17 +376,17 @@
               </div>
             </div>
           </div>
-          <div id="lyra-samarista">
+          <div id="mark-jumeras">
             <div id="avatar" class="flex flex-col items-center gap-2">
               <div class="card justify-content-center flex">
                 <button (click)="showDialog()"
                   class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200">
                   <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-green-300 bg-gray-100 dark:bg-gray-600">
-                    <span class="text-md font-medium text-gray-600 dark:text-gray-300">LS</span>
+                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-blue-300 bg-gray-100 dark:bg-gray-600">
+                    <span class="text-md font-medium text-gray-600 dark:text-gray-300">MJ</span>
                   </div>
-                  <p>Lyra Anne Samarista</p>
-                  <p>IS Researcher II</p>
+                  <p>Mark Allan Jay Jumeras</p>
+                  <p>IS Analyst II</p>
                 </button>
 
                 <p-dialog [(visible)]="visible">
@@ -374,17 +408,17 @@
               </div>
             </div>
           </div>
-          <div id="fely-espinas">
+          <div id="michelle-medina">
             <div id="avatar" class="flex flex-col items-center gap-2">
               <div class="card justify-content-center flex">
                 <button (click)="showDialog()"
                   class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200">
                   <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-green-300 bg-gray-100 dark:bg-gray-600">
-                    <span class="text-md font-medium text-gray-600 dark:text-gray-300">FE</span>
+                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-blue-300 bg-gray-100 dark:bg-gray-600">
+                    <span class="text-md font-medium text-gray-600 dark:text-gray-300">MM</span>
                   </div>
-                  <p>Fely Espinas</p>
-                  <p>IS Researcher II</p>
+                  <p>Michelle Medina</p>
+                  <p>IS Analyst II</p>
                 </button>
 
                 <p-dialog [(visible)]="visible">
@@ -407,6 +441,72 @@
             </div>
           </div>
         </div>
+        <div id="fifth-layer" class="flex h-1/6 w-full items-center justify-center gap-5">
+            <div id="lyra-samarista">
+                <div id="avatar" class="flex flex-col items-center gap-2">
+                  <div class="card justify-content-center flex">
+                    <button (click)="showDialog()"
+                      class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200">
+                      <div
+                        class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-green-300 bg-gray-100 dark:bg-gray-600">
+                        <span class="text-md font-medium text-gray-600 dark:text-gray-300">LS</span>
+                      </div>
+                      <p>Lyra Anne Samarista</p>
+                      <p>IS Researcher II</p>
+                    </button>
+    
+                    <p-dialog [(visible)]="visible">
+                      <ng-template pTemplate="headless">
+                        <div class="flex-column flex gap-4 px-8 py-5">
+                          <div class="gap-5">
+                            <label for="password" class="text-primary-50 font-semibold">Pin</label>
+                            <input pInputText id="password" class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
+                              type="password" placeholder="Enter 6-digit pin" />
+                          </div>
+                          <div class="align-items-center flex gap-2">
+                            <p-button label="Sign-In" (click)="closeDialog()"
+                              styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
+                              class="w-full"></p-button>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </p-dialog>
+                  </div>
+                </div>
+            </div>
+            <div id="fely-espinas">
+                <div id="avatar" class="flex flex-col items-center gap-2">
+                  <div class="card justify-content-center flex">
+                    <button (click)="showDialog()"
+                      class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200">
+                      <div
+                        class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-green-300 bg-gray-100 dark:bg-gray-600">
+                        <span class="text-md font-medium text-gray-600 dark:text-gray-300">FE</span>
+                      </div>
+                      <p>Fely Espinas</p>
+                      <p>IS Researcher II</p>
+                    </button>
+    
+                    <p-dialog [(visible)]="visible">
+                      <ng-template pTemplate="headless">
+                        <div class="flex-column flex gap-4 px-8 py-5">
+                          <div class="gap-5">
+                            <label for="password" class="text-primary-50 font-semibold">Pin</label>
+                            <input pInputText id="password" class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
+                              type="password" placeholder="Enter 6-digit pin" />
+                          </div>
+                          <div class="align-items-center flex gap-2">
+                            <p-button label="Sign-In" (click)="closeDialog()"
+                              styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
+                              class="w-full"></p-button>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </p-dialog>
+                  </div>
+                </div>
+            </div>
+          </div>
 
         <div class="ml-10 mt-14 font-bold text-sm">
           *Black means no time-in</div>
