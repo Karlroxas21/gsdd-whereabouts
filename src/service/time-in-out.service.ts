@@ -26,4 +26,8 @@ export class TimeInOutService {
     setTotalTime(time_out_Id: string, total_time: string): Observable<any> {
         return this.http.put(`${this.baseUrlAPI}set_total_time/${time_out_Id}`, { total_time });
     }
+
+    isTimeIn(user_Id: string | null): Observable<any>{
+         return this.http.get(`${this.baseUrlAPI}check_time_in_today/${user_Id}`);
+    }
 }

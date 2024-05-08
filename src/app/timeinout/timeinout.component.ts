@@ -62,6 +62,8 @@ export class TimeinoutComponent implements OnInit {
 
     ngOnInit(): void {
         this.timeInOutModalService.closeModal();
+
+        this.isTimeIn();
     }
 
     openTimeInOutModal() {
@@ -152,6 +154,15 @@ export class TimeinoutComponent implements OnInit {
         }
     }
 
+    isTimeIn(): boolean{
+        this.timeInOutService.isTimeIn(this.Id).subscribe(res =>{
+            console.log("Is time in: " + res.isFromToday);
+            let time_in = new Date(res.time_in).toISOString();
+            console.log("Time in time: " + time_in); // TODO: CONTINUE HERE: DISPLAY DATE IN TIME IN
+            return true;
+        })
+        return false;
+    }
     goToTimeSheet() {
         this.tabService.changeTab(1);
     }

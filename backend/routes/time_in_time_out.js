@@ -1,5 +1,6 @@
 const express = require('express');
 const TimeInAndOut = require("../model/time_in_out.model");
+const sequelize = require('sequelize');
 
 const app = express();
 
@@ -105,7 +106,39 @@ app.put('/set_total_time/:id', async(req, res)=>{
     }
 })
 
+app.get('/check_time_in_today/:id', async(req, res) =>{
+    try{
+        const user_Id = req.params.id;
 
+        if(!user_Id){
+            return res.status(400).json({ error: 'No User Id Data' });
+        }
+
+        const data = await TimeInAndOut.findOne({
+            where:{
+                user_Id: user_Id,
+            },
+            order: [
+                 ['createdAt', 'DESC']
+            ]
+        });
+
+        const time_in_record = data.time_in;
+       
+        const date_of_time_in = new Date(time_in_record);
+        
+        const today = new Date();
+
+        const time_in_formatted = date_of_time_in.toISOString().split('T')[0];
+        const today_formatted = today.toISOString().split('T')[0];
+        const isFromToday = time_in_formatted === today_formatted;
+
+        // res.json({"rawTime": data.time_in.toISOString() , "dataOfTimeIn": time_in_formatted, "todayTime": today_formatted, "isFromToday": isFromToday});
+        res.json({"isFromToday": isFromToday, "time_in": data.time_in});
+    }catch(err){
+        res.status(500).json({message: err});
+}
+})
 
 function convertToHHMM(time){
     const hours = Math.floor(time);
