@@ -133,6 +133,19 @@ export class TimeinoutComponent implements OnInit {
                 console.log("Time out success: ", res);
             }, (err) =>{
                 console.log(err);
+            });
+
+            this.timeInOutService.getTotalTime(this.timeOutId).subscribe(res =>{
+                 
+                this.timeInOutService.setTotalTime(this.timeOutId, res.total_time).subscribe(res_total_time =>{
+                    console.log("Total time inside setTotal:" ,res_total_time);
+
+                }, (err)=>{
+                    console.log(err);
+                });
+
+            }, (err)=>{
+                console.log(err);
             })
         }else{
             console.error('Invalid Id');

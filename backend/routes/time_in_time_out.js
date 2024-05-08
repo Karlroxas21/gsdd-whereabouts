@@ -44,6 +44,73 @@ app.put('/time_out/:id', async(req, res) =>{
     }catch(err){
         res.status(500).json({message: 'An error occured' + err});
     }
+});
+
+app.get('/total_time/:time_out_Id', async(req, res) =>{
+    const time_out_Id = req.params.time_out_Id
+
+   try{
+
+    const total_time_query = await TimeInAndOut.findOne({
+        where: {
+            Id: time_out_Id
+        }
+    });
+    
+    let total_time = 0;
+
+    if(!total_time_query){  
+        return res.status(404).json({ message: 'No record found'});
+
+    }
+
+    const time_in = new Date(total_time_query.time_in);
+    const time_out = new Date(total_time_query.time_out);
+
+    const diff = time_out.getTime() - time_in.getTime();
+
+    total_time = total_time + diff / (1000 * 60 * 60);
+
+    const formatted_total_time = convertToHHMM(total_time);
+
+    res.json({total_time: formatted_total_time});
+   }catch(err){
+    res.status(500).json({message: 'An error occured' + err});
+   } 
+});
+
+app.put('/set_total_time/:id', async(req, res)=>{
+    try{
+        const time_out_Id = req.params.id;
+        const {total_time}  = req.body;
+        
+        if(!total_time){
+            return res.status(400).json({ error: 'No Time Out Data' });
+        }
+
+        const total_time_query = await TimeInAndOut.update({total_time: total_time}, {
+                where: {
+                    Id: time_out_Id
+                }
+            }
+        );
+
+        if(total_time_query[0] === 0){
+            res.status(404).json({ message: 'Update failed. Record not found.'});
+        }else{
+            res.status(200).json({ message: 'Record updated successfully.'});
+        }
+    }catch(err){
+        console.error(err);
+    }
 })
 
+
+
+function convertToHHMM(time){
+    const hours = Math.floor(time);
+    const minutes = Math.floor((time - hours) * 60);
+
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+}
 module.exports = app;

@@ -28,7 +28,7 @@ const TimeInAndOut = sequelize.define(
             allowNull: true,
         },
         total_time: {
-            type: Sequelize.DATE,
+            type: Sequelize.STRING,
             allowNull: true,
         }
     },
