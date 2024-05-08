@@ -43,7 +43,7 @@ export class TimeinoutComponent implements OnInit {
                     hour: '2-digit',
                     minute: '2-digit',
                     second: '2-digit',
-                    hour12: true
+                    hour12: false
                 });
 
                 let hours = new Date().getHours().toString().padStart(2, '0');
@@ -98,7 +98,8 @@ export class TimeinoutComponent implements OnInit {
         return this.Id;
     }
 
-    timeOutId = '';
+    timeOutId: string = '';
+
     timeIn() {
         
         this.timeInOutModalService.closeModal();
@@ -107,12 +108,9 @@ export class TimeinoutComponent implements OnInit {
         
         let timeInDateTime = new Date(`${this.timeInDate} ` + this.getTimeIn());
         
-        console.log(timeInDateTime)
         if(this.Id){
             this.timeInOutService.timeIn(this.Id, timeInDateTime ).subscribe(res =>{
                 this.timeOutId = res.Id;
-
-                console.log("Time in success: ", res);
     
             }, (err=>{
                 console.log(err);
@@ -124,14 +122,13 @@ export class TimeinoutComponent implements OnInit {
     }
 
     timeOut() {
-        this.setTimeOut(this.timeDisplay);
         this.timeInOutModalService.closeModal();
+        this.setTimeOut(this.timeDisplay);
         this.timeOutDate = this.currentDate;
-        
-        let timeOutDateTime = new Date(`${this.timeOutDate} ` + this.getTimeOut())
-        console.log(timeOutDateTime);
 
-        if(this.Id){
+        let timeOutDateTime = new Date(`${this.timeOutDate} ` + this.getTimeOut());
+        
+        if(this.timeOutId){
             this.timeInOutService.timeOut(this.timeOutId, timeOutDateTime).subscribe(res =>{
                 console.log("Time out success: ", res);
             }, (err) =>{

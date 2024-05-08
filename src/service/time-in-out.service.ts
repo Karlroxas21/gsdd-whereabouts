@@ -15,7 +15,7 @@ export class TimeInOutService{
         return this.http.post(`${this.baseUrlAPI}time_in`, {user_Id, time_in});
     }
 
-    timeOut(user_Id: string, time_out: Date){
-        return this.http.put(`${this.baseUrlAPI}time_out/${user_Id}`, { time_out});
+    timeOut(time_out_Id: string, time_out: Date): Observable<any>{
+        return this.http.put(`${this.baseUrlAPI}time_out/${time_out_Id}`, {time_out});
     }
 }

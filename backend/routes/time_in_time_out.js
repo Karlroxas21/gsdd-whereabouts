@@ -16,9 +16,6 @@ app.post("/time_in", async (req, res) =>{
             time_in: time_in
         });
 
-        console.log(time_in)
-        
-
         return res.status(201).json(timeIn);
     }catch(err){
         console.error(err);
@@ -28,17 +25,15 @@ app.post("/time_in", async (req, res) =>{
 
 app.put('/time_out/:id', async(req, res) =>{
     try{
-        const user_Id = req.params.id;
+        const time_out_Id = req.params.id;
         // const time_out = new Date();
-        const time_out = req.body;
+        const {time_out} = req.body;
 
         const updated_data = await TimeInAndOut.update({time_out: time_out}, {
             where: {                                                                                        
-                Id: user_Id
+                Id: time_out_Id
             }
         });
-
-        console.log(updated_data)
 
         if(updated_data[0] === 0){
             res.status(404).json({ message: 'Update failed. Record not found.'});
