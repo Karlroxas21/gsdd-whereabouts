@@ -30,4 +30,8 @@ export class TimeInOutService {
     isTimeIn(user_Id: string | null): Observable<any>{
          return this.http.get(`${this.baseUrlAPI}check_time_in_today/${user_Id}`);
     }
+
+    isTimeOut(user_Id: string | null): Observable<any>{
+        return this.http.get(`${this.baseUrlAPI}check_time_out_today/${user_Id}`);
+    }
 }

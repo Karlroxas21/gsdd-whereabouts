@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TabService } from 'src/service/tab.service';
 import { TimeInOutModalService } from 'src/service/time-in-out-modal.service';
 import { TimeInOutService } from 'src/service/time-in-out.service';
@@ -21,7 +22,10 @@ export class TimeinoutComponent implements OnInit {
 
     Id = localStorage.getItem('id');
 
-    constructor(private tabService: TabService, private timeInOutModalService: TimeInOutModalService, private timeInOutService: TimeInOutService) {
+    check_time_in?: boolean;
+    check_time_out?: boolean;
+
+    constructor(private tabService: TabService, private timeInOutModalService: TimeInOutModalService, private timeInOutService: TimeInOutService, private cdr: ChangeDetectorRef) {
         setInterval(() => {
             this.CURRENT_TIME_DISPLAY_ONLY = new Date().toLocaleString('en-US', {
                 year: 'numeric',
@@ -63,7 +67,28 @@ export class TimeinoutComponent implements OnInit {
     ngOnInit(): void {
         this.timeInOutModalService.closeModal();
 
-        this.isTimeIn();
+        this.isTimeIn().then(result => {
+            if (result) {
+                this.check_time_in = result;
+            } else {
+                this.check_time_in = result;
+            }
+        }).catch(err => {
+            console.error("Error in isTimeIn", err);
+        });
+
+        this.isTimeOut().then(result => {
+            if (result) {
+                this.check_time_out = result;
+            } else {
+                this.check_time_out = result;
+            }
+        }).catch(err => {
+            console.error("Error in isTimeOut", err);
+        });
+
+        console.log("time in check: ", this.check_time_in);
+        console.log("time out check: ", this.check_time_out);
     }
 
     openTimeInOutModal() {
@@ -96,31 +121,30 @@ export class TimeinoutComponent implements OnInit {
         this.timeOutTime = timeOut;
     }
 
-    getId(){
+    getId() {
         return this.Id;
     }
 
-    timeOutId: string = '';
+    timeOutId = '';
 
     timeIn() {
-        
+
         this.timeInOutModalService.closeModal();
         this.setTimeIn(this.timeDisplay);
         this.timeInDate = this.currentDate;
-        
+
         let timeInDateTime = new Date(`${this.timeInDate} ` + this.getTimeIn());
-        
-        if(this.Id){
-            this.timeInOutService.timeIn(this.Id, timeInDateTime ).subscribe(res =>{
+
+        if (this.Id) {
+            this.timeInOutService.timeIn(this.Id, timeInDateTime).subscribe(res => {
                 this.timeOutId = res.Id;
-    
-            }, (err=>{
+
+            }, (err => {
                 console.log(err);
             }))
-        }else{
+        } else {
             console.error('No Id');
         }
-      
     }
 
     timeOut() {
@@ -129,40 +153,73 @@ export class TimeinoutComponent implements OnInit {
         this.timeOutDate = this.currentDate;
 
         let timeOutDateTime = new Date(`${this.timeOutDate} ` + this.getTimeOut());
-        
-        if(this.timeOutId){
-            this.timeInOutService.timeOut(this.timeOutId, timeOutDateTime).subscribe(res =>{
+
+        if (this.getTimeIn() !== '--') {
+
+            console.log("time out id: ", this.timeOutId);
+
+            this.timeInOutService.timeOut(this.timeOutId.toString(), timeOutDateTime).subscribe(res => {
                 console.log("Time out success: ", res);
-            }, (err) =>{
+            }, (err) => {
                 console.log(err);
             });
 
-            this.timeInOutService.getTotalTime(this.timeOutId).subscribe(res =>{
-                 
-                this.timeInOutService.setTotalTime(this.timeOutId, res.total_time).subscribe(res_total_time =>{
-                    console.log("Total time inside setTotal:" ,res_total_time);
+            this.timeInOutService.getTotalTime(this.timeOutId).subscribe(res => {
 
-                }, (err)=>{
+                this.timeInOutService.setTotalTime(this.timeOutId, res.total_time).subscribe(res_total_time => {
+                    console.log("Total time inside setTotal:", res_total_time);
+
+                }, (err) => {
                     console.log(err);
                 });
 
-            }, (err)=>{
+            }, (err) => {
                 console.log(err);
-            })
-        }else{
-            console.error('Invalid Id');
+            });
+
+        } else {
+            console.error('Invalid Id1');
         }
     }
 
-    isTimeIn(): boolean{
-        this.timeInOutService.isTimeIn(this.Id).subscribe(res =>{
-            console.log("Is time in: " + res.isFromToday);
-            let time_in = new Date(res.time_in).toISOString();
-            console.log("Time in time: " + time_in); // TODO: CONTINUE HERE: DISPLAY DATE IN TIME IN
-            return true;
+    isTimeIn(): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            try {
+                this.timeInOutService.isTimeIn(this.Id).subscribe(res => {
+                    if (res.dataOfTimeIn) {
+                        this.setTimeIn(res.dataOfTimeIn);
+                        this.timeOutId = res.Id;
+
+                        resolve(true);
+                    } else {
+                        resolve(false);
+                    }
+                });
+            } catch (err) {
+                console.error(err);
+                reject(err);
+            }
         })
-        return false;
-    }
+    };
+
+    isTimeOut(): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            try {
+
+                this.timeInOutService.isTimeOut(this.Id).subscribe(res => {
+                    if (res.dataOfTimeOut) {
+                        this.setTimeOut(res.dataOfTimeOut);
+                        resolve(true);
+                    }
+                    resolve(false);
+                });
+            } catch (err) {
+                console.error(err);
+                reject(err);
+            }
+        })
+    };
+
     goToTimeSheet() {
         this.tabService.changeTab(1);
     }
