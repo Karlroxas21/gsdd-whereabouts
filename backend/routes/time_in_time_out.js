@@ -123,42 +123,45 @@ app.get('/check_time_in_today/:id', async(req, res) =>{
             ]
         });
 
-        const time_in_record = data.time_in;
-       
-        const date_of_time_in = time_in_record;
+        if(data){
+            const time_in_record = data.time_in;
         
-        const today = new Date();
+            const date_of_time_in = time_in_record;
+            
+            const today = new Date();
 
-        // const time_in_formatted = date_of_time_in.toISOString().split('T')[0];
-        const time_in_formatted = date_of_time_in.toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: '2-digit'
-        })
+            // const time_in_formatted = date_of_time_in.toISOString().split('T')[0];
+            const time_in_formatted = date_of_time_in.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: '2-digit'
+            })
 
-        const time_in_formatted_time = date_of_time_in.toLocaleString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: true
-        })
-        // const today_formatted = today.toISOString().split('T')[0];
-        const today_formatted = today.toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: '2-digit'
-        })
-        
-        const isFromToday = time_in_formatted === today_formatted;
+            const time_in_formatted_time = date_of_time_in.toLocaleString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            })
+            // const today_formatted = today.toISOString().split('T')[0];
+            const today_formatted = today.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: '2-digit'
+            })
+            
+            const isFromToday = time_in_formatted === today_formatted;
 
-        // res.json({"rawTime": data.time_in.toISOString() , "dataOfTimeIn": time_in_formatted, "todayTime": today_formatted, "isFromToday": isFromToday});
-        
-        dataId = data.Id;
+            // res.json({"rawTime": data.time_in.toISOString() , "dataOfTimeIn": time_in_formatted, "todayTime": today_formatted, "isFromToday": isFromToday});
+            
+            dataId = data.Id;
 
-        if(isFromToday){
-            res.json({"Id": dataId, "dataOfTimeIn": date_of_time_in.toISOString().split('T')[1].split('.')[0]});
-            return;
+            if(isFromToday){
+                res.json({"Id": dataId, "dataOfTimeIn": date_of_time_in.toISOString().split('T')[1].split('.')[0]});
+                return;
+            }
         }
+
         res.status(200).json({message: "Data Unavailable"})
         // res.json({"isFromToday": isFromToday, "time_in": data.time_in});
     }catch(err){
@@ -183,34 +186,28 @@ app.get('/check_time_out_today/:id', async(req, res) =>{
             ]
         });
 
-        const time_out_record = data.time_out;
-
-        const date_of_time_out = time_out_record;
-
-        const today = new Date();
-
-        const time_out_formatted = date_of_time_out.toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: '2-digit'
-        });
-
-        const today_formatted = today.toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: '2-digit'
-        });
-
-        const isFromToday = time_out_formatted === today_formatted;
-
-        dataId = data.Id;
-
-        if(isFromToday){
-            res.json({"dataOfTimeOut": date_of_time_out.toISOString().split('T')[1].split('.')[0]});
-            return;
+        if(!data){
+            return res.status(200).json({message: "Data Unavailable"});
         }
+        const time_out_record = data.time_out;
+            const date_of_time_out = time_out_record;
+    
+            const today = new Date();
+    
+            const time_out_formatted = date_of_time_out.toISOString().split('T')[0];
+    
+            const today_formatted = today.toISOString().split('T')[0];
+            const isFromToday = time_out_formatted === today_formatted;
+    
+            dataId = data.Id;
+    
+            if(!isFromToday){
+                return res.status(200).json({message: "Data Not Match", "time out formatated":  time_out_formatted, "today": today_formatted});                return;
+            }
 
-        res.status(200).json({message: "Data Unavailable"});
+            console.log(time_out_formatted, today_formatted)
+            res.status(200).json({"dataOfTimeOut": date_of_time_out.toISOString().split('T')[1].split('.')[0]});
+
     }catch(err){
         res.status(500).json({message: err});
     }

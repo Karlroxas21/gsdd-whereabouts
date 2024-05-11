@@ -22,8 +22,7 @@ export class TimeinoutComponent implements OnInit {
 
     Id = localStorage.getItem('id');
 
-    check_time_in?: boolean;
-    check_time_out?: boolean;
+    check_time_out: boolean = false;
 
     constructor(private tabService: TabService, private timeInOutModalService: TimeInOutModalService, private timeInOutService: TimeInOutService, private cdr: ChangeDetectorRef) {
         setInterval(() => {
@@ -67,28 +66,9 @@ export class TimeinoutComponent implements OnInit {
     ngOnInit(): void {
         this.timeInOutModalService.closeModal();
 
-        this.isTimeIn().then(result => {
-            if (result) {
-                this.check_time_in = result;
-            } else {
-                this.check_time_in = result;
-            }
-        }).catch(err => {
-            console.error("Error in isTimeIn", err);
-        });
+        this.isTimeIn();
+        this.isTimeOut();
 
-        this.isTimeOut().then(result => {
-            if (result) {
-                this.check_time_out = result;
-            } else {
-                this.check_time_out = result;
-            }
-        }).catch(err => {
-            console.error("Error in isTimeOut", err);
-        });
-
-        console.log("time in check: ", this.check_time_in);
-        console.log("time out check: ", this.check_time_out);
     }
 
     openTimeInOutModal() {
@@ -135,6 +115,7 @@ export class TimeinoutComponent implements OnInit {
 
         let timeInDateTime = new Date(`${this.timeInDate} ` + this.getTimeIn());
 
+        console.log("Time in: ", this.getTimeIn())
         if (this.Id) {
             this.timeInOutService.timeIn(this.Id, timeInDateTime).subscribe(res => {
                 this.timeOutId = res.Id;
@@ -160,6 +141,7 @@ export class TimeinoutComponent implements OnInit {
 
             this.timeInOutService.timeOut(this.timeOutId.toString(), timeOutDateTime).subscribe(res => {
                 console.log("Time out success: ", res);
+                this.check_time_out = true;
             }, (err) => {
                 console.log(err);
             });
@@ -182,42 +164,27 @@ export class TimeinoutComponent implements OnInit {
         }
     }
 
-    isTimeIn(): Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            try {
-                this.timeInOutService.isTimeIn(this.Id).subscribe(res => {
-                    if (res.dataOfTimeIn) {
-                        this.setTimeIn(res.dataOfTimeIn);
-                        this.timeOutId = res.Id;
-
-                        resolve(true);
-                    } else {
-                        resolve(false);
-                    }
-                });
-            } catch (err) {
-                console.error(err);
-                reject(err);
+    isTimeIn() {
+        this.timeInOutService.isTimeIn(this.Id).subscribe(res => {
+            if (res.dataOfTimeIn) {
+                this.setTimeIn(res.dataOfTimeIn);
+                this.timeOutId = res.Id;
+            }else{
+                console.log("No time in");
             }
-        })
+        });  
+        
     };
 
-    isTimeOut(): Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            try {
-
-                this.timeInOutService.isTimeOut(this.Id).subscribe(res => {
-                    if (res.dataOfTimeOut) {
-                        this.setTimeOut(res.dataOfTimeOut);
-                        resolve(true);
-                    }
-                    resolve(false);
-                });
-            } catch (err) {
-                console.error(err);
-                reject(err);
-            }
-        })
+    isTimeOut() {
+        this.timeInOutService.isTimeOut(this.Id).subscribe(res => {
+            if (res.dataOfTimeOut) {
+                this.setTimeOut(res.dataOfTimeOut);  
+                this.check_time_out = true;
+            }else{
+                console.log("No time out");
+            }        
+        });
     };
 
     goToTimeSheet() {
