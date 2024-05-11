@@ -8,14 +8,16 @@ import { Account } from 'src/domain/employee-account';
   styleUrls: ['./account.component.css'],
 })
 export class AccountComponent {
-    User!: Account;
+  User!: Account;
 
-    constructor(private accountService: AccountService, private http: HttpClient){}
-    ngOnInit(){
-        const Id = Number(localStorage.getItem('id'));
-        this.accountService.getCurrentUser().subscribe((data) =>{
-            this.User = data;
-        })
-
-    }
+  constructor(
+    private accountService: AccountService,
+    private http: HttpClient,
+  ) {}
+  ngOnInit() {
+    const Id = Number(localStorage.getItem('id'));
+    this.accountService.getCurrentUser().subscribe((data) => {
+      this.User = data;
+    });
+  }
 }

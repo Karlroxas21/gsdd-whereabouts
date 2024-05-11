@@ -71,9 +71,19 @@ export class TeamMemberStatusComponent implements OnInit {
         })),
       }));
 
-      this.employeeStatusNames = Array.from(new Set(this.employeeStatus.map((item) => item.name)));
+      this.employeeStatusNames = Array.from(
+        new Set(this.employeeStatus.map((item) => item.name)),
+      );
 
-      this.employeeStatusList = [...new Set(this.employeeStatus.flatMap((item) => item.status_from_to ? item.status_from_to.map((status) => status.status) : []))];
+      this.employeeStatusList = [
+        ...new Set(
+          this.employeeStatus.flatMap((item) =>
+            item.status_from_to
+              ? item.status_from_to.map((status) => status.status)
+              : [],
+          ),
+        ),
+      ];
 
       this.flattenedEmployeeStatus = this.employeeStatus.flatMap((item) =>
         item.status_from_to
@@ -83,9 +93,8 @@ export class TeamMemberStatusComponent implements OnInit {
               from: status.from,
               to: status.to,
             }))
-          : []
+          : [],
       );
-      
     });
   }
 
@@ -94,7 +103,6 @@ export class TeamMemberStatusComponent implements OnInit {
       startDate: this.datePipe.transform(this.rangeDates[0], 'MM/dd/yy'),
       endDate: this.datePipe.transform(this.rangeDates[1], 'MM/dd/yyyy'),
     };
-
   }
 
   applyFilterGlobal($event: any, stringVal: any) {
@@ -104,5 +112,4 @@ export class TeamMemberStatusComponent implements OnInit {
   clear(table: Table) {
     table.clear();
   }
-
 }

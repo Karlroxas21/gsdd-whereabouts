@@ -23,19 +23,17 @@ app.post("/register", async (req, res) => {
   try {
     const { first_name, last_name, email, position, pin, role } = req.body;
 
-    if (
-      !first_name ||
-      !last_name ||
-      !email ||
-      !position ||
-      !pin ||
-      !role
-    ) {
+    if (!first_name || !last_name || !email || !position || !pin || !role) {
       return res
         .status(400)
-        .json(
-            {firstname: first_name, lastname: last_name, email: email, position: position, pin: pin, role: role}
-        );
+        .json({
+          firstname: first_name,
+          lastname: last_name,
+          email: email,
+          position: position,
+          pin: pin,
+          role: role,
+        });
     }
 
     const hashedPassword = await bcrypt.hash(pin, saltRounds);
@@ -82,11 +80,10 @@ app.post("/login", async (req, res) => {
     // JWT Token
     const token = jwt.sign({ userId: findUser.Id }, secretKey);
 
-  
     const claims = jwt.verify(token, secretKey);
     if (!claims) {
-        res.status(401).json({ message: "Unauthenticated" });
-        return;
+      res.status(401).json({ message: "Unauthenticated" });
+      return;
     }
 
     res.json({
@@ -99,7 +96,7 @@ app.post("/login", async (req, res) => {
       verified: findUser.verified,
       token: token,
       emailToken: findUser.emailToken,
-      claims: claims
+      claims: claims,
     });
   } catch (err) {
     console.error(err);
@@ -122,7 +119,8 @@ app.get("/user/:id", async (req, res) => {
 
     const user = await User.findOne({ where: { Id: Id } });
 
-    const { pin, email_token, createdAt, updatedAt, ...data } = await user.toJSON();
+    const { pin, email_token, createdAt, updatedAt, ...data } =
+      await user.toJSON();
     res.json(data);
   } catch (err) {
     res.status(401).json({ message: "Unauthenticated" });

@@ -1,3 +1,3 @@
-export interface Time{
-    time: string
+export interface Time {
+  time: string;
 }

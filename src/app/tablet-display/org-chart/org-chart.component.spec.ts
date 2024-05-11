@@ -8,9 +8,8 @@ describe('OrgChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OrgChartComponent ]
-    })
-    .compileComponents();
+      declarations: [OrgChartComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(OrgChartComponent);
     component = fixture.componentInstance;

@@ -11,9 +11,12 @@ export class RulesComponent implements OnInit {
 
   selectedTimeRule!: Time[];
 
-  pauseTracking = [{label: 'True', value: true},{label: 'False', value: false}];
+  pauseTracking = [
+    { label: 'True', value: true },
+    { label: 'False', value: false },
+  ];
 
-  selectedPauseTracking!: { label: string, value: boolean };;
+  selectedPauseTracking!: { label: string; value: boolean };
 
   ngOnInit() {
     this.timeRule = [

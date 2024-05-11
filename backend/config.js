@@ -5,22 +5,22 @@ module.exports = {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB,
-    server: 'localhost',
+    server: "localhost",
     options: {
       trustServerCertificate: true,
     },
     dialectOptions: {
-        useUTC: false, 
-      },
-    timezone: '+08:00'
+      useUTC: false,
+    },
+    timezone: "+08:00",
   },
 
   nodemail: {
     user: process.env.GMAIL_USER_AUTH,
-    password: process.env.GMAIL_PW_AUTH
+    password: process.env.GMAIL_PW_AUTH,
   },
 
   base_url: {
-    url: process.env.BASE_URL
-  }
+    url: process.env.BASE_URL,
+  },
 };
