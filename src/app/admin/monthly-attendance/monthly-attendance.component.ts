@@ -102,11 +102,15 @@ export class MonthlyAttendanceComponent implements OnInit {
 
   exportExcel() {
     import('xlsx').then((xlsx) => {
-        const data = this.employeeAttendance.map(item => ({
-            ...item,
-            time_in: item.time_in.toLocaleString("en-US", {timeZone: "Asia/Manila"}),
-            time_out: item.time_out.toLocaleString("en-US", {timeZone: "Asia/Manila"})
-          }));
+      const data = this.employeeAttendance.map((item) => ({
+        ...item,
+        time_in: item.time_in.toLocaleString('en-US', {
+          timeZone: 'Asia/Manila',
+        }),
+        time_out: item.time_out.toLocaleString('en-US', {
+          timeZone: 'Asia/Manila',
+        }),
+      }));
       const worksheet = xlsx.utils.json_to_sheet(data);
       const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
       const excelBuffer: any = xlsx.write(workbook, {
@@ -131,17 +135,20 @@ export class MonthlyAttendanceComponent implements OnInit {
   }
 
   exportCSV() {
-
     let selectedRows = this.dt.selection;
 
     let exportData = selectedRows.map((row: EmployeeAttendance) => {
-        return {
-          ...row,
-          time_in: row.time_in.toLocaleString("en-US", {timeZone: "Asia/Manila"}),
-          time_out: row.time_out.toLocaleString("en-US", {timeZone: "Asia/Manila"})
-        };
-      });
+      return {
+        ...row,
+        time_in: row.time_in.toLocaleString('en-US', {
+          timeZone: 'Asia/Manila',
+        }),
+        time_out: row.time_out.toLocaleString('en-US', {
+          timeZone: 'Asia/Manila',
+        }),
+      };
+    });
 
-    this.dt.exportCSV({data: exportData, selectionOnly: true});
+    this.dt.exportCSV({ data: exportData, selectionOnly: true });
   }
 }

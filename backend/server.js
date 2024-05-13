@@ -5,19 +5,19 @@ const Sequelize = require("sequelize");
 const db_config = require("./config").database;
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const history = require('connect-history-api-fallback');
-const cookieParser = require('cookie-parser');
+const history = require("connect-history-api-fallback");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const port = process.env.PORT || 80;
 
-const allowedOrigin = ['http://localhost:80', 'http://localhost:4200'];
+const allowedOrigin = ["http://localhost:80", "http://localhost:4200"];
 
 const corsOptions = {
   origin: allowedOrigin,
   methods: "GET,POST,PUT",
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -41,6 +41,10 @@ const sequelize = new Sequelize(
   {
     host: db_config.server,
     dialect: "mssql",
+    timezone: db_config.timezone,
+    dialectOptions: {
+      useUTC: db_config.dialectOptions.useUTC,
+    },
   },
 );
 
@@ -55,17 +59,21 @@ sequelize
 
 module.exports = sequelize;
 
-const User = require("./model/account.model");
+// const User = require("./model/account.model");
+// const TimeInAndOut = require("./model/time_in_out.model");
 
-app.get("/test", (req, res) => {
-  User.findAll().then((users) => {
-    res.json(users);
-  });
-});
+// app.get("/test", (req, res) => {
+//   User.findAll().then((users) => {
+//     res.json(users);
+//   });
+// });
 
 //Routes
 const account_routes = require("./routes/account.routes");
 app.use("/", account_routes);
+
+const time_in_out_routes = require("./routes/time_in_time_out");
+app.use("/", time_in_out_routes);
 
 app.listen(port, () => {
   console.log(`Listening on ${port}`);

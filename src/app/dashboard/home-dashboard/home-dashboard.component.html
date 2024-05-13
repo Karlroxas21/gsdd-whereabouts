@@ -7,7 +7,7 @@
       </p>
     </div>
     <div class="text-sm">
-      <p-tabView>
+      <p-tabView [(activeIndex)]="activeTabIndex">
         <p-tabPanel header="Dashboard">
           <app-dashboard></app-dashboard>
         </p-tabPanel>
@@ -21,4 +21,3 @@
     </div>
   </div>
 </div>
-

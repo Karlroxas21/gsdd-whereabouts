@@ -8,9 +8,8 @@ describe('TimeinoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TimeinoutComponent ]
-    })
-    .compileComponents();
+      declarations: [TimeinoutComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TimeinoutComponent);
     component = fixture.componentInstance;

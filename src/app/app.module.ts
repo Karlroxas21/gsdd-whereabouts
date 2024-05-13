@@ -92,7 +92,7 @@ import { AccountConfirmationComponent } from './admin/account-confirmation/accou
     DialogModule,
     HttpClientModule,
     ReactiveFormsModule,
-    KeyFilterModule
+    KeyFilterModule,
   ],
   providers: [
     DatePipe,
@@ -101,7 +101,7 @@ import { AccountConfirmationComponent } from './admin/account-confirmation/accou
     MessageService,
     AccountService,
     ConfirmationService,
-    ToastItem
+    ToastItem,
   ],
   bootstrap: [AppComponent],
 })

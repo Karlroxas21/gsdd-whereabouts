@@ -37,19 +37,19 @@ const User = sequelize.define(
     verified: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
-      defaultValue: 0
+      defaultValue: 0,
     },
     email_token: {
-        type: Sequelize.STRING,
-        allowNull: false
-    }, 
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     _default: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: 0
-    }
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: 0,
+    },
   },
-  {  timestamps: true, },
+  { timestamps: true },
 );
 
 module.exports = User;

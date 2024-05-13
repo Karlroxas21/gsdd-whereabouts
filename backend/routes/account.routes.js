@@ -23,19 +23,17 @@ app.post("/register", async (req, res) => {
   try {
     const { first_name, last_name, email, position, pin, role } = req.body;
 
-    if (
-      !first_name ||
-      !last_name ||
-      !email ||
-      !position ||
-      !pin ||
-      !role
-    ) {
+    if (!first_name || !last_name || !email || !position || !pin || !role) {
       return res
         .status(400)
-        .json(
-            {firstname: first_name, lastname: last_name, email: email, position: position, pin: pin, role: role}
-        );
+        .json({
+          firstname: first_name,
+          lastname: last_name,
+          email: email,
+          position: position,
+          pin: pin,
+          role: role,
+        });
     }
 
     const hashedPassword = await bcrypt.hash(pin, saltRounds);
@@ -82,15 +80,10 @@ app.post("/login", async (req, res) => {
     // JWT Token
     const token = jwt.sign({ userId: findUser.Id }, secretKey);
 
-    // res.cookie("jwt", token, {
-    //   httpOnly: true,
-    //   maxAge: 24 * 60 * 60 * 100,
-    // });
-
     const claims = jwt.verify(token, secretKey);
     if (!claims) {
-        res.status(401).json({ message: "Unauthenticated" });
-        return;
+      res.status(401).json({ message: "Unauthenticated" });
+      return;
     }
 
     res.json({
@@ -103,7 +96,7 @@ app.post("/login", async (req, res) => {
       verified: findUser.verified,
       token: token,
       emailToken: findUser.emailToken,
-      claims: claims
+      claims: claims,
     });
   } catch (err) {
     console.error(err);
@@ -117,19 +110,17 @@ app.get("/users", async (req, res) => {
   });
 });
 
-app.get("/user", async (req, res) => {
+app.get("/user/:id", async (req, res) => {
   try {
-    const cookie = req.cookies["jwt"];
-
-    const claims = jwt.verify(cookie, secretKey);
-
-    if (!claims) {
+    const Id = req.params.id;
+    if (!Id) {
       res.status(401).json({ message: "Unauthenticated" });
     }
 
-    const user = await User.findOne({ where: { Id: claims.userId } });
+    const user = await User.findOne({ where: { Id: Id } });
 
-    const { pin, email_token, createdAt, updatedAt, ...data } = await user.toJSON();
+    const { pin, email_token, createdAt, updatedAt, ...data } =
+      await user.toJSON();
     res.json(data);
   } catch (err) {
     res.status(401).json({ message: "Unauthenticated" });
@@ -173,6 +164,7 @@ function sendConfirmationEmail(account) {
       user: credential_email.user,
       pass: credential_email.password,
     },
+    // proxy: 'http://192.168.8.8:3128' // Enable when in NAMRIA Network
   });
 
   const baseURL = base_URL.url || "localhost:4200";

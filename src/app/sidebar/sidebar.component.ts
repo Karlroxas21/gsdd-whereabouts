@@ -7,13 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
-    constructor(private router: Router){}
+  constructor(private router: Router) {}
 
-    role = localStorage.getItem('role');
-    
-    signOut(){
-        localStorage.clear();
-        this.router.navigate(['/login']);
-    }
-   
+  role = localStorage.getItem('role');
+
+  signOut() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 }
