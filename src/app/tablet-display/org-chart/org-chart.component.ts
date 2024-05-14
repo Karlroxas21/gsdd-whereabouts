@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class OrgChartComponent {
   visible: boolean = false;
 
+  csFlow: boolean = false;
+
   showDialog() {
     this.visible = true;
   }
@@ -15,4 +17,13 @@ export class OrgChartComponent {
   closeDialog() {
     this.visible = false;
   }
+
+  csFlowShow(){
+    this.csFlow = true;
+  }
+
+  csFlowClose(){
+    this.csFlow = false;
+  }
+
 }
