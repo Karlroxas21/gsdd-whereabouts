@@ -51,6 +51,5 @@ export class AccountService {
 
   loginTablet(first_name: string, last_name: string, pin: string): Observable<any>{
     return this.http.post(`${this.baseUrlAPI}tablet_login`, { first_name, last_name, pin });
-
   }
 }

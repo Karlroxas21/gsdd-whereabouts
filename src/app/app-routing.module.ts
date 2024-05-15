@@ -106,8 +106,6 @@ const routes: Routes = [
   {
     component: OrgChartComponent,
     path: 'tablet_display',
-    canActivate: [AuthGuard],
-    data: { allowedRoles: [UserRole.Tablet, UserRole.Admin] },
   },
 
   { path: '**', component: NotfoundComponent },
