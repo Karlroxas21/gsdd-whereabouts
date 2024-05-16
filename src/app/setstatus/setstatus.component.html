@@ -33,5 +33,9 @@
         </button>
       </div>
     </div>
+    <div *ngFor="let status of statuses">
+        <p>{{status.user_Id}}: {{status.status}}</p>
+        <p>{{status.date_and_time}}</p>
+      </div>
   </div>
 </div>
