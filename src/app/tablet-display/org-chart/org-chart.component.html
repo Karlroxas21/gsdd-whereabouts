@@ -1,850 +1,298 @@
+
+<p-toast></p-toast>
 <div class="flex">
-  <div class="w-full">
-    <div class="flex h-screen w-full">
-      <div id="org-chart" class="m-2 flex w-5/6 flex-col justify-center">
-        <div
-          id="first-layer"
-          class="flex h-1/6 w-full flex-col items-center justify-center border-b-2 border-dotted border-b-gray-300"
-        >
-          <div id="avatar" class="flex flex-col items-center gap-2">
-            <div class="card justify-content-center flex flex-col text-xs">
-              <p>In a meeting</p>
-              <button
-                (click)="showDialog()"
-                class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-              >
-                <div
-                  class="border-grey-500 relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 bg-gray-100 dark:bg-gray-600"
-                >
-                  <span
-                    class="text-xs font-medium text-gray-600 dark:text-gray-300"
-                    >KMR</span
-                  >
+    <div class="w-full">
+        <div id="org-chart" class="">
+            <div class="flex flex-col h-screen w-full">
+                <div id="it-3" class="m-2 flex pt-5 justify-center">
+                    <div id="avatar" class="flex flex-col items-center gap-2">
+                        <div class="card justify-content-center flex flex-col text-xs">
+                            <p>In a meeting</p>
+                            <app-user-button [user]="{first_name: 'Karl', last_name: 'Roxas', position: 'IT Officer III', initials: 'KR',  borderColor: 'border-grey-400', test: '213'}"></app-user-button>
+                        </div>
+                    </div>
                 </div>
-                <p>Karl Marx Roxas</p>
-                <p>IT Officer IiI</p>
-                <p>Bossing</p>
-              </button>
+                <div id="admin-aide" class="m-2 flex">
+                    <div class="w-1/2"></div>
+                    <div class="w-1/2">
+                        <div class="w-full">
+                            <div class="w-2/2 flex">
+                                <div class="w-1/2 flex items-center">
+                                    <div class="border-b border-black border-dashed w-full"></div>
+                                </div>
 
-              <p-dialog [(visible)]="visible">
-                <ng-template pTemplate="headless">
-                  <div class="flex-column flex gap-4 px-8 py-5">
-                    <div class="gap-5">
-                      <label
-                        for="password"
-                        class="text-primary-50 font-semibold"
-                        >Pin</label
-                      >
-                      <input
-                        pInputText
-                        id="password"
-                        class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                        type="password"
-                        placeholder="Enter 6-digit pin"
-                      />
+                                <div class="w-1/2 p-2   ">
+                                    <div>Administrative Aide VI</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="align-items-center flex gap-2">
-                      <p-button
-                        label="Clock in"
-                        (click)="closeDialog()"
-                        styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                        class="w-full"
-                      ></p-button>
-                    </div>
-                  </div>
-                </ng-template>
-              </p-dialog>
-            </div>
-          </div>
-        </div>
-        <div
-          id="second-layer"
-          class="flex h-1/6 w-full items-center justify-center gap-5 border-b-2 border-dotted border-b-gray-300"
-        >
-          <div id="rommel-francisco">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex flex-col text-xs">
-                <p>In a meeting</p>
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="border-grey-500 relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-xs font-medium text-gray-600 dark:text-gray-300"
-                      >RF</span
-                    >
-                  </div>
-                  <p>Romel Francisco</p>
-                  <p>IT Officer II</p>
-                  <p>OIC, Division Chief</p>
-                </button>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Clock in"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
-                    </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-          <div id="fatima-santos">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex flex-col text-xs">
-                <p>Do not disturb</p>
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-green-400 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >FS</span
-                    >
-                  </div>
-                  <p>Fatima Santos</p>
-                  <p>IT Officer II</p>
-                  <p>Section Chief</p>
-                </button>
+                </div>
+                <div id="lower-org-chart" class="m-2 flex justify-center">
+                    <div id="1" class="flex w-full gap-5 flex-col items-center">
+                        <div id="fatima-santos">
+                            <div id="avatar" class="flex flex-col items-center gap-2">
+                                <div class="card justify-content-center flex flex-col text-xs">
+                                    <p>Do not disturb</p>
+                                
+                                    <app-user-button [user]="{first_name: 'Fatima', last_name: 'Santos', position: 'IT Officer II', initials: 'FS', borderColor: 'border-green-400'}"></app-user-button>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
-                    </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-          <div id="donald-gutierrez">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex flex-col text-xs">
-                <p>Sick leave</p>
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-blue-400 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >DG</span
-                    >
-                  </div>
-                  <p>Donald Gutierrez</p>
-                  <p>IT Officer II</p>
-                  <p>Section Chief</p>
-                </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="melvin-perez">
+                            <div id="avatar" class="flex flex-col items-center gap-2">
+                                <div class="card justify-content-center flex flex-col text-xs">
+                                    <p>In a meeting</p>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
-                    </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-          <div id="gerado-tanabe">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex flex-col text-xs">
-                <p>In a meeting</p>
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-yellow-400 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >GT</span
-                    >
-                  </div>
-                  <p>Gerado Tanabe</p>
-                  <p>IS Analyst III</p>
-                  <p>OIC, Section Chief</p>
-                </button>
+                                    <app-user-button [user]="{first_name: 'Melvin', last_name: 'Perez', position: 'IS Analyst III', initials: 'MP', borderColor: 'border-yellow-400'}"></app-user-button>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
-                    </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-          <div id="melvin-perez">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex flex-col text-xs">
-                <p>In a meeting</p>
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-yellow-400 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >MP</span
-                    >
-                  </div>
-                  <p>Melvin Perez</p>
-                  <p>IS Analyst III</p>
-                  <p>OIC, Division Chief</p>
-                </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="homer-macawili">
+                            <div id="avatar" class="flex flex-col items-center gap-2">
+                                <div class="card justify-content-center flex flex-col text-xs">
+                                    <p>In a meeting</p>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
-                    </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          id="third-layer"
-          class="flex h-1/6 w-full items-center justify-center gap-5 border-b-2 border-dotted border-b-gray-300"
-        >
-          <div id="sherwin-aquino">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex">
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-yellow-300 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >SA</span
-                    >
-                  </div>
-                  <p>Sherwin Aquino</p>
-                  <p>CP III</p>
-                  <p>Section Chief</p>
-                </button>
+                                    <app-user-button [user]="{first_name: 'Homer Paulo', last_name: 'Macawili', position: 'IS Analyst II', initials: 'HM', borderColor: 'border-blue-400'}"></app-user-button>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
-                    </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-          <div id="jaypee-delmundo">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex">
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-black bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >JD</span
-                    >
-                  </div>
-                  <p>Jaypee Del Mundo</p>
-                  <p>CP III</p>
-                  <p>Section Chief</p>
-                </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="4-avatar" class="flex gap-5 justify-center w-full flex-wrap">
+                            <div id="lyra-samarista">
+                                <div id="avatar" class="flex flex-col items-center gap-2">
+                                    <div class="card justify-content-center flex flex-col text-xs">
+                                        <p>In a meeting</p>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
-                    </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          id="fourth-layer"
-          class="flex h-1/6 w-full items-center justify-center gap-5"
-        >
-          <div id="homer-macawili">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex">
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-blue-300 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >HM</span
-                    >
-                  </div>
-                  <p>Homer Paulo Macawili</p>
-                  <p>IS Analyst II</p>
-                </button>
+                                        <app-user-button [user]="{first_name: 'Lyra Anne', last_name: 'Samarista', position: 'IS Researcher II', initials: 'LS', borderColor: 'border-green-300'}"></app-user-button>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
-                    </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-          <div id="norman-boydon">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex">
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-blue-300 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >NB</span
-                    >
-                  </div>
-                  <p>Norman Boydon</p>
-                  <p>IS Analyst II</p>
-                </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="fely-espinas">
+                                <div id="avatar" class="flex flex-col items-center gap-2">
+                                    <div class="card justify-content-center flex flex-col text-xs">
+                                        <p>In a meeting</p>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
-                    </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-          <div id="john-gorospe">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex">
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-blue-300 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >JG</span
-                    >
-                  </div>
-                  <p>John Francis Gorospe</p>
-                  <p>IS Analyst II</p>
-                </button>
+                                        <app-user-button [user]="{first_name: 'Fely', last_name: 'Espinas', position: 'IS Researcher II', initials: 'FE', borderColor: 'border-green-300'}"></app-user-button>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-          <div id="mark-jumeras">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex">
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-blue-300 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >MJ</span
-                    >
-                  </div>
-                  <p>Mark Allan Jay Jumeras</p>
-                  <p>IS Analyst II</p>
-                </button>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
-                    </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-          <div id="michelle-medina">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex">
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-blue-300 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >MM</span
-                    >
-                  </div>
-                  <p>Michelle Medina</p>
-                  <p>IS Analyst II</p>
-                </button>
+                    <div id="2" class="flex w-full gap-5 flex-col items-center">
+                        <div id="donald-gutierrez">
+                            <div id="avatar" class="flex flex-col items-center gap-2">
+                                <div class="card justify-content-center flex flex-col text-xs">
+                                    <p>Sick leave</p>
+                                    <app-user-button [user]="{first_name: 'Donald', last_name: 'Gutierrez', position: 'IT Officer II', initials: 'DG', borderColor: 'border-blue-400'}"></app-user-button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="gerado-tanabe">
+                            <div id="avatar" class="flex flex-col items-center gap-2">
+                                <div class="card justify-content-center flex flex-col text-xs">
+                                    <p>In a meeting</p>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
-                    </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          id="fifth-layer"
-          class="flex h-1/6 w-full items-center justify-center gap-5"
-        >
-          <div id="lyra-samarista">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex">
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-green-300 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >LS</span
-                    >
-                  </div>
-                  <p>Lyra Anne Samarista</p>
-                  <p>IS Researcher II</p>
-                </button>
+                                    <app-user-button [user]="{first_name: 'Gerado', last_name: 'Tanabe', position: 'IS Analyst III', initials: 'GT', borderColor: 'border-yellow-400'}"></app-user-button>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
-                    </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
-            </div>
-          </div>
-          <div id="fely-espinas">
-            <div id="avatar" class="flex flex-col items-center gap-2">
-              <div class="card justify-content-center flex">
-                <button
-                  (click)="showDialog()"
-                  class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200"
-                >
-                  <div
-                    class="relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 border-green-300 bg-gray-100 dark:bg-gray-600"
-                  >
-                    <span
-                      class="text-md font-medium text-gray-600 dark:text-gray-300"
-                      >FE</span
-                    >
-                  </div>
-                  <p>Fely Espinas</p>
-                  <p>IS Researcher II</p>
-                </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="4-avatar" class="flex gap-5 justify-center w-full flex-wrap">
+                            <div id="norman-boydon">
+                                <div id="avatar" class="flex flex-col items-center gap-2">
+                                    <div class="card justify-content-center flex flex-col text-xs">
+                                        <p>In a meeting</p>
 
-                <p-dialog [(visible)]="visible">
-                  <ng-template pTemplate="headless">
-                    <div class="flex-column flex gap-4 px-8 py-5">
-                      <div class="gap-5">
-                        <label
-                          for="password"
-                          class="text-primary-50 font-semibold"
-                          >Pin</label
-                        >
-                        <input
-                          pInputText
-                          id="password"
-                          class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
-                          type="password"
-                          placeholder="Enter 6-digit pin"
-                        />
-                      </div>
-                      <div class="align-items-center flex gap-2">
-                        <p-button
-                          label="Sign-In"
-                          (click)="closeDialog()"
-                          styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-                          class="w-full"
-                        ></p-button>
-                      </div>
+                                        <app-user-button [user]="{first_name: 'Norman', last_name: 'Boydon', position: 'IS Analyst II', initials: 'NB', borderColor: 'border-blue-400'}"></app-user-button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="michelle-medina">
+                                <div id="avatar" class="flex flex-col items-center gap-2">
+                                    <div class="card justify-content-center flex flex-col text-xs">
+                                        <p>In a meeting</p>
+
+                                        <app-user-button [user]="{first_name: 'Michelle', last_name: 'Medina', position: 'IS Analyst II', initials: 'MM', borderColor: 'border-blue-400'}"></app-user-button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="mark-jumeras">
+                                <div id="avatar" class="flex flex-col items-center gap-2">
+                                    <div class="card justify-content-center flex flex-col text-xs">
+                                        <p>In a meeting</p>
+
+                                        <app-user-button [user]="{first_name: 'Mark Allan Jay', last_name: 'Jumeras', position: 'IS Analyst II', initials: 'MJ', borderColor: 'border-blue-400'}"></app-user-button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="john-gorospe">
+                                <div id="avatar" class="flex flex-col items-center gap-2">
+                                    <div class="card justify-content-center flex flex-col text-xs">
+                                        <p>In a meeting</p>
+
+                                        <app-user-button [user]="{first_name: 'John Francis', last_name: 'Gorospe', position: 'IS Analyst II', initials: 'FG', borderColor: 'border-blue-400'}"></app-user-button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </ng-template>
-                </p-dialog>
-              </div>
+                    <div id="3" class="flex w-full gap-5 flex-col items-center">
+                        <div id="romel-francisco">
+                            <div id="avatar" class="flex flex-col items-center gap-2">
+                                <div class="card justify-content-center flex flex-col text-xs">
+                                    <p>In a meeting</p>
+
+                                    <app-user-button [user]="{first_name: 'Romel', last_name: 'Francisco', position: 'IT Officer II', initials: 'RF', borderColor: 'border-gray-400'}"></app-user-button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="4-avatar" class="flex gap-5 justify-center w-full flex-wrap">
+                            <div id="jaypee-delmundo">
+                                <div id="avatar" class="flex flex-col items-center gap-2">
+                                    <div class="card justify-content-center flex flex-col text-xs">
+                                        <p>In a meeting</p>
+
+                                        <app-user-button [user]="{first_name: 'Jaypee', last_name: 'Del Mundo', position: 'CP III', initials: 'JD', borderColor: 'border-gray-400'}"></app-user-button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="sherwin-aquino">
+                                <div id="avatar" class="flex flex-col items-center gap-2">
+                                    <div class="card justify-content-center flex flex-col text-xs">
+                                        <p>In a meeting</p>
+
+                                        <app-user-button [user]="{first_name: 'Sherwin', last_name: 'Aquino', position: 'CP III', initials: 'SQ', borderColor: 'border-yellow-400'}"></app-user-button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="avatar" class="flex flex-col items-center gap-2">
+                                <div class="card justify-content-center flex flex-col text-xs">
+                                    <p>In a meeting</p>
+
+                                    <app-user-button [user]="{first_name: 'Karl Marx', last_name: 'Roxas', position: 'CP II', initials: 'KR', borderColor: 'border-black'}"></app-user-button>
+
+                                </div>
+                            </div>
+                            <div id="avatar" class="flex flex-col items-center gap-2">
+                                <div class="card justify-content-center flex flex-col text-xs">
+                                    <p>In a meeting</p>
+                                    <button (click)="showDialog()"
+                                        class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200">
+                                        <div
+                                            class="border-grey-500 relative mb-2 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-4 bg-gray-100 dark:bg-gray-600">
+                                            <span
+                                                class="text-xs font-medium text-gray-600 dark:text-gray-300">KMR</span>
+                                        </div>
+                                        <p>Vacant</p>
+                                        <p>CP II</p>
+                                    </button>
+
+                                    <p-dialog [(visible)]="visible">
+                                        <ng-template pTemplate="headless">
+                                            <div class="flex-column flex gap-4 px-8 py-5">
+                                                <div class="gap-5">
+                                                    <label for="password"
+                                                        class="text-primary-50 font-semibold">Pin</label>
+                                                    <input pInputText id="password"
+                                                        class="bg-white-alpha-20 text-primary-50 rounded-lg p-3"
+                                                        type="password" placeholder="Enter 6-digit pin" />
+                                                </div>
+                                                <div class="align-items-center flex gap-2">
+                                                    <p-button label="Clock in" (click)="closeDialog()"
+                                                        styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
+                                                        class="w-full"></p-button>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </p-dialog>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-          </div>
         </div>
 
-        <div class="ml-10 mt-14 text-sm font-bold">*Black means no time-in</div>
-      </div>
+    </div>
 
-      <div id="legend" class="m-2 flex w-1/6 flex-col">
+    <div id="legend" class="m-2 flex w-1/6 flex-col">
         <div class="pt-20 text-xl font-semibold">
-          <p>Geospatial Systems Development Division</p>
+            <p>Geospatial Systems Development Division</p>
         </div>
 
         <div id="summary" class="mt-10 flex flex-col gap-2">
-          <div class="rounded-lg border border-black bg-white p-2 shadow-lg">
-            <p class="text-xs font-normal">In Office</p>
-            <p class="text-md font-semibold">5/10</p>
-          </div>
+            <div class="rounded-lg border border-black bg-white p-2 shadow-lg">
+                <p class="text-xs font-normal">In Office</p>
+                <p class="text-md font-semibold">5/10</p>
+            </div>
 
-          <div class="rounded-lg border border-black bg-white p-2 shadow-lg">
-            <p class="text-xs font-normal">Sick leave</p>
-            <p class="text-md font-semibold">2</p>
-          </div>
+            <div class="rounded-lg border border-black bg-white p-2 shadow-lg">
+                <p class="text-xs font-normal">Sick leave</p>
+                <p class="text-md font-semibold">2</p>
+            </div>
 
-          <div class="rounded-lg border border-black bg-white p-2 shadow-lg">
-            <p class="text-xs font-normal">Vacation leave</p>
-            <p class="text-md font-semibold">1</p>
-          </div>
+            <div class="rounded-lg border border-black bg-white p-2 shadow-lg">
+                <p class="text-xs font-normal">Vacation leave</p>
+                <p class="text-md font-semibold">1</p>
+            </div>
 
-          <div class="rounded-lg border border-black bg-white p-2 shadow-lg">
-            <p class="text-xs font-normal">No time in</p>
-            <p class="text-md font-semibold">2</p>
-          </div>
+            <div class="rounded-lg border border-black bg-white p-2 shadow-lg">
+                <p class="text-xs font-normal">No time in</p>
+                <p class="text-md font-semibold">2</p>
+            </div>
+
+            <button 
+                class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200">
+                <p class="text-lg font-bold">Client Service Flow</p>
+            </button>
+
+            <p-dialog [(visible)]="csFlow">
+                <ng-template pTemplate="headless">
+                    <div class="flex-column flex gap-4 px-8 py-5">
+
+                    </div>
+                </ng-template>
+            </p-dialog>
+
+
         </div>
-        <div
-          class="flex h-full flex-col justify-end pt-20 text-xl font-semibold"
-        >
-          <div class="m-1 flex gap-1 text-xs">
-            <div class="flex items-center">
-              <div class="h-3 w-3 border-black bg-green-400"></div>
+        <div class="flex h-full flex-col justify-end pt-20 text-xl font-semibold">
+            <div class="m-1 flex gap-1 text-xs">
+                <div class="flex items-center">
+                    <div class="h-3 w-3 border-black bg-green-400"></div>
+                </div>
+
+                <p>System Research & Analysis Section</p>
             </div>
 
-            <p>System Research & Analysis Section</p>
-          </div>
-
-          <div class="m-1 flex gap-1 text-xs">
-            <div class="flex items-center">
-              <div class="h-3 w-3 border-black bg-blue-400"></div>
+            <div class="m-1 flex gap-1 text-xs">
+                <div class="flex items-center">
+                    <div class="h-3 w-3 border-black bg-blue-400"></div>
+                </div>
+                <p>System Design Section</p>
             </div>
-            <p>System Design Section</p>
-          </div>
 
-          <div class="m-1 flex gap-1 text-xs">
-            <div class="flex items-center">
-              <div class="h-3 w-3 border-black bg-yellow-400"></div>
+            <div class="m-1 flex gap-1 text-xs">
+                <div class="flex items-center">
+                    <div class="h-3 w-3 border-black bg-yellow-400"></div>
+                </div>
+                <p>Application Development and Maintenance Section</p>
             </div>
-            <p>Applicatipn Development and Maintenance Section</p>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

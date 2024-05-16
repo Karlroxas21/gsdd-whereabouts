@@ -7,6 +7,7 @@ const credential_email = require("../config").nodemail;
 const base_URL = require("../config").base_url;
 const saltRounds = 12;
 const User = require("../model/account.model");
+const { isPropertyName } = require("typescript");
 
 const app = express();
 
@@ -24,16 +25,14 @@ app.post("/register", async (req, res) => {
     const { first_name, last_name, email, position, pin, role } = req.body;
 
     if (!first_name || !last_name || !email || !position || !pin || !role) {
-      return res
-        .status(400)
-        .json({
-          firstname: first_name,
-          lastname: last_name,
-          email: email,
-          position: position,
-          pin: pin,
-          role: role,
-        });
+      return res.status(400).json({
+        firstname: first_name,
+        lastname: last_name,
+        email: email,
+        position: position,
+        pin: pin,
+        role: role,
+      });
     }
 
     const hashedPassword = await bcrypt.hash(pin, saltRounds);
@@ -151,6 +150,44 @@ app.get("/confirm", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.post("/tablet_login", async (req, res) => {
+  try {
+    const { first_name, last_name, pin } = req.body;
+
+    if (!first_name || !last_name || !pin) {
+      return res.status(400).json({ message: "Invalid input" });
+    }
+
+    const findUser = await User.findOne({
+      where: {
+        first_name: first_name,
+        last_name: last_name,
+      },
+    });
+
+    if(!findUser){
+        return res.status(401).json({ message: "Login failed. User not found." });
+
+    }
+
+    const isPinValid = await bcrypt.compare(pin, findUser.pin);
+    if (!isPinValid) {
+      return res
+        .status(401)
+        .json({ message: "Login failed. Incorrect password." });
+    }
+
+    res.json({
+        Id: findUser.Id,
+        verified: findUser.verified,
+    })
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "An error occurred" });
   }
 });
 

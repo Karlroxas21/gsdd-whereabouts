@@ -215,7 +215,6 @@ app.get("/check_time_out_today/:id", async (req, res) => {
           "time out formatated": time_out_formatted,
           today: today_formatted,
         });
-      return;
     }
 
     console.log(time_out_formatted, today_formatted);

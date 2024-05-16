@@ -48,4 +48,8 @@ export class AccountService {
     const userId = localStorage.getItem('id');
     return this.http.get<any>(`${this.baseUrlAPI}user/${userId}`);
   }
+
+  loginTablet(first_name: string, last_name: string, pin: string): Observable<any>{
+    return this.http.post(`${this.baseUrlAPI}tablet_login`, { first_name, last_name, pin });
+  }
 }

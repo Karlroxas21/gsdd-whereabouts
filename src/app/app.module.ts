@@ -47,6 +47,7 @@ import { NotificationComponent } from './admin/notification/notification.compone
 import { RulesComponent } from './admin/rules/rules.component';
 import { OrgChartComponent } from './tablet-display/org-chart/org-chart.component';
 import { AccountConfirmationComponent } from './admin/account-confirmation/account-confirmation.component';
+import { UserButtonComponent } from './tablet-display/user-button/user-button.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { AccountConfirmationComponent } from './admin/account-confirmation/accou
     RulesComponent,
     OrgChartComponent,
     AccountConfirmationComponent,
+    UserButtonComponent,
   ],
   imports: [
     BrowserModule,
