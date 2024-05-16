@@ -7,9 +7,26 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const history = require("connect-history-api-fallback");
 const cookieParser = require("cookie-parser");
+const http = require('http');
+const WebSocket = require('ws');
 
 const app = express();
 const port = process.env.PORT || 80;
+const server = http.createServer(app);
+
+const wss = new WebSocket.Server({server});
+
+wss.on('error', console.error);
+
+wss.on('connection', function connection(ws){
+    console.log("A new client connected");
+    ws.send("WS SEND Welcome new client!");
+
+    ws.on('message', function message(status) {
+        console.log('received: %s', status);
+        ws.send("Got your message its from WS: " + message)
+    });
+})
 
 const allowedOrigin = ["http://localhost:80", "http://localhost:4200"];
 
@@ -75,6 +92,9 @@ app.use("/", account_routes);
 const time_in_out_routes = require("./routes/time_in_time_out");
 app.use("/", time_in_out_routes);
 
-app.listen(port, () => {
+const status_route = require("./routes/status.route")(wss);
+app.use("/", status_route);
+
+server.listen(port, () => {
   console.log(`Listening on ${port}`);
 });
