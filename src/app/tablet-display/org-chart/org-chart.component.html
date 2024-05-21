@@ -7,8 +7,7 @@
                 <div id="it-3" class="m-2 flex pt-5 justify-center">
                     <div id="avatar" class="flex flex-col items-center gap-2">
                         <div class="card justify-content-center flex flex-col text-xs">
-                            <p>In a meeting</p>
-                            <app-user-button [user]="{first_name: 'Karl', last_name: 'Roxas', position: 'IT Officer III', initials: 'KR',  borderColor: 'border-grey-400', test: '213'}"></app-user-button>
+                            <app-user-button [user]="{first_name: 'Karl', last_name: 'Roxas', position: 'IT Officer III', initials: 'KR', status: statusNiKarl, borderColor: 'border-grey-400'}" [statusData]="statusData"></app-user-button>
                         </div>
                     </div>
                 </div>
@@ -34,8 +33,6 @@
                         <div id="fatima-santos">
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <p>Do not disturb</p>
-                                
                                     <app-user-button [user]="{first_name: 'Fatima', last_name: 'Santos', position: 'IT Officer II', initials: 'FS', borderColor: 'border-green-400'}"></app-user-button>
 
                                 </div>
@@ -44,8 +41,6 @@
                         <div id="melvin-perez">
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <p>In a meeting</p>
-
                                     <app-user-button [user]="{first_name: 'Melvin', last_name: 'Perez', position: 'IS Analyst III', initials: 'MP', borderColor: 'border-yellow-400'}"></app-user-button>
 
                                 </div>
@@ -54,8 +49,6 @@
                         <div id="homer-macawili">
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <p>In a meeting</p>
-
                                     <app-user-button [user]="{first_name: 'Homer Paulo', last_name: 'Macawili', position: 'IS Analyst II', initials: 'HM', borderColor: 'border-blue-400'}"></app-user-button>
 
                                 </div>
@@ -65,8 +58,6 @@
                             <div id="lyra-samarista">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <p>In a meeting</p>
-
                                         <app-user-button [user]="{first_name: 'Lyra Anne', last_name: 'Samarista', position: 'IS Researcher II', initials: 'LS', borderColor: 'border-green-300'}"></app-user-button>
 
                                     </div>
@@ -75,8 +66,6 @@
                             <div id="fely-espinas">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <p>In a meeting</p>
-
                                         <app-user-button [user]="{first_name: 'Fely', last_name: 'Espinas', position: 'IS Researcher II', initials: 'FE', borderColor: 'border-green-300'}"></app-user-button>
 
                                     </div>
@@ -89,7 +78,6 @@
                         <div id="donald-gutierrez">
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <p>Sick leave</p>
                                     <app-user-button [user]="{first_name: 'Donald', last_name: 'Gutierrez', position: 'IT Officer II', initials: 'DG', borderColor: 'border-blue-400'}"></app-user-button>
                                 </div>
                             </div>
@@ -97,8 +85,6 @@
                         <div id="gerado-tanabe">
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <p>In a meeting</p>
-
                                     <app-user-button [user]="{first_name: 'Gerado', last_name: 'Tanabe', position: 'IS Analyst III', initials: 'GT', borderColor: 'border-yellow-400'}"></app-user-button>
 
                                 </div>
@@ -108,8 +94,6 @@
                             <div id="norman-boydon">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <p>In a meeting</p>
-
                                         <app-user-button [user]="{first_name: 'Norman', last_name: 'Boydon', position: 'IS Analyst II', initials: 'NB', borderColor: 'border-blue-400'}"></app-user-button>
 
                                     </div>
@@ -118,8 +102,6 @@
                             <div id="michelle-medina">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <p>In a meeting</p>
-
                                         <app-user-button [user]="{first_name: 'Michelle', last_name: 'Medina', position: 'IS Analyst II', initials: 'MM', borderColor: 'border-blue-400'}"></app-user-button>
 
                                     </div>
@@ -128,8 +110,6 @@
                             <div id="mark-jumeras">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <p>In a meeting</p>
-
                                         <app-user-button [user]="{first_name: 'Mark Allan Jay', last_name: 'Jumeras', position: 'IS Analyst II', initials: 'MJ', borderColor: 'border-blue-400'}"></app-user-button>
 
                                     </div>
@@ -138,8 +118,6 @@
                             <div id="john-gorospe">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <p>In a meeting</p>
-
                                         <app-user-button [user]="{first_name: 'John Francis', last_name: 'Gorospe', position: 'IS Analyst II', initials: 'FG', borderColor: 'border-blue-400'}"></app-user-button>
 
                                     </div>
@@ -151,8 +129,6 @@
                         <div id="romel-francisco">
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <p>In a meeting</p>
-
                                     <app-user-button [user]="{first_name: 'Romel', last_name: 'Francisco', position: 'IT Officer II', initials: 'RF', borderColor: 'border-gray-400'}"></app-user-button>
 
                                 </div>
@@ -162,8 +138,6 @@
                             <div id="jaypee-delmundo">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <p>In a meeting</p>
-
                                         <app-user-button [user]="{first_name: 'Jaypee', last_name: 'Del Mundo', position: 'CP III', initials: 'JD', borderColor: 'border-gray-400'}"></app-user-button>
 
                                     </div>
@@ -172,8 +146,6 @@
                             <div id="sherwin-aquino">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <p>In a meeting</p>
-
                                         <app-user-button [user]="{first_name: 'Sherwin', last_name: 'Aquino', position: 'CP III', initials: 'SQ', borderColor: 'border-yellow-400'}"></app-user-button>
 
                                     </div>
@@ -181,15 +153,12 @@
                             </div>
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <p>In a meeting</p>
-
                                     <app-user-button [user]="{first_name: 'Karl Marx', last_name: 'Roxas', position: 'CP II', initials: 'KR', borderColor: 'border-black'}"></app-user-button>
 
                                 </div>
                             </div>
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <p>In a meeting</p>
                                     <button (click)="showDialog()"
                                         class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200">
                                         <div

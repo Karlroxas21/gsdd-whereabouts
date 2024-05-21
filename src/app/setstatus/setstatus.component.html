@@ -1,41 +1,33 @@
 <app-sidebar></app-sidebar>
 <div class="flex">
-  <div class="500 w-full md:sm:ml-64">
-    <div class="ml-5 mt-20 text-xs font-semibold sm:text-sm lg:text-xl">
-      <p>Set status</p>
-    </div>
-    <div
-      class="ml-5 mt-5 flex w-3/5 flex-col rounded-lg border border-black p-5 shadow-lg lg:w-2/5"
-    >
-      <p class="text-xs sm:text-sm lg:text-xl">Status update</p>
+    <div class="500 w-full md:sm:ml-64">
+        <div class="ml-5 mt-20 text-xs font-semibold sm:text-sm lg:text-xl">
+            <p>Set status</p>
+        </div>
+        <div class="ml-5 mt-5 flex w-3/5 flex-col rounded-lg border border-black p-5 shadow-lg lg:w-2/5">
+            <p class="text-xs sm:text-sm lg:text-xl">Status update</p>
 
-      <div class="mt-10 flex flex-wrap">
-        <form class="w-screen">
-          <label for="underline_select" class="sr-only">Underline select</label>
-          <select
-            id="underline_select"
-            class="peer block w-full appearance-none rounded-lg border-0 border-b-2 border-gray-200 bg-transparent p-2 px-0 py-2.5 text-sm text-gray-500 focus:border-gray-200 focus:outline-none focus:ring-0 dark:border-gray-700 dark:text-gray-400"
-          >
-            <option value="" selected>What are you doing?</option>
-            <option value="US">Sick Leave</option>
-            <option value="CA">Vacation Leave</option>
-            <option value="FR">Do not disturb</option>
-            <option value="DE">Break</option>
-            <option value="DE">Walang ginagawa</option>
-          </select>
-        </form>
-      </div>
-      <div class="mt-5 flex justify-end">
-        <button
-          class="rounded-lg bg-black p-2 text-xs text-white opacity-80 transition hover:opacity-100 sm:text-base"
-        >
-          Confirm
-        </button>
-      </div>
+            <div class="mt-10 flex flex-wrap">
+                <form class="w-screen" [formGroup]="statusForm" (submit)="onSetStatusSubmit()">
+                    <label for="text"
+                        class="mb-2 block text-xs font-medium text-gray-900 dark:text-white md:text-sm">Position:</label>
+                    <div class=" mb-5">
+                        <p-dropdown id="position" [options]="status" formControlName="status" optionLabel="label"
+                            placeholder="Select your Position"></p-dropdown>
+                    </div>
+                    <button pButton pRipple type="submit"
+                        class="rounded-lg bg-black p-2 text-xs text-white opacity-80 transition hover:opacity-100 sm:text-base">
+                        Confirm
+                    </button>
+                </form>
+            </div>
+            <div class="mt-5 flex justify-end">
+            </div>
+        </div>
+        <div *ngFor="let status of statuses">
+            <p>{{status.user_Id}}: {{status.status}}</p>
+
+        </div>
+        <p>{{date}} {{time}}</p>
     </div>
-    <div *ngFor="let status of statuses">
-        <p>{{status.user_Id}}: {{status.status}}</p>
-        <p>{{status.date_and_time}}</p>
-      </div>
-  </div>
 </div>
