@@ -38,16 +38,14 @@ module.exports = function (wss) {
       if (setStatus) {
         wss.clients.forEach((client) => {
           if (client.readyState === client.OPEN) {
-            client.send(JSON.stringify({setStatus, first_name, last_name}));
+            client.send(JSON.stringify({ setStatus, first_name, last_name }));
           }
         });
       }
 
       const { createdAt, updatedAt, ...data } = await setStatus.toJSON();
 
-     
-
-      res.status(200).json({data, first_name, last_name});
+      res.status(200).json({ data, first_name, last_name });
     } catch (err) {
       console.error(err);
       return res.status(500).json({ error: "An error occurred." });
@@ -69,12 +67,10 @@ module.exports = function (wss) {
 
       const users = all_latest_status.map((status) => {
         return {
-          user: {
             first_name: status.first_name,
             last_name: status.last_name,
-            position: status.position,
             status: status.status,
-          },
+          
         };
       });
 
