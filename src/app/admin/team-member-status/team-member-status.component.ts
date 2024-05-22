@@ -71,9 +71,10 @@ export class TeamMemberStatusComponent implements OnInit {
         })),
       }));
 
-      this.employeeStatusNames = Array.from(
-        new Set(this.employeeStatus.map((item) => item.name)),
-      );
+    //   TEMPORARY REMOVE
+    //   this.employeeStatusNames = Array.from(
+    //     new Set(this.employeeStatus.map((item) => item.name)),
+    //   );
 
       this.employeeStatusList = [
         ...new Set(

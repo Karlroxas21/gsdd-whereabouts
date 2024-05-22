@@ -64,6 +64,7 @@ export class UserButtonComponent implements OnInit {
 
         this.isTimeIn();
         this.isTimeOut();
+
     }
 
     openTimeInOutModal() {

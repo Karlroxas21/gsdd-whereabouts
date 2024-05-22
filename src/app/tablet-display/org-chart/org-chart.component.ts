@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { StatusService } from 'src/service/status.service';
+import { EmployeeStatus } from 'src/domain/employee-status';
 
 @Component({
     selector: 'app-org-chart',
@@ -22,6 +23,8 @@ export class OrgChartComponent implements OnInit {
     statusData: any = [];
 
     statusNiKarl: any;
+
+    employeeStatuses: EmployeeStatus[] = [];
     ngOnInit(): void {
         this.socket.addEventListener('open', function (event) {
             console.log("Connected to WS Server");
@@ -32,9 +35,20 @@ export class OrgChartComponent implements OnInit {
             const newStatus = JSON.parse(event.data);
 
             this.statusData.push(newStatus);
-            console.log(newStatus);
+            // console.log("Org chart", newStatus);
 
-            this.statusNiKarl = newStatus.setStatus.status;
+            const employeeStatus: EmployeeStatus = {
+                first_name: newStatus.first_name,
+                last_name: newStatus.last_name,
+                status: newStatus.setStatus.status
+            }
+
+            this.employeeStatuses.push(employeeStatus);
+
+            console.log(this.employeeStatuses);
+
+            this.statusNiKarl = newStatus.first_name + newStatus.last_name;
+            // PUT Push new status in DB
         });
 
         this.getAllLatestStatus();
@@ -46,6 +60,11 @@ export class OrgChartComponent implements OnInit {
         })
     }
 
+    getStatus(first_name: string, last_name: string) {
+        const employees = this.employeeStatuses.filter(e => e.first_name === first_name && e.last_name === last_name);
+
+        return employees.length > 0 ? employees[employees.length -1].status : null;
+    }
     getStatusOfUser(first_name: string, last_name: string){
         // Iterate in data of latest status and assign it to specific user
 // for (let item of data) {

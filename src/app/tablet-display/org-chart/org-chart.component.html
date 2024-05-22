@@ -7,7 +7,7 @@
                 <div id="it-3" class="m-2 flex pt-5 justify-center">
                     <div id="avatar" class="flex flex-col items-center gap-2">
                         <div class="card justify-content-center flex flex-col text-xs">
-                            <app-user-button [user]="{first_name: 'Karl', last_name: 'Roxas', position: 'IT Officer III', initials: 'KR', status: statusNiKarl, borderColor: 'border-grey-400'}" [statusData]="statusData"></app-user-button>
+                            <app-user-button [user]="{first_name: 'Karl', last_name: 'Roxas', position: 'IT Officer III', initials: 'KR', status: getStatus('First Name', 'Last name'), borderColor: 'border-grey-400'}" [statusData]="statusData"></app-user-button>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                         <div id="fatima-santos">
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <app-user-button [user]="{first_name: 'Fatima', last_name: 'Santos', position: 'IT Officer II', initials: 'FS', borderColor: 'border-green-400'}"></app-user-button>
+                                    <app-user-button [user]="{first_name: 'Fatima', last_name: 'Santos', position: 'IT Officer II', initials: 'FS', status: getStatus('Fatima', 'Santos'), borderColor: 'border-green-400'}"></app-user-button>
 
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                         <div id="melvin-perez">
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <app-user-button [user]="{first_name: 'Melvin', last_name: 'Perez', position: 'IS Analyst III', initials: 'MP', borderColor: 'border-yellow-400'}"></app-user-button>
+                                    <app-user-button [user]="{first_name: 'Melvin', last_name: 'Perez', position: 'IS Analyst III', initials: 'MP', status: getStatus('Melvin', 'Perez'), borderColor: 'border-yellow-400'}"></app-user-button>
 
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                         <div id="homer-macawili">
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <app-user-button [user]="{first_name: 'Homer Paulo', last_name: 'Macawili', position: 'IS Analyst II', initials: 'HM', borderColor: 'border-blue-400'}"></app-user-button>
+                                    <app-user-button [user]="{first_name: 'Homer Paulo', last_name: 'Macawili', position: 'IS Analyst II', initials: 'HM', status: getStatus('Homer Paulo', 'Macawili'), borderColor: 'border-blue-400'}"></app-user-button>
 
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                             <div id="lyra-samarista">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <app-user-button [user]="{first_name: 'Lyra Anne', last_name: 'Samarista', position: 'IS Researcher II', initials: 'LS', borderColor: 'border-green-300'}"></app-user-button>
+                                        <app-user-button [user]="{first_name: 'Lyra Anne', last_name: 'Samarista', position: 'IS Researcher II', initials: 'LS', status: getStatus('Lyra Anne', 'Samarista'),borderColor: 'border-green-300'}"></app-user-button>
 
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                             <div id="fely-espinas">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <app-user-button [user]="{first_name: 'Fely', last_name: 'Espinas', position: 'IS Researcher II', initials: 'FE', borderColor: 'border-green-300'}"></app-user-button>
+                                        <app-user-button [user]="{first_name: 'Fely', last_name: 'Espinas', position: 'IS Researcher II', initials: 'FE', status: getStatus('Fely', 'Espinas'), borderColor: 'border-green-300'}"></app-user-button>
 
                                     </div>
                                 </div>
@@ -78,14 +78,14 @@
                         <div id="donald-gutierrez">
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <app-user-button [user]="{first_name: 'Donald', last_name: 'Gutierrez', position: 'IT Officer II', initials: 'DG', borderColor: 'border-blue-400'}"></app-user-button>
+                                    <app-user-button [user]="{first_name: 'Donald', last_name: 'Gutierrez', position: 'IT Officer II', initials: 'DG', status: getStatus('Donald', 'Gutierrez'), borderColor: 'border-blue-400'}"></app-user-button>
                                 </div>
                             </div>
                         </div>
                         <div id="gerado-tanabe">
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <app-user-button [user]="{first_name: 'Gerado', last_name: 'Tanabe', position: 'IS Analyst III', initials: 'GT', borderColor: 'border-yellow-400'}"></app-user-button>
+                                    <app-user-button [user]="{first_name: 'Gerado', last_name: 'Tanabe', position: 'IS Analyst III', initials: 'GT', status: getStatus('Gerado', 'Tanabe'), borderColor: 'border-yellow-400'}"></app-user-button>
 
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                             <div id="norman-boydon">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <app-user-button [user]="{first_name: 'Norman', last_name: 'Boydon', position: 'IS Analyst II', initials: 'NB', borderColor: 'border-blue-400'}"></app-user-button>
+                                        <app-user-button [user]="{first_name: 'Norman', last_name: 'Boydon', position: 'IS Analyst II', initials: 'NB', status: getStatus('Norman', 'Boydon'), borderColor: 'border-blue-400'}"></app-user-button>
 
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                             <div id="michelle-medina">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <app-user-button [user]="{first_name: 'Michelle', last_name: 'Medina', position: 'IS Analyst II', initials: 'MM', borderColor: 'border-blue-400'}"></app-user-button>
+                                        <app-user-button [user]="{first_name: 'Michelle', last_name: 'Medina', position: 'IS Analyst II', initials: 'MM', status: getStatus('Michelle', 'Medina'), borderColor: 'border-blue-400'}"></app-user-button>
 
                                     </div>
                                 </div>
@@ -110,7 +110,7 @@
                             <div id="mark-jumeras">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <app-user-button [user]="{first_name: 'Mark Allan Jay', last_name: 'Jumeras', position: 'IS Analyst II', initials: 'MJ', borderColor: 'border-blue-400'}"></app-user-button>
+                                        <app-user-button [user]="{first_name: 'Mark Allan Jay', last_name: 'Jumeras', position: 'IS Analyst II', initials: 'MJ', status: getStatus('Mark Allan Jay', 'Jumeras'), borderColor: 'border-blue-400'}"></app-user-button>
 
                                     </div>
                                 </div>
@@ -118,7 +118,7 @@
                             <div id="john-gorospe">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <app-user-button [user]="{first_name: 'John Francis', last_name: 'Gorospe', position: 'IS Analyst II', initials: 'FG', borderColor: 'border-blue-400'}"></app-user-button>
+                                        <app-user-button [user]="{first_name: 'John Francis', last_name: 'Gorospe', position: 'IS Analyst II', initials: 'FG', status: getStatus('John Francis', 'Gorospe'), borderColor: 'border-blue-400'}"></app-user-button>
 
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                         <div id="romel-francisco">
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <app-user-button [user]="{first_name: 'Romel', last_name: 'Francisco', position: 'IT Officer II', initials: 'RF', borderColor: 'border-gray-400'}"></app-user-button>
+                                    <app-user-button [user]="{first_name: 'Romel', last_name: 'Francisco', position: 'IT Officer II', initials: 'RF', status: getStatus('Romel', 'Francisco'), borderColor: 'border-gray-400'}"></app-user-button>
 
                                 </div>
                             </div>
@@ -138,7 +138,7 @@
                             <div id="jaypee-delmundo">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <app-user-button [user]="{first_name: 'Jaypee', last_name: 'Del Mundo', position: 'CP III', initials: 'JD', borderColor: 'border-gray-400'}"></app-user-button>
+                                        <app-user-button [user]="{first_name: 'Jaypee', last_name: 'Del Mundo', position: 'CP III', initials: 'JD', status: getStatus('Jaypee', 'Del Mundo'), borderColor: 'border-gray-400'}"></app-user-button>
 
                                     </div>
                                 </div>
@@ -146,14 +146,14 @@
                             <div id="sherwin-aquino">
                                 <div id="avatar" class="flex flex-col items-center gap-2">
                                     <div class="card justify-content-center flex flex-col text-xs">
-                                        <app-user-button [user]="{first_name: 'Sherwin', last_name: 'Aquino', position: 'CP III', initials: 'SQ', borderColor: 'border-yellow-400'}"></app-user-button>
+                                        <app-user-button [user]="{first_name: 'Sherwin', last_name: 'Aquino', position: 'CP III', initials: 'SQ', status: getStatus('Sherwin', 'Aquino'), borderColor: 'border-yellow-400'}"></app-user-button>
 
                                     </div>
                                 </div>
                             </div>
                             <div id="avatar" class="flex flex-col items-center gap-2">
                                 <div class="card justify-content-center flex flex-col text-xs">
-                                    <app-user-button [user]="{first_name: 'Karl Marx', last_name: 'Roxas', position: 'CP II', initials: 'KR', borderColor: 'border-black'}"></app-user-button>
+                                    <app-user-button [user]="{first_name: 'Karl Marx', last_name: 'Roxas', position: 'CP II', initials: 'KR', status: getStatus('Karl Marx', 'Roxas'), borderColor: 'border-black'}"></app-user-button>
 
                                 </div>
                             </div>
