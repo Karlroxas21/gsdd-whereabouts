@@ -55,14 +55,14 @@ module.exports = function (wss) {
   app.get("/all_latest_status", async (req, res) => {
     try {
       const all_latest_status = await sequelize.query(
-        "SELECT s.*, u.first_name, u.last_name, u.position FROM statuses s INNER JOIN (SELECT user_Id, MAX(date_and_time) AS max_date_and_time FROM statuses GROUP BY user_Id ) sub ON s.user_Id = sub.user_Id AND s.date_and_time = sub.max_date_and_time INNER JOIN Users u ON s.user_Id = u.Id",
+        "SELECT s.*, u.first_name, u.last_name, u.position FROM statuses s INNER JOIN (SELECT user_Id, MAX(date_and_time) AS max_date_and_time FROM statuses WHERE CONVERT(DATE, date_and_time) = CONVERT(DATE, GETDATE()) GROUP BY user_Id ) sub ON s.user_Id = sub.user_Id AND s.date_and_time = sub.max_date_and_time INNER JOIN Users u ON s.user_Id = u.Id WHERE CONVERT(DATE, s.date_and_time) = CONVERT(DATE, GETDATE());",
         {
           type: QueryTypes.SELECT,
         },
       );
 
       if (!all_latest_status || all_latest_status.length === 0) {
-        return res.status(400).json({ error: "No status record found." });
+        return res.status(400).json;
       }
 
       const users = all_latest_status.map((status) => {
@@ -76,7 +76,6 @@ module.exports = function (wss) {
 
       res.json(users);
     } catch (err) {
-      console.error(err);
       return res.status(500).json({ error: "An error occurred." });
     }
   });

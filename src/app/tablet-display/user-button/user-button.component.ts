@@ -177,24 +177,37 @@ export class UserButtonComponent implements OnInit {
 
     isTimeIn() {
         const Id = localStorage.getItem('id');
+        if(!Id){
+           return;
+        }
+
         this.timeInOutService.isTimeIn(Id).subscribe((res) => {
             if (res.dataOfTimeIn) {
                 this.setTimeIn(res.dataOfTimeIn);
                 this.timeOutId = res.Id;
             } else {
-                console.log('No Time In');
+                
             }
+        },(err)=>{
+            
         });
     }
 
     isTimeOut() {
         const Id = localStorage.getItem('id');
+        if(!Id){
+            
+        }
+
         this.timeInOutService.isTimeOut(Id).subscribe((res) => {
             if (res.dataOfTimeOut) {
                 this.setTimeOut(res.dataOfTimeOut);
                 this.check_time_out = true;
             } else {
+                
             }
+        },(err)=>{
+
         });
     }
 

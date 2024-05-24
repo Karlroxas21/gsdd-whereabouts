@@ -28,6 +28,7 @@ export class OrgChartComponent implements OnInit {
     ngOnInit(): void {
 
         this.getAllLatestStatus();
+        this.listenForNewMessages();
 
     }
 
@@ -35,13 +36,23 @@ export class OrgChartComponent implements OnInit {
         this.statusService.getAllLatestStatus().subscribe((res) => {
             this.employeeStatuses.push(...res);
 
-            this.listenForNewMessages();
         });
     }
 
     listenForNewMessages() {
         this.socket.addEventListener('message', (event) => {
-            const newStatus = JSON.parse(event.data);
+            if(!event.data){
+                
+            }
+            
+            let newStatus;
+
+            try{ 
+            newStatus = JSON.parse(event.data);
+            }
+            catch(err){
+                return;
+            }
 
             const employeeStatus: EmployeeStatus = {
                 first_name: newStatus.first_name,
@@ -49,11 +60,9 @@ export class OrgChartComponent implements OnInit {
                 status: newStatus.setStatus.status
             }
 
-            const exists = this.employeeStatuses.length != 0;
-
-            if (exists) {
+          
                 this.employeeStatuses.push(employeeStatus);
-            }
+            
 
         });
     }

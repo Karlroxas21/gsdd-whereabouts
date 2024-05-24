@@ -173,7 +173,7 @@ app.get("/check_time_in_today/:id", async (req, res) => {
     res.status(200).json({ message: "Data Unavailable" });
     // res.json({"isFromToday": isFromToday, "time_in": data.time_in});
   } catch (err) {
-    res.status(500).json({ message: err });
+    // res.status(500).json({ error: 'An error occurred' });
   }
 });
 
@@ -217,7 +217,6 @@ app.get("/check_time_out_today/:id", async (req, res) => {
         });
     }
 
-    console.log(time_out_formatted, today_formatted);
     res
       .status(200)
       .json({
@@ -227,7 +226,7 @@ app.get("/check_time_out_today/:id", async (req, res) => {
           .split(".")[0],
       });
   } catch (err) {
-    res.status(500).json({ message: err });
+    // res.status(500).json({ error: 'An error occurred' });
   }
 });
 
