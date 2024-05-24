@@ -1,6 +1,7 @@
+<p-toast></p-toast>
 <app-sidebar></app-sidebar>
 <div class="flex">
-    <div class="500 w-full md:sm:ml-64">
+    <div class="w-full md:sm:ml-64">
         <div class="ml-5 mt-20 text-xs font-semibold sm:text-sm lg:text-xl">
             <p>Set status</p>
         </div>
@@ -24,10 +25,5 @@
             <div class="mt-5 flex justify-end">
             </div>
         </div>
-        <div *ngFor="let status of statuses">
-            <p>{{status.user_Id}}: {{status.status}}</p>
-
-        </div>
-        <p>{{date}} {{time}}</p>
     </div>
 </div>

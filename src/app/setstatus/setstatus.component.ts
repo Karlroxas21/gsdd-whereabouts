@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { StatusService } from 'src/service/status.service';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-setstatus',
   templateUrl: './setstatus.component.html',
@@ -11,10 +12,8 @@ import { StatusService } from 'src/service/status.service';
 export class SetstatusComponent implements OnInit {
     private baseUrlAPI = `${environment.WSSUrl}`;
 
-    constructor(private statusService: StatusService){}
+    constructor(private statusService: StatusService, private messageService: MessageService){}
 
-    socket = new WebSocket(`ws://${this.baseUrlAPI}`);
-    statuses: any = [];
     date: any;
     time: any;
 
@@ -25,26 +24,6 @@ export class SetstatusComponent implements OnInit {
     status!: SelectItem[];
 
     ngOnInit(): void {
-        this.socket.addEventListener('open', function(event){
-            console.log("Connected to WS Server");
-        });
-
-        this.socket.addEventListener('message', (event)=> {
-            // this.statuses.push(JSON.parse(event.data));
-            const newStatus = JSON.parse(event.data);
-            
-            this.date = new Date(newStatus.date_and_time).toISOString() 
-            .split("T")[0]
-            .split(".")[0];
-
-            this.time = new Date(newStatus.date_and_time).toISOString() 
-            .split("T")[1]
-            .split(".")[0];
-            
-            this.statuses.push(newStatus);
-        })
-        this.getAllLatestStatus();
-
         this.status = [
             {label: 'Sick Leave', value: 'Sick Leave'},
             {label: 'Mandatory Leave', value: 'Mandatory Leave'},
@@ -55,13 +34,22 @@ export class SetstatusComponent implements OnInit {
         ]
     }
 
-    getAllLatestStatus(){
-        this.statusService.getAllLatestStatus().subscribe((data)=>{
-            console.log(data);
-        })
-    }
-
     onSetStatusSubmit(){
-        console.log(this.statusForm.value.status?.value)
+        // this.statusService.setStatus()
+        const id: string | null = localStorage.getItem("id");
+        const status: any = this.statusForm.value.status?.value
+        if(!id){
+            console.error(" Error occured. Please sign out and log-in again.");
+        }
+        try{
+            this.statusService.setStatus(id, status).subscribe((res)=>{
+                this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Status update success!' });
+
+            });
+        }catch(err){
+            console.error(err)
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Status update failed! ' + err });
+
+        }
     }
 }
