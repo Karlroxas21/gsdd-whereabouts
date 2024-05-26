@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastItem } from 'primeng/toast';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { PasswordModule } from 'primeng/password';
+import { MessagesModule } from 'primeng/messages';
 // Components
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -96,7 +97,8 @@ import { UserButtonComponent } from './tablet-display/user-button/user-button.co
     HttpClientModule,
     ReactiveFormsModule,
     KeyFilterModule,
-    PasswordModule
+    PasswordModule,
+    MessagesModule
   ],
   providers: [
     DatePipe,
