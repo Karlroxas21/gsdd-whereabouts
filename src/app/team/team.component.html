@@ -23,51 +23,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+            <tr *ngFor="let status of employeeStatuses" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
               <th
                 scope="row"
                 class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
               >
-                Karl Marx Roxas
+                {{status.first_name}} {{status.last_name}}
               </th>
               <td class="px-6 py-4">
                 <p
                   class="0 text-back inline-block rounded-lg border border-black p-1 shadow-md transition hover:scale-105"
                 >
-                  Work-from-home
+                {{status.status}}
                 </p>
               </td>
             </tr>
-            <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
-              <th
-                scope="row"
-                class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-              >
-                Thea
-              </th>
-              <td class="px-6 py-4">
-                <p
-                  class="0 text-back inline-block rounded-lg border border-black p-1 shadow-md transition hover:scale-105"
-                >
-                  Sick Leave
-                </p>
-              </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800">
-              <th
-                scope="row"
-                class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-              >
-                Marx
-              </th>
-              <td class="px-6 py-4">
-                <p
-                  class="0 text-back inline-block rounded-lg border border-black p-1 shadow-md transition hover:scale-105"
-                >
-                  Sick Leave
-                </p>
-              </td>
-            </tr>
+            
           </tbody>
         </table>
       </div>
