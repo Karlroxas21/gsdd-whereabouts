@@ -208,27 +208,82 @@ app.get("/check_time_out_today/:id", async (req, res) => {
     dataId = data.Id;
 
     if (!isFromToday) {
-      return res
-        .status(200)
-        .json({
-          message: "Data Not Match",
-          "time out formatated": time_out_formatted,
-          today: today_formatted,
-        });
+      return res.status(200).json({
+        message: "Data Not Match",
+        "time out formatated": time_out_formatted,
+        today: today_formatted,
+      });
     }
 
-    res
-      .status(200)
-      .json({
-        dataOfTimeOut: date_of_time_out
-          .toISOString()
-          .split("T")[1]
-          .split(".")[0],
-      });
+    res.status(200).json({
+      dataOfTimeOut: date_of_time_out.toISOString().split("T")[1].split(".")[0],
+    });
   } catch (err) {
     // res.status(500).json({ error: 'An error occurred' });
   }
 });
+
+app.get("/get_time_in_and_out/:id", async (req, res) => {
+  const user_Id = req.params.id;
+
+  if (!user_Id) {
+    return res.status(400).json({ error: "No User Id Data" });
+  }
+
+  try {
+    let data = await TimeInAndOut.findAll({
+      where: {
+        user_Id: user_Id,
+      },
+      order: [["createdAt", "DESC"]],
+    });
+
+    if (!data) {
+      return res.status(200).json({ message: "Data Unavailable" });
+    }
+
+    data = data.map(item => {
+        const formattedItem = { ...item.dataValues};
+
+        formattedItem.time_in = new Date(formattedItem.time_in).toISOString().replace(/:\d{2}\.\d{3}Z$/, '').replace('T', ' ');;
+        
+        if(formattedItem.time_out != null){
+            formattedItem.time_out = new Date(formattedItem.time_out).toISOString().replace(/:\d{2}\.\d{3}Z$/, '').replace('T', ' ');;
+        }
+        delete formattedItem.createdAt;
+        
+        return formattedItem;
+    })
+
+    res.status(200).json(data)
+  } catch (err) {
+    res.status(500).json({ error: 'An error occurred' + err })
+  }
+});
+
+app.put("/update_data/:id", async (req, res) => {
+    try {
+      const Id = req.params.id;
+      const { time_in, time_out } = req.body;
+  
+      const updated_data = await TimeInAndOut.update(
+        { time_in: time_in, time_out: time_out },
+        {
+          where: {
+            Id: Id,
+          },
+        },
+      );
+  
+      if (updated_data[0] === 0) {
+        res.status(404).json({ message: "Update failed. Record not found." });
+      } else {
+        res.status(200).json({ message: "Record updated successfully." });
+      }
+    } catch (err) {
+      res.status(500).json({ message: "An error occured" + err });
+    }
+  });
 
 function convertToHHMM(time) {
   const hours = Math.floor(time);

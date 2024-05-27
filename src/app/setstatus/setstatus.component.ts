@@ -31,6 +31,7 @@ export class SetstatusComponent implements OnInit {
             {label: 'Do not disturb', value: 'Do not disturb'},
             {label: 'Sick Leave', value: 'Sick Leave'},
             {label: 'In a meeting', value: 'In a meeting'},
+            {label: 'Table', value: '123'},
         ]
     }
 
