@@ -225,7 +225,7 @@
                 <p class="text-md font-semibold">2</p>
             </div>
 
-            <button 
+            <button (click)="csFlowShow()"
                 class="rounded-lg border border-black bg-white px-4 py-2 text-xs shadow-lg hover:bg-gray-200">
                 <p class="text-lg font-bold">Client Service Flow</p>
             </button>
@@ -233,7 +233,7 @@
             <p-dialog [(visible)]="csFlow">
                 <ng-template pTemplate="headless">
                     <div class="flex-column flex gap-4 px-8 py-5">
-
+                        <img src="assets/org-chart/client_service_flow.JPG"  width="1600" alt="">
                     </div>
                 </ng-template>
             </p-dialog>
