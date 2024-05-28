@@ -168,9 +168,8 @@ app.post("/tablet_login", async (req, res) => {
       },
     });
 
-    if(!findUser){
-        return res.status(401).json({ message: "Login failed. User not found." });
-
+    if (!findUser) {
+      return res.status(401).json({ message: "Login failed. User not found." });
     }
 
     const isPinValid = await bcrypt.compare(pin, findUser.pin);
@@ -181,13 +180,34 @@ app.post("/tablet_login", async (req, res) => {
     }
 
     res.json({
-        Id: findUser.Id,
-        verified: findUser.verified,
-    })
-
+      Id: findUser.Id,
+      verified: findUser.verified,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "An error occurred" });
+  }
+});
+
+app.put("/change_pin/:id", async (req, res) => {
+  try {
+    const Id = req.params.id;
+    const { newPin } = req.body;
+
+    const hashedNewPin = await bcrypt.hash(newPin, saltRounds);
+
+    const updated_pin = await User.update(
+      { pin: hashedNewPin },
+      { where: { Id: Id } },
+    );
+
+    if (updated_pin[0] === 0) {
+      res.status(404).json({ message: "Update failed. Record not found." });
+    } else {
+      res.status(200).json({ message: "Record updated successfully." });
+    }
+  } catch (err) {
+    console.error(err);
   }
 });
 
@@ -201,7 +221,7 @@ function sendConfirmationEmail(account) {
       user: credential_email.user,
       pass: credential_email.password,
     },
-    proxy: 'http://192.168.8.8:3128' // Enable when in NAMRIA Network
+    proxy: "http://192.168.8.8:3128", // Enable when in NAMRIA Network
   });
 
   const baseURL = base_URL.url || "localhost:4200";

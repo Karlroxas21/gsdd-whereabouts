@@ -94,8 +94,6 @@ export class TimesheetComponent {
 
             this.timeInAndOutData = res
 
-            console.log("Time In and Out Data:" , this.timeInAndOutData)
-
         })
     }
 
@@ -114,7 +112,6 @@ export class TimesheetComponent {
                 detail: 'Invalid fields',
               }); 
         }
-        console.log(timeInOut.Id, timeInOut.time_in_date_only, timeInOut.time_in_time_only, timeInOut.time_out_date_only, timeInOut.time_out_time_only)
         const Id = timeInOut.Id;
         const TimeIn = `${timeInOut.time_in_date_only} ${timeInOut.time_in_time_only}`;
         const TimeOut = `${timeInOut.time_out_date_only} ${timeInOut.time_out_time_only}`;
@@ -132,7 +129,7 @@ export class TimesheetComponent {
     }
 
     onRowEditCancel() {
-        console.log("EDIT TEST")
+        // console.log("EDIT TEST")
     }
 
     applyFilterGlobal($event: any, stringVal: any) {
