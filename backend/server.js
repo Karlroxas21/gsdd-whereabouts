@@ -9,6 +9,7 @@ const history = require("connect-history-api-fallback");
 const cookieParser = require("cookie-parser");
 const http = require('http');
 const WebSocket = require('ws');
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 80;
@@ -41,7 +42,7 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-// app.use(history());
+app.use(history());
 
 // Remove timezone at the end of the creationAt and updateAt
 Sequelize.DATE.prototype._stringify = function (date, options) {
@@ -94,6 +95,13 @@ app.use("/", time_in_out_routes);
 
 const status_route = require("./routes/status.route")(wss);
 app.use("/", status_route);
+
+app.use('/', express.static(path.join(__dirname, 'dist/gsdd-whereabouts')));
+
+app.get('/', (req, res) =>{
+    res.sendFile(path.join(__dirname,
+      'dist/gsdd-whereabouts/index.html'));
+});
 
 server.listen(port, () => {
   console.log(`Listening on ${port}`);
