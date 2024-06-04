@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { StatusService } from 'src/service/status.service';
 import { EmployeeStatus } from 'src/domain/employee-status';
+import { TimeInOutService } from 'src/service/time-in-out.service';
 
 @Component({
     selector: 'app-org-chart',
@@ -10,7 +11,7 @@ import { EmployeeStatus } from 'src/domain/employee-status';
 })
 export class OrgChartComponent implements OnInit {
 
-    constructor(private statusService: StatusService) { }
+    constructor(private statusService: StatusService, private timeInOutService: TimeInOutService) { }
 
     private baseUrlAPI = `${environment.WSSUrl}`;
 
@@ -24,11 +25,18 @@ export class OrgChartComponent implements OnInit {
 
     statusNiKarl: any;
 
+    timeInData: any[] = [];
     employeeStatuses: EmployeeStatus[] = [];
-    ngOnInit(): void {
+
+    ngOnInit() {
 
         this.getAllLatestStatus();
         this.listenForNewMessages();
+        
+        this.fetchTimeInData();
+        
+        console.log("Time in data: ", this.timeInData)
+
 
     }
 
@@ -60,10 +68,7 @@ export class OrgChartComponent implements OnInit {
                 status: newStatus.setStatus.status
             }
 
-          
-                this.employeeStatuses.push(employeeStatus);
-            
-
+            this.employeeStatuses.push(employeeStatus);
         });
     }
 
@@ -83,6 +88,22 @@ export class OrgChartComponent implements OnInit {
         // }
     }
 
+    fetchTimeInData() {
+        this.timeInOutService.getAllLatestTimeInToday().subscribe((res)=>{
+          this.timeInData.push(...res);
+          console.log("All latest time in data: ", this.timeInData)
+        });
+      }
+
+    isTimeIn(first_name: string, last_name: string) {
+        return this.timeInData.some(e => e.first_name === first_name && e.last_name === last_name);
+    }
+      
+
+    getBorderColor(timeInStatus: boolean, color: string): string{
+        return timeInStatus ? 'border-gray-500' : color;
+    }
+    
     showDialog() {
         this.visible = true;
     }

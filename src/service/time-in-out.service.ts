@@ -46,4 +46,8 @@ export class TimeInOutService {
   updateData(Id: string | null, time_in: Date, time_out: Date): Observable<any>{
     return this.http.put(`${this.baseUrlAPI}update_Data/${Id}`, {time_in ,time_out})
   }
+  
+  getAllLatestTimeInToday(): Observable<any>{
+    return this.http.get(`${this.baseUrlAPI}all_latest_time_in`);
+  }
 }
