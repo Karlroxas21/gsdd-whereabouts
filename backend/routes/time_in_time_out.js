@@ -1,6 +1,7 @@
 const express = require("express");
 const TimeInAndOut = require("../model/time_in_out.model");
-const sequelize = require("sequelize");
+const { QueryTypes} = require("sequelize");
+const sequelize = require("../server");
 
 const app = express();
 
@@ -284,6 +285,26 @@ app.put("/update_data/:id", async (req, res) => {
       res.status(500).json({ message: "An error occured" + err });
     }
   });
+
+ app.get("/all_latest_time_in", async(req, res) =>{
+    try {
+        const all_time_in_today = await sequelize.query("SELECT U.first_name, U.last_name, T.* FROM Users U JOIN TimeInAndOuts T ON U.Id = T.user_Id WHERE CAST(T.createdAt AS DATE) = CAST(GETDATE() AS DATE)ORDER BY T.createdAt DESC",
+          {
+            type: QueryTypes.SELECT,
+          },
+        );
+  
+        if (!all_time_in_today || all_time_in_today.length === 0) {
+          return res.status(400).json;
+        }
+  
+  
+        res.json(all_time_in_today);
+      } catch (err) {
+        console.error(err)
+        return res.status(500).json({ error: "An error occurred." });
+      }
+ });
 
 function convertToHHMM(time) {
   const hours = Math.floor(time);
