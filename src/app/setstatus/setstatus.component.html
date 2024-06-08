@@ -11,10 +11,10 @@
             <div class="mt-10 flex flex-wrap">
                 <form class="w-screen" [formGroup]="statusForm" (submit)="onSetStatusSubmit()">
                     <label for="text"
-                        class="mb-2 block text-xs font-medium text-gray-900 dark:text-white md:text-sm">Position:</label>
+                        class="mb-2 block text-xs font-medium text-gray-900 dark:text-white md:text-sm">Choose status:</label>
                     <div class=" mb-5">
                         <p-dropdown id="position" [options]="status" formControlName="status" optionLabel="label"
-                            placeholder="Select your Position"></p-dropdown>
+                            placeholder="Select your Status"></p-dropdown>
                     </div>
                     <button pButton pRipple type="submit"
                         class="rounded-lg bg-black p-2 text-xs text-white opacity-80 transition hover:opacity-100 sm:text-base">

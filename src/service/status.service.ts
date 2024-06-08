@@ -19,4 +19,8 @@ export class StatusService{
     setStatus(user_Id: string | null, status: string | null): Observable<any>{
         return this.http.post<any>(`${this.baseUrlAPI}set_status`, { user_Id, status } );
     }
+
+    getStatusValue(): Observable<any>{
+        return this.http.get<any>(`${this.baseUrlAPI}get_status_value`);
+    }
 }

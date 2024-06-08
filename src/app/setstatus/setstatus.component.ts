@@ -4,6 +4,7 @@ import { SelectItem } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { StatusService } from 'src/service/status.service';
 import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-setstatus',
   templateUrl: './setstatus.component.html',
@@ -24,15 +25,18 @@ export class SetstatusComponent implements OnInit {
     status!: SelectItem[];
 
     ngOnInit(): void {
-        this.status = [
-            {label: 'Sick Leave', value: 'Sick Leave'},
-            {label: 'Mandatory Leave', value: 'Mandatory Leave'},
-            {label: 'Vacation Leave', value: 'Vacation Leave'},
-            {label: 'Do not disturb', value: 'Do not disturb'},
-            {label: 'Sick Leave', value: 'Sick Leave'},
-            {label: 'In a meeting', value: 'In a meeting'},
-            {label: 'Table', value: '123'},
-        ]
+        this.statusService.getStatusValue().subscribe((req)=>{
+            this.status = req;
+        }, (err)=>{console.log(err);})
+        // this.status = [
+        //     {label: 'Sick Leave', value: 'Sick Leave'},
+        //     {label: 'Mandatory Leave', value: 'Mandatory Leave'},
+        //     {label: 'Vacation Leave', value: 'Vacation Leave'},
+        //     {label: 'Do not disturb', value: 'Do not disturb'},
+        //     {label: 'Sick Leave', value: 'Sick Leave'},
+        //     {label: 'In a meeting', value: 'In a meeting'},
+        //     {label: 'Table', value: '123'},
+        // ]
     }
 
     onSetStatusSubmit(){
@@ -41,6 +45,10 @@ export class SetstatusComponent implements OnInit {
         const status: any = this.statusForm.value.status?.value
         if(!id){
             console.error(" Error occured. Please sign out and log-in again.");
+        }
+
+        if(!status){
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please select your status.' });
         }
         try{
             this.statusService.setStatus(id, status).subscribe((res)=>{

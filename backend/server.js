@@ -42,7 +42,7 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-app.use(history());
+// app.use(history());
 
 // Remove timezone at the end of the creationAt and updateAt
 Sequelize.DATE.prototype._stringify = function (date, options) {
@@ -95,6 +95,9 @@ app.use("/", time_in_out_routes);
 
 const status_route = require("./routes/status.route")(wss);
 app.use("/", status_route);
+
+const status_value_route = require("./routes/status_value");
+app.use("/", status_value_route);
 
 app.use('/', express.static(path.join(__dirname, 'dist/gsdd-whereabouts')));
 

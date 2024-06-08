@@ -38,4 +38,9 @@ create table Statuses(
 	updatedAt DATETIME NOT NULL,
 )
 	
-	
+-- StatusValue
+create table StatusValues (
+	Id int primary key identity(1,1),
+	label varchar(255) NOT NULL,
+	value varchar(255) NOT NULL,
+)
