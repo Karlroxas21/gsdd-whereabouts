@@ -18,7 +18,9 @@ export class MonthlyAttendanceComponent implements OnInit {
 
   selectedEmployee!: EmployeeAttendance;
 
-  employeeNames!: any[];
+  employeeFirstNames!: any[];
+
+  employeeLastNames!: any[];
 
   rangeDates!: Date[];
 
@@ -60,19 +62,19 @@ export class MonthlyAttendanceComponent implements OnInit {
       ],
     };
 
-    this.employeeAttendanceService.getEmployeeAttendance().then((data) => {
+    this.employeeAttendanceService.getEmployeeAttendanceData().subscribe((data) => {
       this.loading = false;
-      this.employeeAttendance = data.map((item) => ({
-        ...item,
-        time_in: new Date(item.time_in),
-        time_out: new Date(item.time_out),
-      }));
+      this.employeeAttendance = data;
+      console.log("All Attendance Data: ",data)
 
-      this.employeeNames = this.employeeAttendance.map((item) => item.name);
+      this.employeeFirstNames = this.employeeAttendance.map((item) => item.first_name);
+      this.employeeLastNames = this.employeeAttendance.map((item) => item.last_name);
+
     });
 
     this.cols = [
-      { field: 'name', header: 'Name' },
+      { field: 'first_name', header: 'First Name' },
+      { field: 'last_name', header: 'Last Name' },
       { field: 'time_in', header: 'Time in' },
       { field: 'time_out', header: 'Time out' },
     ];

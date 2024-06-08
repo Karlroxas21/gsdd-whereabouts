@@ -306,6 +306,20 @@ app.put("/update_data/:id", async (req, res) => {
       }
  });
 
+ app.get('/get_all_data_time_in_out', async(req, res)=>{
+    try{
+        const all_data = await sequelize.query("SELECT t.Id, t.user_Id, t.time_in, t.time_out, t.total_time, u.first_name, u.last_name FROM TimeInAndOuts t INNER JOIN Users u ON t.user_Id = u.Id ORDER BY t.time_in DESC",
+            {
+                type: QueryTypes.SELECT,
+            },
+        );
+        res.json(all_data);
+    }catch(err){
+        console.error(err)
+        return res.status(500).json({ error: "An error occurred." });
+    }
+ })
+
 function convertToHHMM(time) {
   const hours = Math.floor(time);
   const minutes = Math.floor((time - hours) * 60);

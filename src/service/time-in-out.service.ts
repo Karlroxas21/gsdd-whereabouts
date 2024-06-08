@@ -50,4 +50,8 @@ export class TimeInOutService {
   getAllLatestTimeInToday(): Observable<any>{
     return this.http.get(`${this.baseUrlAPI}all_latest_time_in`);
   }
+
+  getAllDataTimeInOut(): Observable<any>{
+    return this.http.get(`${this.baseUrlAPI}get_all_data_time_in_out`);
+  }
 }
