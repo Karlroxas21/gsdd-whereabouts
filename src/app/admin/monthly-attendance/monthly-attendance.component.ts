@@ -5,7 +5,7 @@ import { EmployeeAttendanceService } from 'src/service/employee-attendance.servi
 import { Table } from 'primeng/table';
 import { FilterMatchMode, PrimeNGConfig } from 'primeng/api';
 import * as FileSaver from 'file-saver';
-
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-monthly-attendance',
   templateUrl: './monthly-attendance.component.html',
@@ -102,26 +102,48 @@ export class MonthlyAttendanceComponent implements OnInit {
     table.clear();
   }
 
-  exportExcel() {
-    import('xlsx').then((xlsx) => {
-      const data = this.employeeAttendance.map((item) => ({
-        ...item,
-        time_in: item.time_in.toLocaleString('en-US', {
-          timeZone: 'Asia/Manila',
-        }),
-        time_out: item.time_out.toLocaleString('en-US', {
-          timeZone: 'Asia/Manila',
-        }),
-      }));
-      const worksheet = xlsx.utils.json_to_sheet(data);
-      const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
-      const excelBuffer: any = xlsx.write(workbook, {
-        bookType: 'xlsx',
-        type: 'array',
-      });
-      this.saveAsExcelFile(excelBuffer, 'employee-attendance');
-    });
+  exportExcel(){
+    const data = this.employeeAttendance.map((item) => ({
+                Id: item.Id,
+                Name: item.first_name + " " + item.last_name,
+                time_in: this.convertToManilaTime(item.time_in), // Convert time to ISOstring
+                time_out: item.time_out
+              }));
+    console.log(data);
+
   }
+
+  convertToManilaTime(isoString: Date){
+    const date = new Date(isoString);
+    const timezoneOffset = date.getTimezoneOffset() * 60000; // Convert offset to milliseconds
+    const manilaOffset = 8 * 60 * 60000; // Manila offset in milliseconds (UTC+8)
+    const manilaTime = new Date(date.getTime() + timezoneOffset + manilaOffset);
+
+    return manilaTime.toISOString();
+  }
+
+
+//   Old export
+//   exportExcel() {
+//     import('xlsx').then((xlsx) => {
+//       const data = this.employeeAttendance.map((item) => ({
+//         ...item,
+//         time_in: item.time_in.toLocaleString('en-US', {
+//           timeZone: 'Asia/Manila',
+//         }),
+//         time_out: item.time_out.toLocaleString('en-US', {
+//           timeZone: 'Asia/Manila',
+//         }),
+//       }));
+//       const worksheet = xlsx.utils.json_to_sheet(data);
+//       const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
+//       const excelBuffer: any = xlsx.write(workbook, {
+//         bookType: 'xlsx',
+//         type: 'array',
+//       });
+//       this.saveAsExcelFile(excelBuffer, 'employee-attendance');
+//     });
+//   }
 
   saveAsExcelFile(buffer: any, fileName: string): void {
     let EXCEL_TYPE =
@@ -136,21 +158,5 @@ export class MonthlyAttendanceComponent implements OnInit {
     );
   }
 
-  exportCSV() {
-    let selectedRows = this.dt.selection;
-
-    let exportData = selectedRows.map((row: EmployeeAttendance) => {
-      return {
-        ...row,
-        time_in: row.time_in.toLocaleString('en-US', {
-          timeZone: 'Asia/Manila',
-        }),
-        time_out: row.time_out.toLocaleString('en-US', {
-          timeZone: 'Asia/Manila',
-        }),
-      };
-    });
-
-    this.dt.exportCSV({ data: exportData, selectionOnly: true });
-  }
+ 
 }
