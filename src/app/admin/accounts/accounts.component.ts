@@ -106,9 +106,7 @@ export class AccountsComponent implements OnInit {
       account.last_name === '' ||
       account.position === '' ||
       account.email === '' ||
-      account.pin === '' ||
-      account.role === '' ||
-      account.verified === false
+      account.role === ''
     ) {
       delete this.clonedAccounts[account.Id];
       this.messageService.add({
@@ -117,11 +115,21 @@ export class AccountsComponent implements OnInit {
         detail: 'Invalid',
       });
     }
-    this.messageService.add({
-      severity: 'success',
-      summary: 'success',
-      detail: 'Account is updated',
-    });
+
+    this.accountService.rowEditSave(account.Id, account.first_name, account.last_name,
+        account.position, account.email, account.role, account.verified).subscribe((res)=>{
+            this.messageService.add({
+                severity: 'success',
+                summary: 'success',
+                detail: 'Account is updated',
+            }); 
+        }, (err)=>{
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Error occured',
+            }); 
+        })
   }
 
   onRowEditCancel(account: Account, index: number) {
@@ -167,29 +175,31 @@ export class AccountsComponent implements OnInit {
     //     return;
     //    }
 
-    //    this.accountService.submitAccount(
-    //     this.addAccountForm.value.first_name ?? '',
-    //     this.addAccountForm.value.last_name ?? '',
-    //     this.addAccountForm.value.email ?? '',
-    //     this.addAccountForm.value.position?.value ?? '',
-    //     this.addAccountForm.value.pin ?? '',
-    //     this.addAccountForm.value.role?.value ?? '',
-    //    ).subscribe(() =>{
-    //     this.toast('success', 'Success', "New user successfully added!");
-    //    });
+       this.accountService.submitAccount(
+        this.addAccountForm.value.first_name ?? '',
+        this.addAccountForm.value.last_name ?? '',
+        this.addAccountForm.value.email ?? '',
+        this.addAccountForm.value.position?.value ?? '',
+        this.addAccountForm.value.pin ?? '',
+        this.addAccountForm.value.role?.value ?? '',
+       ).subscribe(() =>{
+        this.toast('success', 'Success', "New user successfully added!");
+       });
 
-    if (
-      this.addAccountForm.value.position?.value !== '' &&
-      this.addAccountForm.value.role?.value !== ''
-    ) {
-      console.log('both empty');
-    } else {
-      console.log(
-        'both have value: ',
-        `Position ${this.addAccountForm.value.position?.value}`,
-        `Role ${this.addAccountForm.value.role?.value}`,
-      );
-    }
+    // if (
+    //   this.addAccountForm.value.position?.value !== null &&
+    //   this.addAccountForm.value.role?.value !== null
+    // ) {
+    //   console.log('both empty');
+    //   console.log(this.addAccountForm.value.position?.value)
+    //   console.log(this.addAccountForm.value.role?.value)
+    // } else {
+    //   console.log(
+    //     'both have value: ',
+    //     `Position ${this.addAccountForm.value.position?.value}`,
+    //     `Role ${this.addAccountForm.value.role?.value}`,
+    //   );
+    // }
   }
 
   toast(

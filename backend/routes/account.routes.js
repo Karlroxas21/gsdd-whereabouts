@@ -211,6 +211,27 @@ app.put("/change_pin/:id", async (req, res) => {
   }
 });
 
+app.put("/row_edit_save", async(req, res)=>{
+    const { Id, first_name, last_name, position, email, role, verified } = req.body;
+
+    const updated_account = await User.update(
+        {
+            first_name: first_name,
+            last_name: last_name,
+            position: position,
+            email: email,
+            role: role,
+            verified: verified
+        }, {where: {Id: Id}}
+    );
+
+    if (updated_account[0] === 0) {
+        res.status(404).json({ message: "Update failed. Record not found." });
+      } else {
+        res.status(200).json({ message: "Record updated successfully." });
+      }
+})
+
 function sendConfirmationEmail(account) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
