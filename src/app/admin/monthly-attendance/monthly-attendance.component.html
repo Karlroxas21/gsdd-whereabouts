@@ -71,17 +71,6 @@
               pTooltip="XLS"
               tooltipPosition="bottom"
             ></button>
-            <button
-              type="button"
-              pButton
-              pRipple
-              icon="pi pi-filter"
-              (click)="dt.exportCSV({ selectionOnly: true })"
-              class="p-button-info ml-auto"
-              pTooltip="Selection Only"
-              tooltipPosition="bottom"
-            ></button>
-
             <span class="flex w-full justify-end">
               <input
                 class="w-full font-semibold sm:w-64"
@@ -197,9 +186,11 @@
           <tr [pSelectableRow]="attendance">
             <td>{{ attendance.first_name }}</td>
             <td>{{ attendance.last_name }}</td>
-            <td>{{ attendance.time_in | date: "short" : "GMT+8" }}</td>
+            <td>{{ attendance.time_in | date:"yyyy-MM-dd HH:mm" : "UTC" }}</td>
+            <td>{{ attendance.time_out | date:'yyyy-MM-dd HH:mm' : "UTC" }}</td>
+            <!-- <td>{{ attendance.time_in | date: "short" : "GMT+8" }}</td>
             <td>{{ attendance.time_out | date: "short" : "GMT+8" }}</td>
-          </tr>
+          </tr> -->
         </ng-template>
         <ng-template pTemplate="emptymessage">
           <tr>
