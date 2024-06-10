@@ -56,4 +56,8 @@ export class AccountService {
   changePin(Id: string | null, newPin: string): Observable<any> {
     return this.http.put(`${this.baseUrlAPI}change_pin/${Id}`, { newPin });
   }
+
+  rowEditSave(Id: string, first_name: string, last_name: string, position: string, email: string, role: string, verified: boolean){
+    return this.http.put(`${this.baseUrlAPI}row_edit_save`, {Id, first_name, last_name, position, email, role, verified})
+  }
 }
