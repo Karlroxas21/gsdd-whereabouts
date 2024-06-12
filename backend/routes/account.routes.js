@@ -230,7 +230,7 @@ app.put("/row_edit_save", async(req, res)=>{
       } else {
         res.status(200).json({ message: "Record updated successfully." });
       }
-})
+});
 
 function sendConfirmationEmail(account) {
   const transporter = nodemailer.createTransport({
