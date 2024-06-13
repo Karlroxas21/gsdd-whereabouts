@@ -38,4 +38,20 @@ export class TimeInOutService {
   isTimeOut(user_Id: string | null): Observable<any> {
     return this.http.get(`${this.baseUrlAPI}check_time_out_today/${user_Id}`);
   }
+
+  getTimeInAndOut(user_Id: string | null): Observable<any>{
+    return this.http.get(`${this.baseUrlAPI}get_time_in_and_out/${user_Id}`);
+  }
+
+  updateData(Id: string | null, time_in: Date, time_out: Date): Observable<any>{
+    return this.http.put(`${this.baseUrlAPI}update_Data/${Id}`, {time_in ,time_out})
+  }
+  
+  getAllLatestTimeInToday(): Observable<any>{
+    return this.http.get(`${this.baseUrlAPI}all_latest_time_in`);
+  }
+
+  getAllDataTimeInOut(): Observable<any>{
+    return this.http.get(`${this.baseUrlAPI}get_all_data_time_in_out`);
+  }
 }

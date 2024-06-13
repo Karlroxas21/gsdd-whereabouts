@@ -116,10 +116,10 @@
 
               <div class="mt-1 text-xs text-red-500">
                 <p *ngIf="addAccountForm.get('email')?.errors?.['required']">Email is required</p>
-                <p *ngIf="addAccountForm.get('email')?.errors?.['pattern']">Please enter a valid email with the domain @gmail.com and only use numbers and alphabets before the @ symbol.</p>
+                <!-- <p *ngIf="addAccountForm.get('email')?.errors?.['pattern']">Please enter a valid email with the domain @gmail.com and only use numbers and alphabets before the @ symbol.</p> -->
 
                 <!-- Enable this in production! -->
-                <!-- <p *ngIf="addAccountForm.get('email')?.errors?.['pattern']">Please enter a valid email with the domain @namria.gov.ph and only use numbers and alphabets before the @ symbol.</p> -->
+                <p *ngIf="addAccountForm.get('email')?.errors?.['pattern']">Please enter a valid email with the domain @namria.gov.ph and only use numbers and alphabets before the @ symbol.</p>
             </div>
             </div>
 
@@ -187,10 +187,10 @@
     </div>
 
     <div
-      class="ml-5 flex w-full flex-col rounded-lg border border-black bg-white p-5 shadow-lg md:w-3/5 lg:w-4/5"
+      class="ml-5 flex w-full flex-col rounded-lg border border-black bg-white p-5 shadow-lg md:w-3/5 lg:w-11/12"
     >
       <p-toast></p-toast>
-      <p-toolbar styleClass="mb-4 gap-2">
+      <!-- <p-toolbar styleClass="mb-4 gap-2">
         <ng-template pTemplate="left">
           <button
             pButton
@@ -201,12 +201,11 @@
             [disabled]="!selectedAccounts || !selectedAccounts.length"
           ></button>
         </ng-template>
-      </p-toolbar>
+      </p-toolbar> -->
       <p-table
         #dtaccounts
-        dataKey="id"
+        dataKey="Id"
         [value]="account"
-        dataKey="id"
         editMode="row"
         [globalFilterFields]="[
           'first_name',
@@ -227,9 +226,9 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th style="width: 4rem">
+            <!-- <th style="width: 4rem">
               <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-            </th>
+            </th> -->
             <th style="width: 20%">First Name</th>
             <th style="width: 20%">Last Name</th>
             <th style="width: 20%">Current Status</th>
@@ -267,9 +266,9 @@
           let-ri="rowIndex"
         >
           <tr [pEditableRow]="account">
-            <td>
+            <!-- <td>
               <p-tableCheckbox [value]="account"></p-tableCheckbox>
-            </td>
+            </td> -->
             <td>
               <p-cellEditor>
                 <ng-template pTemplate="input">

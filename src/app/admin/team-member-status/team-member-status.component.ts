@@ -63,7 +63,6 @@ export class TeamMemberStatusComponent implements OnInit {
     this.employeeStatusService.getEmployeeStatus().then((data) => {
       this.loading = false;
       this.employeeStatus = data.map((item) => ({
-        ...item,
         status_from_to: item.status_from_to.map((statusItem) => ({
           ...statusItem,
           from: new Date(statusItem.from),
@@ -71,9 +70,10 @@ export class TeamMemberStatusComponent implements OnInit {
         })),
       }));
 
-      this.employeeStatusNames = Array.from(
-        new Set(this.employeeStatus.map((item) => item.name)),
-      );
+    //   TEMPORARY REMOVE
+    //   this.employeeStatusNames = Array.from(
+    //     new Set(this.employeeStatus.map((item) => item.name)),
+    //   );
 
       this.employeeStatusList = [
         ...new Set(

@@ -8,6 +8,7 @@
 
 # Backend
 backend/.env
+backend/dist
 
 # Node
 /node_modules

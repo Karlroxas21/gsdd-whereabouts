@@ -26,5 +26,21 @@ create table TimeInAndOuts(
 	total_time varchar(100),
     createdAt DATETIME NOT NULL,
 	updatedAt DATETIME NOT NULL,
-	)
+)
 	
+-- Status table
+create table Statuses(
+	Id int primary key identity(1,1),
+	user_Id int foreign key REFERENCES Users(Id),
+	status varchar(100),
+	date_and_time DATETIME,
+    createdAt DATETIME NOT NULL,
+	updatedAt DATETIME NOT NULL,
+)
+	
+-- StatusValue
+create table StatusValues (
+	Id int primary key identity(1,1),
+	label varchar(255) NOT NULL,
+	value varchar(255) NOT NULL,
+)

@@ -1,6 +1,7 @@
 export interface EmployeeAttendance {
-  id?: string;
-  name?: string;
+  Id?: string;
+  first_name?: string;
+  last_name?: string;
   time_in: Date;
   time_out: Date;
 }

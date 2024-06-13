@@ -2,6 +2,7 @@
   <div
     class="flex w-2/5 flex-col rounded-lg border border-black bg-white p-5 shadow-lg"
   >
+  NOT CONFIGURED
     <div class="pb-2 text-xs sm:text-sm md:text-lg">
       <p>Select date:</p>
     </div>
@@ -27,6 +28,7 @@
   </div>
 
   <!-- Table -->
+   *If gray box is displayed, refresh the browser
   <div
     class="flex w-4/6 flex-col rounded-lg border border-black bg-white p-5 shadow-lg"
   >
@@ -47,7 +49,7 @@
         [scrollable]="true"
         scrollHeight="400px"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [globalFilterFields]="['name', 'time_in', 'time_out']"
+        [globalFilterFields]="['first_name', 'last_name', 'time_in', 'time_out']"
         [tableStyle]="{ 'min-width': '50rem' }"
       >
         <!-- responsiveLayout="stack" [breakpoint]="'960px'" -->
@@ -71,17 +73,6 @@
               pTooltip="XLS"
               tooltipPosition="bottom"
             ></button>
-            <button
-              type="button"
-              pButton
-              pRipple
-              icon="pi pi-filter"
-              (click)="dt.exportCSV({ selectionOnly: true })"
-              class="p-button-info ml-auto"
-              pTooltip="Selection Only"
-              tooltipPosition="bottom"
-            ></button>
-
             <span class="flex w-full justify-end">
               <input
                 class="w-full font-semibold sm:w-64"
@@ -98,10 +89,10 @@
           <tr>
             <th>
               <div class="flex items-center gap-2">
-                Name
+                First Name
 
                 <p-columnFilter
-                  field="name"
+                  field="first_name"
                   matchMode="in"
                   display="menu"
                   [showMatchModes]="false"
@@ -120,7 +111,7 @@
                   >
                     <p-multiSelect
                       [ngModel]="value"
-                      [options]="employeeNames"
+                      [options]="employeeFirstNames"
                       placeholder="Any"
                       (onChange)="filter($event.value)"
                     >
@@ -134,6 +125,46 @@
                 </p-columnFilter>
               </div>
             </th>
+            <!-- LAST NAME -->
+            <th>
+                <div class="flex items-center gap-2">
+                  Last Name
+  
+                  <p-columnFilter
+                    field="last_name"
+                    matchMode="in"
+                    display="menu"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  >
+                    <ng-template pTemplate="header">
+                      <div class="px-3 pb-0 pt-3">
+                        <span class="font-bold">Select name</span>
+                      </div>
+                    </ng-template>
+                    <ng-template
+                      pTemplate="filter"
+                      let-value
+                      let-filter="filterCallback"
+                    >
+                      <p-multiSelect
+                        [ngModel]="value"
+                        [options]="employeeLastNames"
+                        placeholder="Any"
+                        (onChange)="filter($event.value)"
+                      >
+                        <ng-template let-option pTemplate="item">
+                          <div class="vertical-align-middle inline-block">
+                            <span class="ml-1 mt-1">{{ option }}</span>
+                          </div>
+                        </ng-template>
+                      </p-multiSelect>
+                    </ng-template>
+                  </p-columnFilter>
+                </div>
+              </th>
+             <!-- END OF LAST NAME -->
             <th>
               <div class="flex items-center gap-2">
                 Time in
@@ -155,10 +186,13 @@
         </ng-template>
         <ng-template pTemplate="body" let-attendance>
           <tr [pSelectableRow]="attendance">
-            <td>{{ attendance.name }}</td>
-            <td>{{ attendance.time_in | date: "short" : "GMT+8" }}</td>
+            <td>{{ attendance.first_name }}</td>
+            <td>{{ attendance.last_name }}</td>
+            <td>{{ attendance.time_in | date:"yyyy-MM-dd HH:mm" : "UTC" }}</td>
+            <td>{{ attendance.time_out | date:'yyyy-MM-dd HH:mm' : "UTC" }}</td>
+            <!-- <td>{{ attendance.time_in | date: "short" : "GMT+8" }}</td>
             <td>{{ attendance.time_out | date: "short" : "GMT+8" }}</td>
-          </tr>
+          </tr> -->
         </ng-template>
         <ng-template pTemplate="emptymessage">
           <tr>

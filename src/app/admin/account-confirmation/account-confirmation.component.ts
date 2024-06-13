@@ -22,11 +22,7 @@ export class AccountConfirmationComponent implements OnInit {
 
   validateAccount(emailToken: string) {
     this.accountService.validateAccount(emailToken).subscribe(() => {
-      console.log(
-        'Account with email token: ',
-        emailToken,
-        'has been verified',
-      );
+     
     });
   }
 }
