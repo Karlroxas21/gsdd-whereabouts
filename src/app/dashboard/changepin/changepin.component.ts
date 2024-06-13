@@ -34,7 +34,6 @@ export class ChangepinComponent {
         const Id = localStorage.getItem('id');
 
         this.accountService.changePin(Id, confirmNewPin).subscribe((res)=>{
-            console.log(res);
         })
         this.newPinControl.reset();
         this.confirmPinControl.reset();

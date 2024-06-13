@@ -102,7 +102,6 @@ export class MonthlyAttendanceComponent implements OnInit {
             endDate: this.datePipe.transform(this.rangeDates[1], 'MM/dd/yyyy'),
         };
 
-        console.log(jsonDateRange);
     }
 
     applyFilterGlobal($event: any, stringVal: any) {
@@ -129,7 +128,6 @@ export class MonthlyAttendanceComponent implements OnInit {
             // }
             return item
         });
-        console.log(this.dt);
 
     
         const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.dt.el.nativeElement, 
@@ -149,7 +147,7 @@ export class MonthlyAttendanceComponent implements OnInit {
         const wb: XLSX.WorkBook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     
-        XLSX.writeFile(wb, 'SheetJS.xlsx');
+        XLSX.writeFile(wb, 'attendance_export.xlsx');
 
     }
 

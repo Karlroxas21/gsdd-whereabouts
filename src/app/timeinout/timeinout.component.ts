@@ -117,7 +117,6 @@ export class TimeinoutComponent implements OnInit {
 
     let timeInDateTime = new Date(`${this.timeInDate} ` + this.getTimeIn());
 
-    console.log('Time in: ', this.getTimeIn());
     if (this.Id) {
       this.timeInOutService.timeIn(this.Id, timeInDateTime).subscribe(
         (res) => {
@@ -140,13 +139,11 @@ export class TimeinoutComponent implements OnInit {
     let timeOutDateTime = new Date(`${this.timeOutDate} ` + this.getTimeOut());
 
     if (this.getTimeIn() !== '--') {
-      console.log('time out id: ', this.timeOutId);
 
       this.timeInOutService
         .timeOut(this.timeOutId.toString(), timeOutDateTime)
         .subscribe(
           (res) => {
-            console.log('Time out success: ', res);
             this.check_time_out = true;
           },
           (err) => {
@@ -160,7 +157,6 @@ export class TimeinoutComponent implements OnInit {
             .setTotalTime(this.timeOutId, res.total_time)
             .subscribe(
               (res_total_time) => {
-                console.log('Total time inside setTotal:', res_total_time);
               },
               (err) => {
                 console.log(err);

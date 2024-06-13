@@ -34,10 +34,6 @@ export class OrgChartComponent implements OnInit {
         this.listenForNewMessages();
         
         this.fetchTimeInData();
-        
-        console.log("Time in data: ", this.timeInData)
-
-
     }
 
     getAllLatestStatus() {
@@ -91,7 +87,6 @@ export class OrgChartComponent implements OnInit {
     fetchTimeInData() {
         this.timeInOutService.getAllLatestTimeInToday().subscribe((res)=>{
           this.timeInData.push(...res);
-          console.log("All latest time in data: ", this.timeInData)
         });
       }
 

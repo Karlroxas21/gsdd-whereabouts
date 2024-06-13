@@ -129,7 +129,6 @@ export class TimesheetComponent {
     }
 
     onRowEditCancel() {
-        // console.log("EDIT TEST")
     }
 
     applyFilterGlobal($event: any, stringVal: any) {

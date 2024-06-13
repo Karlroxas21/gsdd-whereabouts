@@ -140,7 +140,6 @@ export class UserButtonComponent implements OnInit {
         this.timeInAndOutVisible = false;
 
         if (this.getTimeIn() !== '--') {
-            console.log('time out id: ', this.timeOutId);
 
             this.timeInOutService
                 .timeOut(this.timeOutId.toString(), timeOutDateTime)

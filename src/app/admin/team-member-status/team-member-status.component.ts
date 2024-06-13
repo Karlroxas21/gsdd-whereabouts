@@ -63,7 +63,6 @@ export class TeamMemberStatusComponent implements OnInit {
     this.employeeStatusService.getEmployeeStatus().then((data) => {
       this.loading = false;
       this.employeeStatus = data.map((item) => ({
-        ...item,
         status_from_to: item.status_from_to.map((statusItem) => ({
           ...statusItem,
           from: new Date(statusItem.from),

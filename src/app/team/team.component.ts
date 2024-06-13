@@ -63,9 +63,6 @@ export class TeamComponent {
                 this.employeeStatuses.push(employeeStatus);
             }
 
-
-            console.log(this.employeeStatuses)
-
         })
     }
 

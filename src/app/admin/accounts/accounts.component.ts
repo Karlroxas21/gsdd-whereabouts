@@ -43,8 +43,8 @@ export class AccountsComponent implements OnInit {
     position: new FormControl({ label: '', value: '' }, Validators.required),
     email: new FormControl('', [
       Validators.required,
-      Validators.pattern('^[a-zA-Z0-9]+@gmail.com$'),
-      // Validators.pattern('^[a-zA-Z0-9]+@namria\.gov\.ph$'),
+    //   Validators.pattern('^[a-zA-Z0-9]+@gmail.com$'),
+      Validators.pattern('^[a-zA-Z0-9]+@namria\.gov\.ph$'),
     ]),
     pin: new FormControl('', [
       Validators.required,

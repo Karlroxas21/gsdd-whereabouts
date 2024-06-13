@@ -72,7 +72,6 @@ export class LoginComponent {
       (account) => {
         if (!account.verified) {
           this.toast('warn', 'Login failed', 'Account not verified.');
-          console.log('verification status: ', account.verified);
 
           return;
         }
